@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.2//EN" "http://www.web3d.org/specifications/x3d-3.2.dtd">
+<X3D profile='Immersive' version='3.2' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.2.xsd'>
+    <head>
+        <meta content='*enter FileNameWithNoAbbreviations.x3d here*' name='title'/>
+        <meta content='*enter description here, short-sentence summaries preferred*' name='description'/>
+        <meta content='*enter name of original author here*' name='creator'/>
+        <meta content='*if manually translating VRML-to-X3D, enter name of person translating here*' name='translator'/>
+        <meta content='*enter date of initial version here*' name='created'/>
+        <meta content='*enter date of translation here*' name='translated'/>
+        <meta content='*enter date of latest revision here*' name='modified'/>
+        <meta content='*enter version here, if any*' name='version'/>
+        <meta content='*enter reference citation or relative/online url here*' name='reference'/>
+        <meta content='*enter additional url/bibliographic reference information here*' name='reference'/>
+        <meta content='*enter reference resource here if required to support function, delivery, or coherence of content*' name='requires'/>
+        <meta content='*enter copyright information here* Example: Copyright (c) Web3D Consortium Inc. 2008' name='rights'/>
+        <meta content='*enter drawing filename/url here*' name='drawing'/>
+        <meta content='*enter image filename/url here*' name='image'/>
+        <meta content='*enter movie filename/url here*' name='MovingImage'/>
+        <meta content='*enter photo filename/url here*' name='photo'/>
+        <meta content='*enter subject keywords here*' name='subject'/>
+        <meta content='*enter permission statements or url here*' name='accessRights'/>
+        <meta content='*insert any known warnings, bugs or errors here*' name='warning'/>
+        <meta content='*enter online Uniform Resource Identifier (URI) or Uniform Resource Locator (URL) address for this file here*' name='identifier'/>
+        <meta content='X3D-Edit, https://savage.nps.edu/X3D-Edit' name='generator'/>
+        <meta content='../../license.html' name='license'/>
+        <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
+    </head>
+    <Scene>
+        <!-- Floor -->
+        <Shape DEF="RoomFloor">
+            <Box size="5.4 3.9 0.1" solid="true"/>
+            <Appearance>   
+                <Material DEF='RoomFloorMaterial' diffuseColor='1 1 1'/>
+            </Appearance>
+        </Shape>
+        <!-- Walls -->
+        <Transform rotation='1 0 0 1.57' translation='0 1.85 1.25'>
+            <Shape DEF="TopWall">
+                <Box size="5.4 2.5 0.2" solid="true"/>
+                <Appearance>   
+                    <Material DEF='WallMaterial' diffuseColor='1 1 1'/>
+                </Appearance>
+            </Shape>
+        </Transform>
+        <Transform rotation='1 0 0 1.57' translation='0 -1.85 1.25'>
+            <Shape USE="TopWall"/>
+        </Transform>
+        <!--
+        <Transform rotation='0 1 0 1.57' translation='-2.6 0 1.25'>
+            <Shape DEF="LeftWall">
+                <Box size="2.5 3.9 0.2" solid="true"/>
+                <Appearance>   
+                    <Material USE='WallMaterial'/>
+                </Appearance>
+            </Shape>
+        </Transform>
+        -->
+        <Transform rotation='0 1 0 1.57' translation='-2.6 0 2.25'>
+            <Shape DEF="WindowTop">
+                <Box size="0.5 1 0.2" solid="true"/>
+                <Appearance>   
+                    <Material USE='WallMaterial'/>
+                </Appearance>
+            </Shape>
+         </Transform>
+         <Transform rotation='0 1 0 1.57' translation='-2.6 0 0.5'>
+            <Shape DEF="WindowBottom">
+                <Box size="1.0 1 0.2" solid="true"/>
+                <Appearance>   
+                    <Material USE='WallMaterial'/>
+                </Appearance>
+            </Shape>
+         </Transform>
+         <Transform rotation='0 1 0 1.57' translation='-2.6 1.22 1.25'>
+            <Shape DEF="WindowLeft">
+                <Box size="2.5 1.45 0.2" solid="true"/>
+                <Appearance>   
+                    <Material USE='WallMaterial'/>
+                </Appearance>
+            </Shape>
+         </Transform>
+         <Transform rotation='0 1 0 1.57' translation='-2.6 -1.22 1.25'>
+            <Shape USE="WindowLeft"/>
+         </Transform>
+        <Transform rotation='0 1 0 1.57' translation='2.6 0 2.25'>
+            <Shape DEF="DoorTop">
+                <Box size="0.5 1 0.2" solid="true"/>
+                <Appearance>   
+                    <Material USE='WallMaterial'/>
+                </Appearance>
+            </Shape>
+         </Transform>
+         <Transform rotation='0 1 0 1.57' translation='2.6 1.22 1.25'>
+            <Shape DEF="DoorLeft">
+                <Box size="2.5 1.45 0.2" solid="true"/>
+                <Appearance>   
+                    <Material USE='WallMaterial'/>
+                </Appearance>
+            </Shape>
+         </Transform>
+         <Transform rotation='0 1 0 1.57' translation='2.6 -1.22 1.25'>
+            <Shape USE="DoorLeft"/>
+         </Transform>
+        <!-- Door-->       
+        <Transform translation='2.6 0 1'>
+            <Transform rotation='1 0 0 1.57'>
+                <Transform rotation='0 1 0 1.57'>
+                    <!--
+                    <Shape DEF="Door">
+                        <Box size="1 2 0.1"/>
+                        <Appearance>
+                            <Material/>       
+                            <ImageTexture DEF='door_texture' url=' "http://img.artlebedev.com/everything/defendius/defendius1.jpg" '/>
+                        </Appearance>
+                    </Shape>
+                    -->
+                    <Inline DEF='Door' url='"interior-door.x3d"' />
+                    <TouchSensor DEF='TOUCH_Exit'/>
+                </Transform>
+            </Transform>
+        </Transform>
+        <!-- Window -->
+        <Transform translation='-2.6 0 1.5'>
+                <Transform rotation='1 0 0 1.57'>
+                    <Transform rotation='0 1 0 1.57'>
+                        <Inline DEF='Window' url='"window.x3d"' />       
+                        <IMPORT inlineDEF='Window' exportedDEF='MATERIAL_WindowFrameOut' AS='MATERIAL_WindowFrame'/>
+                        <IMPORT inlineDEF='Window' exportedDEF='MATERIAL_GlassOut' AS='MATERIAL_Glass'/>
+                </Transform>
+            </Transform>
+        </Transform>
+        <!-- Exit Box -->
+        <Transform rotation='1 0 0 1.57'>
+            <Transform rotation='0 1 0 -1.57' translation='2.46 2.24 0'>
+                 <PointLight DEF='PointLightRed' 
+                     location = '0 0 0'
+                     color='1 1 1' 
+                     attenuation='.03 .03 .03' 
+                     radius='10'
+                     ambientIntensity='0' 
+                     intensity='1'
+                     on='true' 
+                     global='false'/>
+                 <Transform>
+                    <Shape>
+                        <Box size="0.2 0.1 0.08" solid="true"/>
+                        <Appearance>   
+                            <Material DEF='ExitMaterial' transparency='.5' specularColor='0 1 0' diffuseColor='0 1 0' emissiveColor='0 1 0'/>
+                        </Appearance>
+                    </Shape>
+                 </Transform>
+                 <Shape>
+                     <Text solid='true' string='Exit'>
+                         <FontStyle justify='"MIDDLE" "MIDDLE"' size="0.1" />
+                     </Text> 
+                     <Appearance>
+                         <Material emissiveColor='1 1 1'/>
+                     </Appearance>
+                 </Shape>
+            </Transform>
+        </Transform>
+        <!-- Beds -->
+        <Transform rotation='0 0 1 -1.57' translation='-1.34 -0.75 0.4'>
+            <Transform rotation='0 1 0 -0.79'>
+                <Transform rotation='0 0 1 -1.57' translation='0.5 0 -4.5'>
+                    <Viewpoint DEF="VIEWPOINT_Bed1" description="Bed1 Viewpoint" />
+                </Transform>
+            </Transform>
+            <Inline DEF='Bed1' url='"bed.x3d"' />
+            <IMPORT inlineDEF='Bed1' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed1'/>
+            <BooleanFilter DEF='BOOL_SpotlightFilterBed1'/>
+            <TouchSensor DEF='TOUCH_Bed1'/>
+        </Transform>
+        <Transform rotation='0 0 1 -1.57' translation='0 -0.75 0.4'>
+            <Transform rotation='0 1 0 -0.79'>
+                <Transform rotation='0 0 1 -1.57' translation='0.5 0 -4.5'>
+                    <Viewpoint DEF="VIEWPOINT_Bed2" description="Bed2 Viewpoint" />
+                </Transform>
+            </Transform>
+            <Inline DEF='Bed2' url='"bed.x3d"' />
+            <IMPORT inlineDEF='Bed2' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed2'/>
+            <BooleanFilter DEF='BOOL_SpotlightFilterBed2'/>
+            <TouchSensor DEF='TOUCH_Bed2'/>
+        </Transform>
+        <Transform rotation='0 0 1 -1.57' translation='1.34 -0.75 0.4'>
+            <Transform rotation='0 1 0 -0.79'>
+                <Transform rotation='0 0 1 -1.57' translation='0.5 0 -4.5'>
+                    <Viewpoint DEF="VIEWPOINT_Bed3" description="Bed3 Viewpoint" />
+                </Transform>
+            </Transform>
+            <Inline DEF='Bed3' url='"bed.x3d"' />
+            <IMPORT inlineDEF='Bed3' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed3'/>
+            <BooleanFilter DEF='BOOL_SpotlightFilterBed3'/>
+            <TouchSensor DEF='TOUCH_Bed3'/>
+        </Transform>
+        <!-- Billboard -->
+        <Transform DEF='TRANSFORM_Billboard' translation='0 -1.5 2'>
+            <Transform translation='2 0 0'>
+               <Billboard axisOfRotation="0 0 0">
+                    <Shape>    
+                        <Text DEF='BPM' solid='true' string=''>
+                            <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        </Text> 
+                        <Appearance>
+                            <Material DEF='BillboardTextMaterial' emissiveColor='1 .8 .5' transparency='1'/>
+                        </Appearance>
+                    </Shape>
+               </Billboard>
+            </Transform>
+            <Transform translation='0 0 0'>
+               <Billboard axisOfRotation="0 0 0">
+                  <Shape>    
+                        <Text DEF='TEMP' solid='true' string=''>
+                            <FontStyle USE='BillboardFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+               </Billboard>
+           </Transform>
+           <Transform translation='-2 0 0'>
+               <Billboard axisOfRotation="0 0 0">
+                  <Shape>    
+                        <Text DEF='BLC' solid='true' string=''>
+                            <FontStyle USE='BillboardFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                   </Shape>
+               </Billboard>
+           </Transform>
+        </Transform>
+        
+        <TimeSensor DEF='CLOCK_InterpolatorFade' cycleInterval='1' enabled='false' loop='false'/>
+        <TimeSensor DEF='CLOCK_InterpolatorShow' cycleInterval='1' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorFade' key='0.0 0.5 1.0' keyValue='0 0.5 1'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorShow' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
+        
+        <BooleanFilter DEF='BOOL_Exit'/> 
+        <!-- Routes -->
+        <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='VIEWPOINT_Bed1' toField='set_bind'/>
+        <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='VIEWPOINT_Bed2' toField='set_bind'/>
+        <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='VIEWPOINT_Bed3' toField='set_bind'/>
+        
+        <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='BOOL_SpotlightFilterBed1' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputTrue' toNode='LIGHT_SpotLightBed1' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputNegate' toNode='LIGHT_SpotLightBed2' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputNegate' toNode='LIGHT_SpotLightBed3' toField='on'/>
+    
+        <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='BOOL_SpotlightFilterBed2' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputTrue' toNode='LIGHT_SpotLightBed2' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputNegate' toNode='LIGHT_SpotLightBed1' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputNegate' toNode='LIGHT_SpotLightBed3' toField='on'/>
+        
+        <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='BOOL_SpotlightFilterBed3' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputTrue' toNode='LIGHT_SpotLightBed3' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputNegate' toNode='LIGHT_SpotLightBed1' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputNegate' toNode='LIGHT_SpotLightBed2' toField='on'/>
+
+        <ROUTE fromNode='TOUCH_Exit' fromField='touchTime' toNode='BOOL_Exit' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Exit' fromField='inputNegate' toNode='LIGHT_SpotLightBed1' toField='on'/>
+        <ROUTE fromNode='BOOL_Exit' fromField='inputNegate' toNode='LIGHT_SpotLightBed2' toField='on'/>
+        <ROUTE fromNode='BOOL_Exit' fromField='inputNegate' toNode='LIGHT_SpotLightBed3' toField='on'/>
+        <ROUTE fromNode='BOOL_Exit' fromField='inputNegate' toNode='BOOL_Exit' toField='set_boolean'/>
+        
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_enabled' toNode='CLOCK_InterpolatorShow'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_startTime' toNode='CLOCK_InterpolatorShow'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_enabled' toNode='CLOCK_InterpolatorShow'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_startTime' toNode='CLOCK_InterpolatorShow'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_enabled' toNode='CLOCK_InterpolatorShow'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_startTime' toNode='CLOCK_InterpolatorShow'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow' toField='set_fraction' toNode='ScalarInterpolatorShow'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow' toField='set_transparency' toNode='BillboardTextMaterial'/>
+        
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_enabled' toNode='CLOCK_InterpolatorFade'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_startTime' toNode='CLOCK_InterpolatorFade'/>
+         <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade' toField='set_fraction' toNode='ScalarInterpolatorFade'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade' toField='set_transparency' toNode='BillboardTextMaterial'/>
+                
+        <!-- Exports -->
+        <EXPORT localDEF='TOUCH_Bed1' AS='TOUCH_Bed1Out'/>
+        <EXPORT localDEF='TOUCH_Bed2' AS='TOUCH_Bed2Out'/>
+        <EXPORT localDEF='TOUCH_Bed3' AS='TOUCH_Bed3Out'/>
+        <EXPORT localDEF='TOUCH_Exit' AS='TOUCH_ExitOut'/>
+        <EXPORT localDEF='BLC' AS='BLCOut'/>
+        <EXPORT localDEF='TEMP' AS='TEMPOut'/>
+        <EXPORT localDEF='BPM' AS='BPMOut'/>
+    </Scene>
+</X3D>

@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.2//EN" "http://www.web3d.org/specifications/x3d-3.2.dtd">
+<X3D profile='Immersive' version='3.2' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.2.xsd'>
+    <head>
+        <meta content='*enter FileNameWithNoAbbreviations.x3d here*' name='title'/>
+        <meta content='*enter description here, short-sentence summaries preferred*' name='description'/>
+        <meta content='*enter name of original author here*' name='creator'/>
+        <meta content='*if manually translating VRML-to-X3D, enter name of person translating here*' name='translator'/>
+        <meta content='*enter date of initial version here*' name='created'/>
+        <meta content='*enter date of translation here*' name='translated'/>
+        <meta content='*enter date of latest revision here*' name='modified'/>
+        <meta content='*enter version here, if any*' name='version'/>
+        <meta content='*enter reference citation or relative/online url here*' name='reference'/>
+        <meta content='*enter additional url/bibliographic reference information here*' name='reference'/>
+        <meta content='*enter reference resource here if required to support function, delivery, or coherence of content*' name='requires'/>
+        <meta content='*enter copyright information here* Example: Copyright (c) Web3D Consortium Inc. 2008' name='rights'/>
+        <meta content='*enter drawing filename/url here*' name='drawing'/>
+        <meta content='*enter image filename/url here*' name='image'/>
+        <meta content='*enter movie filename/url here*' name='MovingImage'/>
+        <meta content='*enter photo filename/url here*' name='photo'/>
+        <meta content='*enter subject keywords here*' name='subject'/>
+        <meta content='*enter permission statements or url here*' name='accessRights'/>
+        <meta content='*insert any known warnings, bugs or errors here*' name='warning'/>
+        <meta content='*enter online Uniform Resource Identifier (URI) or Uniform Resource Locator (URL) address for this file here*' name='identifier'/>
+        <meta content='X3D-Edit, https://savage.nps.edu/X3D-Edit' name='generator'/>
+        <meta content='../../license.html' name='license'/>
+        <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
+    </head>
+    <ContextSetup ecmaScriptXHRTrustedHosts="localhost"/>  
+    <Scene>
+        <!-- 
+            TODO:
+                . Add room numbers
+                . Add bed numbers
+                . Create <Background>
+                . Beautify with textures
+                . Add nursery details
+                . Add other animations - light switches, open doors...
+        -->
+        <!-- Viewpoints -->
+        <Viewpoint DEF="GENERAL_viewpoint" description="General Viewpoint"  centerOfRotation= '0 0 0' orientation='0 1 0 0' position='0 0 50' />
+        <!-- World -->
+        <Group DEF='Building'>
+            <!-- Sala Refeições + Stock + WC + Copa + Saida -->
+            <Transform translation='0 14 0'>
+                <!-- Floor -->
+                <Transform translation='-1 0 0'>
+                    <Shape DEF="Floor1">
+                        <Box size="16.5 6.4 0.1" solid="true"/>
+                        <Appearance>   
+                            <Material DEF='FloorMaterial' diffuseColor='1 1 1'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <!-- Roof -->
+                <Transform DEF='TRANSFORM_Roof1'>
+                    <Transform translation='-1 0 4.4' >
+                        <Transform rotation='1 0 0 -0.88' translation='0 1.68 0' >
+                            <Shape DEF="Roof1">
+                                <Box size="16.6 5.35 0.05" solid="true"/>
+                                <Appearance>   
+                                    <Material DEF='RoofMaterial' diffuseColor='0.5 0 0'/>
+                                </Appearance>
+                            </Shape>
+                        </Transform>
+                        <Transform rotation='1 0 0 0.88' translation='0 -1.68 0'>
+                            <Shape USE="Roof1"/>
+                        </Transform>
+                        <Transform translation='0 0 2.05' rotation='0 0 1 1.57'>
+                            <Shape>
+                                <Cylinder radius="0.05" height="16.5" solid="true"/>
+                                <Appearance>   
+                                    <Material USE='RoofMaterial'/>
+                                </Appearance>
+                            </Shape>
+                        </Transform>
+                        <TouchSensor DEF='TOUCH_Roof1'/>
+                    </Transform>
+                </Transform>
+                <!-- Walls -->
+                <Transform rotation='1 0 0 1.57' translation='-1 3.1 1.25'>
+                    <Shape DEF="TopWall">
+                        <Box size="16.5 2.5 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material DEF='WallMaterial' diffuseColor='1 1 1'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <Transform rotation='0 1 0 1.57' translation='7.15 0 1.25'>
+                    <Shape DEF="TopRightWall1">
+                        <Box size="2.5 6.4 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <!--
+                <Transform rotation='0 1 0 1.57' translation='-9.15 0 1.25'>
+                    <Shape USE="TopRightWall1"/>
+                </Transform>
+                -->
+                <Transform rotation='0 0 1 1.57' translation='7.25 0 2.5'>
+                    <Shape DEF='TopRightWall2'>
+                        <Extrusion creaseAngle='0.0' crossSection='-3.2 0, 0 3.9, 3.2 0, -3.2 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
+                        <Appearance>
+                            <Material diffuseColor='1 1 1'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <Transform rotation='0 0 1 1.57' translation='-9.1 0 2.5'>
+                    <Shape USE='TopRightWall2'/>
+                </Transform>
+                <!--
+                <Transform rotation='1 0 0 1.57' translation='-8.15 -3.1 1.25'>
+                    <Shape DEF="BottomLeftWall">
+                        <Box size="2.2 2.5 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                -->
+                <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 2.25'>
+                   <Shape DEF="TopDoorTop">
+                       <Box size="1 0.5 0.2" solid="true"/>
+                       <Appearance>   
+                           <Material USE='WallMaterial'/>
+                       </Appearance>
+                   </Shape>
+                </Transform>
+                <Transform rotation='1 0 0 1.57' translation='6.95 -3.1 1.25'>
+                   <Shape DEF="TopDoorRight">
+                       <Box size="0.6 2.5 0.2" solid="true"/>
+                       <Appearance>   
+                           <Material USE='WallMaterial'/>
+                       </Appearance>
+                   </Shape>
+                </Transform>
+                <Transform rotation='1 0 0 1.57' translation='5.35 -3.1 1.25'>
+                   <Shape DEF="TopDoorLeft">
+                       <Box size="0.6 2.5 0.2" solid="true"/>
+                       <Appearance>   
+                           <Material USE='WallMaterial'/>
+                       </Appearance>
+                   </Shape>
+                </Transform>
+                <!-- Dinner Room -->
+                <Transform translation='-5.6 0 0'>
+                    <Inline DEF='Dinner' url='"dinner-room.x3d"' />
+                </Transform>
+                 <!-- Dinner Room -->
+                <Transform translation='2.35 -1.2 0'>
+                    <Inline DEF='SterilRoom' url='"sterilization-room.x3d"' />
+                </Transform>
+                <!-- Door-->
+                <Transform DEF='DoorTransform'>
+                   <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 1'>
+                       <!--  
+                       <Shape DEF="TopDoor">
+                           <Box size="1 2 0.1"/>
+                           <Appearance>
+                               <Material/>       
+                               <ImageTexture DEF='door_texture' url=' "http://img.artlebedev.com/everything/defendius/defendius1.jpg" '/>
+                           </Appearance>
+                       </Shape>   
+                       -->
+                       <Inline DEF='TopDoor' url='"exterior-door.x3d"' />
+                   </Transform>
+               </Transform> 
+            </Transform>
+            
+            <Transform translation='-1.1 -4.1 0'>
+                <!-- Floor -->
+                <Shape DEF="Floor2">
+                    <Box size="12.3 29.8 0.1" solid="true"/>
+                    <Appearance>   
+                        <Material USE='FloorMaterial'/>
+                    </Appearance>
+                </Shape>
+                <!-- Roof -->
+                <Transform DEF='TRANSFORM_Roof2'>
+                    <Transform translation='0 1.5 4.2' >
+                        <Transform rotation='0 1 0 -0.52' translation='-3.25 0 0' >
+                            <Shape DEF="Roof2">
+                                <Box size="7.5 32.8 0.05" solid="true"/>
+                                <Appearance>   
+                                    <Material USE='RoofMaterial'/>
+                                </Appearance>
+                            </Shape>
+                        </Transform>
+                        <Transform rotation='0 1 0 0.52' translation='3.25 0 0'>
+                            <Shape USE="Roof2"/>
+                        </Transform>
+                        <Transform translation='0 0 1.87'>
+                            <Shape>
+                                <Cylinder radius="0.05" height="32.8" solid="true"/>
+                                <Appearance>   
+                                    <Material USE='RoofMaterial'/>
+                                </Appearance>
+                            </Shape>
+                        </Transform>
+                        <TouchSensor DEF='TOUCH_Roof2'/>
+                    </Transform>
+                </Transform>
+                <!-- Walls -->
+                <!--
+                <Transform rotation='0 1 0 1.57' translation='-6.05 0 1.25'>
+                    <Shape DEF="LeftWall">
+                        <Box size="2.5 29.8 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                -->
+                <!--
+                <Transform rotation='0 1 0 1.57' translation='6.05 5.35 1.25'>
+                    <Shape DEF="RightWall1">
+                        <Box size="2.5 19.45 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <Transform rotation='0 1 0 1.57' translation='6.05 -10.15 1.25'>
+                    <Shape DEF="RightWall2">
+                        <Box size="2.5 9.5 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                -->
+                 <Transform rotation='0 1 0 1.57' translation='6.05 -4 1.25'>
+                   <Shape DEF="RightDoorLeft">
+                       <Box size="2.5 1 0.2" solid="true"/>
+                       <Appearance>   
+                           <Material USE='WallMaterial'/>
+                       </Appearance>
+                   </Shape>
+                </Transform>
+                <Transform rotation='0 1 0 1.57' translation='6.05 -4.9 2.25'>
+                   <Shape DEF="RightDoorTop">
+                       <Box size="0.5 1 0.2" solid="true"/>
+                       <Appearance>   
+                           <Material USE='WallMaterial'/>
+                       </Appearance>
+                   </Shape>
+                </Transform>
+                <Transform rotation='0 1 0 1.57' translation='6.05 -6.4 1.25'>
+                   <Shape DEF="RightDoorRight">
+                       <Box size="2.5 2 0.2" solid="true"/>
+                       <Appearance>   
+                           <Material USE='WallMaterial'/>
+                       </Appearance>
+                   </Shape>
+                </Transform>
+                <Transform rotation='1 0 0 1.57' translation='-3.55 -14.8 1.25'>
+                    <Shape DEF="FrontWall1">
+                        <Box size="5.20 2.5 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <Transform rotation='1 0 0 1.57' translation='3.55 -14.8 1.25'>
+                    <Shape USE="FrontWall1"/>
+                </Transform>
+                <Transform translation='0 -14.9 2.5'>
+                    <Shape>
+                        <Extrusion creaseAngle='0.0' crossSection='-6.15 0, 0 3.5, 6.15 0, -6.15 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
+                        <Appearance>
+                            <Material diffuseColor='1 1 1'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <Transform rotation='1 0 0 1.57' translation='0 -14.8 2.25'>
+                    <Shape DEF="FrontDoorTop">
+                        <Box size="2 0.5 0.2" solid="true"/>
+                        <Appearance>   
+                            <Material USE='WallMaterial'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <!-- Doors -->
+                <Transform DEF='DoorTransform1'>
+                    <Transform rotation='1 0 0 1.57' translation='-0.5 -14.8 1'>   
+                        <Shape USE="TopDoor"/>
+                    </Transform>
+                </Transform> 
+                <Transform DEF='DoorTransform2'>
+                    <Transform rotation='1 0 0 1.57' translation='0.5 -14.8 1'>   
+                        <Shape USE="TopDoor"/>   
+                    </Transform>
+                </Transform>
+                <Transform DEF='DoorTransform3'>
+                   <Transform translation='6.05 -4.9 1'>
+                    <Transform rotation='1 0 0 1.57'>
+                        <Transform rotation='0 1 0 1.57'>
+                              <Shape USE="TopDoor"/>
+                         </Transform>
+                     </Transform>
+                    </Transform>
+                </Transform>
+            </Transform>
+              
+            <TimeSensor DEF='CLOCK_Interpolators' cycleInterval='1' enabled='false' loop='false'/>
+            <ScalarInterpolator DEF='ScalarInterpolator' key='0.0 0.5 1.0' keyValue='0 0.5 1'/>
+            <PositionInterpolator DEF='PositionInterpolator' key='0.0 0.25 0.5 0.75 1.0' keyValue='0 0 0 20 0 0 40 0 0 50 0 0 60'/>
+
+            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof1' toField='set_enabled' toNode='CLOCK_Interpolators'/>
+            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof1' toField='set_startTime' toNode='CLOCK_Interpolators'/>
+            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof2' toField='set_enabled' toNode='CLOCK_Interpolators'/>
+            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof2' toField='set_startTime' toNode='CLOCK_Interpolators'/>
+
+            <ROUTE fromField='fraction_changed' fromNode='CLOCK_Interpolators' toField='set_fraction' toNode='ScalarInterpolator'/>
+            <ROUTE fromField='value_changed' fromNode='ScalarInterpolator' toField='set_transparency' toNode='RoofMaterial'/>
+
+            <ROUTE fromField='fraction_changed' fromNode='CLOCK_Interpolators' toField='set_fraction' toNode='PositionInterpolator'/>
+            <ROUTE fromField='value_changed' fromNode='PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof1'/>
+            <ROUTE fromField='value_changed' fromNode='PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof2'/>
+            
+            <!-- Room1 -->
+            <Transform DEF='TRANSFORM_Room1' translation='-4.55 9.05 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='1'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room1' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed1' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed1'/>
+                <TimeSensor DEF='CLOCK_Bed2' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed2'/>
+                <TimeSensor DEF='CLOCK_Bed3' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed3'/>
+                <BooleanFilter DEF='BOOL_ExitRoom1'/>
+                 
+                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed1'/>
+                <Script DEF='Bed1' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='1'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed2'/>
+                <Script DEF='Bed2' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='2'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed3'/>
+                <Script DEF='Bed3' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='3'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom1'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room1' exportedDEF='BPMOut' AS='BPM1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='TEMPOut' AS='TEMP1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BLCOut' AS='BLC1'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='BOOL_ClockBed1' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed1' fromField='inputTrue' toNode='CLOCK_Bed1' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed1' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed1' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed1' fromField='cycleTime' toNode='Bed1' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed1' fromField='bpm' toNode='BPM1' toField='string'/>
+                <ROUTE fromNode='Bed1' fromField='temp' toNode='TEMP1' toField='string'/> 
+                <ROUTE fromNode='Bed1' fromField='blc' toNode='BLC1' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='BOOL_ClockBed2' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed2' fromField='inputTrue' toNode='CLOCK_Bed2' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed2' fromField='inputNegate' toNode='CLOCK_Bed1' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed2' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed2' fromField='cycleTime' toNode='Bed2' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed2' fromField='bpm' toNode='BPM1' toField='string'/>
+                <ROUTE fromNode='Bed2' fromField='temp' toNode='TEMP1' toField='string'/> 
+                <ROUTE fromNode='Bed2' fromField='blc' toNode='BLC1' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='BOOL_ClockBed3' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed3' fromField='inputTrue' toNode='CLOCK_Bed3' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed3' fromField='inputNegate' toNode='CLOCK_Bed1' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed3' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed3' fromField='cycleTime' toNode='Bed3' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed3' fromField='bpm' toNode='BPM1' toField='string'/>
+                <ROUTE fromNode='Bed3' fromField='temp' toNode='TEMP1' toField='string'/> 
+                <ROUTE fromNode='Bed3' fromField='blc' toNode='BLC1' toField='string'/>
+
+                <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed1' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- Room2 -->
+            <Transform translation='-4.55 5.35 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='2'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room2' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed4' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed4'/>
+                <TimeSensor DEF='CLOCK_Bed5' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed5'/>
+                <TimeSensor DEF='CLOCK_Bed6' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed6'/>
+                <BooleanFilter DEF='BOOL_ExitRoom2'/>
+                 
+                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed4'/>
+                <Script DEF='Bed4' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='4'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed5'/>
+                <Script DEF='Bed5' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='5'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed6'/>
+                <Script DEF='Bed6' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='6'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom2'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room2' exportedDEF='BPMOut' AS='BPM2'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='TEMPOut' AS='TEMP2'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='BLCOut' AS='BLC2'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed4' fromField='touchTime' toNode='BOOL_ClockBed4' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed4' fromField='inputTrue' toNode='CLOCK_Bed4' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed4' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed4' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed4' fromField='cycleTime' toNode='Bed4' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed4' fromField='bpm' toNode='BPM2' toField='string'/>
+                <ROUTE fromNode='Bed4' fromField='temp' toNode='TEMP2' toField='string'/> 
+                <ROUTE fromNode='Bed4' fromField='blc' toNode='BLC2' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed5' fromField='touchTime' toNode='BOOL_ClockBed5' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed5' fromField='inputTrue' toNode='CLOCK_Bed5' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed5' fromField='inputNegate' toNode='CLOCK_Bed4' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed5' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed5' fromField='cycleTime' toNode='Bed5' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed5' fromField='bpm' toNode='BPM2' toField='string'/>
+                <ROUTE fromNode='Bed5' fromField='temp' toNode='TEMP2' toField='string'/> 
+                <ROUTE fromNode='Bed5' fromField='blc' toNode='BLC2' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed6' fromField='touchTime' toNode='BOOL_ClockBed6' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed6' fromField='inputTrue' toNode='CLOCK_Bed6' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed6' fromField='inputNegate' toNode='CLOCK_Bed4' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed6' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed6' fromField='cycleTime' toNode='Bed6' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed6' fromField='bpm' toNode='BPM2' toField='string'/>
+                <ROUTE fromNode='Bed6' fromField='temp' toNode='TEMP2' toField='string'/> 
+                <ROUTE fromNode='Bed6' fromField='blc' toNode='BLC2' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed4' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- Room3 -->
+            <Transform translation='-4.55 1.65 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='3'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room3' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed7' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed7'/>
+                <TimeSensor DEF='CLOCK_Bed8' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed8'/>
+                <TimeSensor DEF='CLOCK_Bed9' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed9'/>
+                <BooleanFilter DEF='BOOL_ExitRoom3'/>
+                 
+                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed7'/>
+                <Script DEF='Bed7' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='7'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed8'/>
+                <Script DEF='Bed8' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='8'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed9'/>
+                <Script DEF='Bed9' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='9'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom3'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room3' exportedDEF='BPMOut' AS='BPM3'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='TEMPOut' AS='TEMP3'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='BLCOut' AS='BLC3'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed7' fromField='touchTime' toNode='BOOL_ClockBed7' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed7' fromField='inputTrue' toNode='CLOCK_Bed7' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed7' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed7' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed7' fromField='cycleTime' toNode='Bed7' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed7' fromField='bpm' toNode='BPM3' toField='string'/>
+                <ROUTE fromNode='Bed7' fromField='temp' toNode='TEMP3' toField='string'/> 
+                <ROUTE fromNode='Bed7' fromField='blc' toNode='BLC3' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed8' fromField='touchTime' toNode='BOOL_ClockBed8' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed8' fromField='inputTrue' toNode='CLOCK_Bed8' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed8' fromField='inputNegate' toNode='CLOCK_Bed7' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed8' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed8' fromField='cycleTime' toNode='Bed8' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed8' fromField='bpm' toNode='BPM3' toField='string'/>
+                <ROUTE fromNode='Bed8' fromField='temp' toNode='TEMP3' toField='string'/> 
+                <ROUTE fromNode='Bed8' fromField='blc' toNode='BLC3' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed9' fromField='touchTime' toNode='BOOL_ClockBed9' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed9' fromField='inputTrue' toNode='CLOCK_Bed9' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed9' fromField='inputNegate' toNode='CLOCK_Bed7' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed9' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed9' fromField='cycleTime' toNode='Bed9' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed9' fromField='bpm' toNode='BPM3' toField='string'/>
+                <ROUTE fromNode='Bed9' fromField='temp' toNode='TEMP3' toField='string'/> 
+                <ROUTE fromNode='Bed9' fromField='blc' toNode='BLC3' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed7' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- Room4 -->
+            <Transform translation='-4.55 -2.05 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='4'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room4' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed10' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed10'/>
+                <TimeSensor DEF='CLOCK_Bed11' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed11'/>
+                <TimeSensor DEF='CLOCK_Bed12' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed12'/>
+                <BooleanFilter DEF='BOOL_ExitRoom4'/>
+                 
+                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed10'/>
+                <Script DEF='Bed10' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='10'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed11'/>
+                <Script DEF='Bed11' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='11'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed12'/>
+                <Script DEF='Bed12' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='12'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom4'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room4' exportedDEF='BPMOut' AS='BPM4'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='TEMPOut' AS='TEMP4'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='BLCOut' AS='BLC4'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed10' fromField='touchTime' toNode='BOOL_ClockBed10' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed10' fromField='inputTrue' toNode='CLOCK_Bed10' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed10' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed10' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed10' fromField='cycleTime' toNode='Bed10' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed10' fromField='bpm' toNode='BPM4' toField='string'/>
+                <ROUTE fromNode='Bed10' fromField='temp' toNode='TEMP4' toField='string'/> 
+                <ROUTE fromNode='Bed10' fromField='blc' toNode='BLC4' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed11' fromField='touchTime' toNode='BOOL_ClockBed11' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed11' fromField='inputTrue' toNode='CLOCK_Bed11' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed11' fromField='inputNegate' toNode='CLOCK_Bed10' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed11' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed11' fromField='cycleTime' toNode='Bed11' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed11' fromField='bpm' toNode='BPM4' toField='string'/>
+                <ROUTE fromNode='Bed11' fromField='temp' toNode='TEMP4' toField='string'/> 
+                <ROUTE fromNode='Bed11' fromField='blc' toNode='BLC4' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed12' fromField='touchTime' toNode='BOOL_ClockBed12' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed12' fromField='inputTrue' toNode='CLOCK_Bed12' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed12' fromField='inputNegate' toNode='CLOCK_Bed10' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed12' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed12' fromField='cycleTime' toNode='Bed12' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed12' fromField='bpm' toNode='BPM4' toField='string'/>
+                <ROUTE fromNode='Bed12' fromField='temp' toNode='TEMP4' toField='string'/> 
+                <ROUTE fromNode='Bed12' fromField='blc' toNode='BLC4' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed10' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- Room5 -->
+            <Transform translation='-4.55 -5.75 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='5'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room5' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed13' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed13'/>
+                <TimeSensor DEF='CLOCK_Bed14' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed14'/>
+                <TimeSensor DEF='CLOCK_Bed15' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed15'/>
+                <BooleanFilter DEF='BOOL_ExitRoom5'/>
+                 
+                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed13'/>
+                <Script DEF='Bed13' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='13'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed14'/>
+                <Script DEF='Bed14' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='14'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed15'/>
+                <Script DEF='Bed15' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='15'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom5'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room5' exportedDEF='BPMOut' AS='BPM5'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='TEMPOut' AS='TEMP5'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='BLCOut' AS='BLC5'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed13' fromField='touchTime' toNode='BOOL_ClockBed13' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed13' fromField='inputTrue' toNode='CLOCK_Bed13' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed13' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed13' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed13' fromField='cycleTime' toNode='Bed13' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed13' fromField='bpm' toNode='BPM5' toField='string'/>
+                <ROUTE fromNode='Bed13' fromField='temp' toNode='TEMP5' toField='string'/> 
+                <ROUTE fromNode='Bed13' fromField='blc' toNode='BLC5' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed14' fromField='touchTime' toNode='BOOL_ClockBed14' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed14' fromField='inputTrue' toNode='CLOCK_Bed14' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed14' fromField='inputNegate' toNode='CLOCK_Bed13' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed14' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed14' fromField='cycleTime' toNode='Bed14' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed14' fromField='bpm' toNode='BPM5' toField='string'/>
+                <ROUTE fromNode='Bed14' fromField='temp' toNode='TEMP5' toField='string'/> 
+                <ROUTE fromNode='Bed14' fromField='blc' toNode='BLC5' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed15' fromField='touchTime' toNode='BOOL_ClockBed15' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed15' fromField='inputTrue' toNode='CLOCK_Bed15' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed15' fromField='inputNegate' toNode='CLOCK_Bed13' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed15' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed15' fromField='cycleTime' toNode='Bed15' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed15' fromField='bpm' toNode='BPM5' toField='string'/>
+                <ROUTE fromNode='Bed15' fromField='temp' toNode='TEMP5' toField='string'/> 
+                <ROUTE fromNode='Bed15' fromField='blc' toNode='BLC5' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed13' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- Room6 -->
+            <Transform translation='-4.55 -9.45 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='6'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room6' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed16' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed16'/>
+                <TimeSensor DEF='CLOCK_Bed17' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed17'/>
+                <TimeSensor DEF='CLOCK_Bed18' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed18'/>
+                <BooleanFilter DEF='BOOL_ExitRoom6'/>
+                 
+                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed16'/>
+                <Script DEF='Bed16' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='16'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed17'/>
+                <Script DEF='Bed17' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='17'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed18'/>
+                <Script DEF='Bed18' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='18'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom6'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room6' exportedDEF='BPMOut' AS='BPM6'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='TEMPOut' AS='TEMP6'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='BLCOut' AS='BLC6'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed16' fromField='touchTime' toNode='BOOL_ClockBed16' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed16' fromField='inputTrue' toNode='CLOCK_Bed16' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed16' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed16' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed16' fromField='cycleTime' toNode='Bed16' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed16' fromField='bpm' toNode='BPM6' toField='string'/>
+                <ROUTE fromNode='Bed16' fromField='temp' toNode='TEMP6' toField='string'/> 
+                <ROUTE fromNode='Bed16' fromField='blc' toNode='BLC6' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed17' fromField='touchTime' toNode='BOOL_ClockBed17' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed17' fromField='inputTrue' toNode='CLOCK_Bed17' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed17' fromField='inputNegate' toNode='CLOCK_Bed16' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed17' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed17' fromField='cycleTime' toNode='Bed17' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed17' fromField='bpm' toNode='BPM6' toField='string'/>
+                <ROUTE fromNode='Bed17' fromField='temp' toNode='TEMP6' toField='string'/> 
+                <ROUTE fromNode='Bed17' fromField='blc' toNode='BLC6' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed18' fromField='touchTime' toNode='BOOL_ClockBed18' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed18' fromField='inputTrue' toNode='CLOCK_Bed18' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed18' fromField='inputNegate' toNode='CLOCK_Bed16' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed18' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed18' fromField='cycleTime' toNode='Bed18' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed18' fromField='bpm' toNode='BPM6' toField='string'/>
+                <ROUTE fromNode='Bed18' fromField='temp' toNode='TEMP6' toField='string'/> 
+                <ROUTE fromNode='Bed18' fromField='blc' toNode='BLC6' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed16' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- Room7 -->
+            <Transform translation='-4.55 -13.15 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='7'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room7' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed19' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed19'/>
+                <TimeSensor DEF='CLOCK_Bed20' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed20'/>
+                <TimeSensor DEF='CLOCK_Bed21' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed21'/>
+                <BooleanFilter DEF='BOOL_ExitRoom7'/>
+                 
+                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed19'/>
+                <Script DEF='Bed19' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='19'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed20'/>
+                <Script DEF='Bed20' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='20'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed21'/>
+                <Script DEF='Bed21' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='21'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom7'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room7' exportedDEF='BPMOut' AS='BPM7'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='TEMPOut' AS='TEMP7'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='BLCOut' AS='BLC7'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed19' fromField='touchTime' toNode='BOOL_ClockBed19' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed19' fromField='inputTrue' toNode='CLOCK_Bed19' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed19' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed19' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed19' fromField='cycleTime' toNode='Bed19' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed19' fromField='bpm' toNode='BPM7' toField='string'/>
+                <ROUTE fromNode='Bed19' fromField='temp' toNode='TEMP7' toField='string'/> 
+                <ROUTE fromNode='Bed19' fromField='blc' toNode='BLC7' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed20' fromField='touchTime' toNode='BOOL_ClockBed20' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed20' fromField='inputTrue' toNode='CLOCK_Bed20' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed20' fromField='inputNegate' toNode='CLOCK_Bed19' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed20' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed20' fromField='cycleTime' toNode='Bed20' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed20' fromField='bpm' toNode='BPM7' toField='string'/>
+                <ROUTE fromNode='Bed20' fromField='temp' toNode='TEMP7' toField='string'/> 
+                <ROUTE fromNode='Bed20' fromField='blc' toNode='BLC7' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed21' fromField='touchTime' toNode='BOOL_ClockBed21' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed21' fromField='inputTrue' toNode='CLOCK_Bed21' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed21' fromField='inputNegate' toNode='CLOCK_Bed19' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed21' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed21' fromField='cycleTime' toNode='Bed21' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed21' fromField='bpm' toNode='BPM7' toField='string'/>
+                <ROUTE fromNode='Bed21' fromField='temp' toNode='TEMP7' toField='string'/> 
+                <ROUTE fromNode='Bed21' fromField='blc' toNode='BLC7' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed19' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <Transform translation='-4.55 -16.85 0'>
+                 <Inline DEF='Physiotherapy' url='"physiotherapy.x3d"' />
+            </Transform>
+            <!-- Room8 -->
+            <Transform rotation='0 0 1 3.14' translation='2.35 9.05 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='8'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room8' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed22' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed22'/>
+                <TimeSensor DEF='CLOCK_Bed23' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed23'/>
+                <TimeSensor DEF='CLOCK_Bed24' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed24'/>
+                <BooleanFilter DEF='BOOL_ExitRoom8'/>
+                 
+                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed22'/>
+                <Script DEF='Bed22' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='22'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed23'/>
+                <Script DEF='Bed23' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='23'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed24'/>
+                <Script DEF='Bed24' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='24'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom8'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room8' exportedDEF='BPMOut' AS='BPM8'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='TEMPOut' AS='TEMP8'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='BLCOut' AS='BLC8'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed22' fromField='touchTime' toNode='BOOL_ClockBed22' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed22' fromField='inputTrue' toNode='CLOCK_Bed22' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed22' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed22' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed22' fromField='cycleTime' toNode='Bed22' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed22' fromField='bpm' toNode='BPM8' toField='string'/>
+                <ROUTE fromNode='Bed22' fromField='temp' toNode='TEMP8' toField='string'/> 
+                <ROUTE fromNode='Bed22' fromField='blc' toNode='BLC8' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed23' fromField='touchTime' toNode='BOOL_ClockBed23' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed23' fromField='inputTrue' toNode='CLOCK_Bed23' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed23' fromField='inputNegate' toNode='CLOCK_Bed22' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed23' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed23' fromField='cycleTime' toNode='Bed23' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed23' fromField='bpm' toNode='BPM8' toField='string'/>
+                <ROUTE fromNode='Bed23' fromField='temp' toNode='TEMP8' toField='string'/> 
+                <ROUTE fromNode='Bed23' fromField='blc' toNode='BLC8' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed24' fromField='touchTime' toNode='BOOL_ClockBed24' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed24' fromField='inputTrue' toNode='CLOCK_Bed24' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed24' fromField='inputNegate' toNode='CLOCK_Bed22' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed24' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed24' fromField='cycleTime' toNode='Bed24' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed24' fromField='bpm' toNode='BPM8' toField='string'/>
+                <ROUTE fromNode='Bed24' fromField='temp' toNode='TEMP8' toField='string'/> 
+                <ROUTE fromNode='Bed24' fromField='blc' toNode='BLC8' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed22' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <!-- WCs -->
+            <Transform translation='2.35 5.35 0'>
+                <Inline DEF='WC1' url='"wc.x3d"' />
+            </Transform>
+            <Transform translation='2.35 1.65 0'>
+                <Inline DEF='WC2' url='"wc.x3d"' />
+            </Transform>
+            <!-- Room9 -->
+            <Transform rotation='0 0 1 3.14' translation='2.35 -2.05 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='9'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room9' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed25' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed25'/>
+                <TimeSensor DEF='CLOCK_Bed26' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed26'/>
+                <TimeSensor DEF='CLOCK_Bed27' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed27'/>
+                <BooleanFilter DEF='BOOL_ExitRoom9'/>
+                 
+                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed25'/>
+                <Script DEF='Bed25' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='25'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed26'/>
+                <Script DEF='Bed26' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='26'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed27'/>
+                <Script DEF='Bed27' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='27'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom9'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room9' exportedDEF='BPMOut' AS='BPM9'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='TEMPOut' AS='TEMP9'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='BLCOut' AS='BLC9'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed25' fromField='touchTime' toNode='BOOL_ClockBed25' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed25' fromField='inputTrue' toNode='CLOCK_Bed25' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed25' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed25' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed25' fromField='cycleTime' toNode='Bed25' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed25' fromField='bpm' toNode='BPM9' toField='string'/>
+                <ROUTE fromNode='Bed25' fromField='temp' toNode='TEMP9' toField='string'/> 
+                <ROUTE fromNode='Bed25' fromField='blc' toNode='BLC9' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed26' fromField='touchTime' toNode='BOOL_ClockBed26' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed26' fromField='inputTrue' toNode='CLOCK_Bed26' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed26' fromField='inputNegate' toNode='CLOCK_Bed25' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed26' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed26' fromField='cycleTime' toNode='Bed26' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed26' fromField='bpm' toNode='BPM9' toField='string'/>
+                <ROUTE fromNode='Bed26' fromField='temp' toNode='TEMP9' toField='string'/> 
+                <ROUTE fromNode='Bed26' fromField='blc' toNode='BLC9' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed27' fromField='touchTime' toNode='BOOL_ClockBed27' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed27' fromField='inputTrue' toNode='CLOCK_Bed27' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed27' fromField='inputNegate' toNode='CLOCK_Bed25' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed27' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed27' fromField='cycleTime' toNode='Bed27' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed27' fromField='bpm' toNode='BPM9' toField='string'/>
+                <ROUTE fromNode='Bed27' fromField='temp' toNode='TEMP9' toField='string'/> 
+                <ROUTE fromNode='Bed27' fromField='blc' toNode='BLC9' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed25' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+            <Transform translation='2.35 -5.75 0'>
+                <Inline DEF='MedRoom' url='"medication-room.x3d"' />
+            </Transform>
+            <!-- WCs -->
+            <Transform translation='2.35 -13.35 0'>
+                <Inline DEF='WC3' url='"wc.x3d"' />
+            </Transform>
+            <!-- Room10 -->
+            <Transform rotation='0 0 1 3.14' translation='2.35 -17.05 0'>
+                <!--
+                 <Transform translation='0 0 3.5'>
+                     <Billboard axisOfRotation="0 0 0">
+                        <Shape>    
+                           <Text solid='true' string='10'>
+                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
+                           </Text> 
+                           <Appearance>
+                               <Material emissiveColor='1 0 0' transparency='0.3'/>
+                           </Appearance>
+                       </Shape>
+                      </Billboard> 
+                 </Transform>
+                 -->
+                <Inline DEF='Room10' url='"room.x3d"' />
+               
+                <TimeSensor DEF='CLOCK_Bed28' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed28'/>
+                <TimeSensor DEF='CLOCK_Bed29' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed29'/>
+                <TimeSensor DEF='CLOCK_Bed30' cycleInterval='10' enabled='false' loop='true'/>
+                <BooleanFilter DEF='BOOL_ClockBed30'/>
+                <BooleanFilter DEF='BOOL_ExitRoom10'/>
+                 
+                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed28'/>
+                <Script DEF='Bed28' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='28'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>                 
+                
+                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed29'/>
+                <Script DEF='Bed29' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='29'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                
+                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed30'/>
+                <Script DEF='Bed30' url='"json-decode.js"'>
+                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='30'/>
+                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                    <field name='bpm' type='SFString' accessType='outputOnly'/>
+                    <field name='temp' type='SFString' accessType='outputOnly'/>
+                    <field name='blc' type='SFString' accessType='outputOnly'/>
+                </Script>
+                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom10'/>
+                <!-- Billboard -->        
+                <IMPORT inlineDEF='Room10' exportedDEF='BPMOut' AS='BPM10'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='TEMPOut' AS='TEMP10'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='BLCOut' AS='BLC10'/>
+                <!-- Routes -->                
+                <ROUTE fromNode='TOUCH_Bed28' fromField='touchTime' toNode='BOOL_ClockBed28' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed28' fromField='inputTrue' toNode='CLOCK_Bed28' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed28' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed28' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed28' fromField='cycleTime' toNode='Bed28' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed28' fromField='bpm' toNode='BPM10' toField='string'/>
+                <ROUTE fromNode='Bed28' fromField='temp' toNode='TEMP10' toField='string'/> 
+                <ROUTE fromNode='Bed28' fromField='blc' toNode='BLC10' toField='string'/> 
+
+                <ROUTE fromNode='TOUCH_Bed29' fromField='touchTime' toNode='BOOL_ClockBed29' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed29' fromField='inputTrue' toNode='CLOCK_Bed29' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed29' fromField='inputNegate' toNode='CLOCK_Bed28' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed29' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed29' fromField='cycleTime' toNode='Bed29' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed29' fromField='bpm' toNode='BPM10' toField='string'/>
+                <ROUTE fromNode='Bed29' fromField='temp' toNode='TEMP10' toField='string'/> 
+                <ROUTE fromNode='Bed29' fromField='blc' toNode='BLC10' toField='string'/> 
+                
+                <ROUTE fromNode='TOUCH_Bed30' fromField='touchTime' toNode='BOOL_ClockBed30' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ClockBed30' fromField='inputTrue' toNode='CLOCK_Bed30' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed30' fromField='inputNegate' toNode='CLOCK_Bed28' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ClockBed30' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
+                <ROUTE fromNode='CLOCK_Bed30' fromField='cycleTime' toNode='Bed30' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed30' fromField='bpm' toNode='BPM10' toField='string'/>
+                <ROUTE fromNode='Bed30' fromField='temp' toNode='TEMP10' toField='string'/> 
+                <ROUTE fromNode='Bed30' fromField='blc' toNode='BLC10' toField='string'/>
+                
+                <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
+                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed28' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
+                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
+                <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+            </Transform>
+        </Group>
+    </Scene>
+</X3D>
