@@ -30,18 +30,23 @@
     <Scene>
         <!-- 
             TODO:
-                . Add room numbers
-                . Add bed numbers
-                . Create <Background>
+                . Resolve getHealth problem
+                . Add room & beds navigator panel
+                . Building front
+                . Add exterior and building lights
                 . Beautify with textures
+                . Create <Background>
                 . Add nursery details
                 . Add other animations - light switches, open doors...
         -->
         <!-- Viewpoints -->
-        <Viewpoint DEF="GENERAL_viewpoint" description="General Viewpoint"  centerOfRotation= '0 0 0' orientation='0 1 0 0' position='0 0 50' />
+        <Transform DEF='TRANSFORM_START_Viewpoint'>
+            <Viewpoint DEF="START_Viewpoint" description="Start Viewpoint"  centerOfRotation= '0 0 0' orientation='1 0 0 1.57' position='-1 -30 3' />
+        </Transform>
+        <Viewpoint DEF="GOD_Viewpoint" description="God Viewpoint"  centerOfRotation= '0 0 0' orientation='1 0 0 0' position='0 0 50' />
         <!-- World -->
         <Group DEF='Building'>
-            <!-- Sala Refeições + Stock + WC + Copa + Saida -->
+            <!-- Dinner Room + Sterilization Room + External Door -->
             <Transform translation='0 14 0'>
                 <!-- Floor -->
                 <Transform translation='-1 0 0'>
@@ -94,11 +99,6 @@
                         </Appearance>
                     </Shape>
                 </Transform>
-                <!--
-                <Transform rotation='0 1 0 1.57' translation='-9.15 0 1.25'>
-                    <Shape USE="TopRightWall1"/>
-                </Transform>
-                -->
                 <Transform rotation='0 0 1 1.57' translation='7.25 0 2.5'>
                     <Shape DEF='TopRightWall2'>
                         <Extrusion creaseAngle='0.0' crossSection='-3.2 0, 0 3.9, 3.2 0, -3.2 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
@@ -110,16 +110,6 @@
                 <Transform rotation='0 0 1 1.57' translation='-9.1 0 2.5'>
                     <Shape USE='TopRightWall2'/>
                 </Transform>
-                <!--
-                <Transform rotation='1 0 0 1.57' translation='-8.15 -3.1 1.25'>
-                    <Shape DEF="BottomLeftWall">
-                        <Box size="2.2 2.5 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                -->
                 <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 2.25'>
                    <Shape DEF="TopDoorTop">
                        <Box size="1 0.5 0.2" solid="true"/>
@@ -148,25 +138,14 @@
                 <Transform translation='-5.6 0 0'>
                     <Inline DEF='Dinner' url='"dinner-room.x3d"' />
                 </Transform>
-                 <!-- Dinner Room -->
+                 <!-- Sterilization Room -->
                 <Transform translation='2.35 -1.2 0'>
                     <Inline DEF='SterilRoom' url='"sterilization-room.x3d"' />
                 </Transform>
                 <!-- Door-->
-                <Transform DEF='DoorTransform'>
-                   <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 1'>
-                       <!--  
-                       <Shape DEF="TopDoor">
-                           <Box size="1 2 0.1"/>
-                           <Appearance>
-                               <Material/>       
-                               <ImageTexture DEF='door_texture' url=' "http://img.artlebedev.com/everything/defendius/defendius1.jpg" '/>
-                           </Appearance>
-                       </Shape>   
-                       -->
-                       <Inline DEF='TopDoor' url='"exterior-door.x3d"' />
-                   </Transform>
-               </Transform> 
+                <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 1'>
+                    <Inline DEF='TopDoor' url='"exterior-door.x3d"' />
+                </Transform>
             </Transform>
             
             <Transform translation='-1.1 -4.1 0'>
@@ -203,35 +182,7 @@
                     </Transform>
                 </Transform>
                 <!-- Walls -->
-                <!--
-                <Transform rotation='0 1 0 1.57' translation='-6.05 0 1.25'>
-                    <Shape DEF="LeftWall">
-                        <Box size="2.5 29.8 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                -->
-                <!--
-                <Transform rotation='0 1 0 1.57' translation='6.05 5.35 1.25'>
-                    <Shape DEF="RightWall1">
-                        <Box size="2.5 19.45 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <Transform rotation='0 1 0 1.57' translation='6.05 -10.15 1.25'>
-                    <Shape DEF="RightWall2">
-                        <Box size="2.5 9.5 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                -->
-                 <Transform rotation='0 1 0 1.57' translation='6.05 -4 1.25'>
+                <Transform rotation='0 1 0 1.57' translation='6.05 -4 1.25'>
                    <Shape DEF="RightDoorLeft">
                        <Box size="2.5 1 0.2" solid="true"/>
                        <Appearance>   
@@ -255,17 +206,6 @@
                        </Appearance>
                    </Shape>
                 </Transform>
-                <Transform rotation='1 0 0 1.57' translation='-3.55 -14.8 1.25'>
-                    <Shape DEF="FrontWall1">
-                        <Box size="5.20 2.5 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <Transform rotation='1 0 0 1.57' translation='3.55 -14.8 1.25'>
-                    <Shape USE="FrontWall1"/>
-                </Transform>
                 <Transform translation='0 -14.9 2.5'>
                     <Shape>
                         <Extrusion creaseAngle='0.0' crossSection='-6.15 0, 0 3.5, 6.15 0, -6.15 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
@@ -283,43 +223,17 @@
                     </Shape>
                 </Transform>
                 <!-- Doors -->
-                <Transform DEF='DoorTransform1'>
-                    <Transform rotation='1 0 0 1.57' translation='-0.5 -14.8 1'>   
-                        <Shape USE="TopDoor"/>
-                    </Transform>
-                </Transform> 
-                <Transform DEF='DoorTransform2'>
-                    <Transform rotation='1 0 0 1.57' translation='0.5 -14.8 1'>   
-                        <Shape USE="TopDoor"/>   
-                    </Transform>
+                 <Transform rotation='1 0 0 1.57' translation='0 -14.8 1'>   
+                     <Inline DEF='FrontDoor' url='"front-door.x3d"' />
                 </Transform>
-                <Transform DEF='DoorTransform3'>
-                   <Transform translation='6.05 -4.9 1'>
-                    <Transform rotation='1 0 0 1.57'>
-                        <Transform rotation='0 1 0 1.57'>
-                              <Shape USE="TopDoor"/>
-                         </Transform>
-                     </Transform>
-                    </Transform>
-                </Transform>
-            </Transform>
-              
-            <TimeSensor DEF='CLOCK_Interpolators' cycleInterval='1' enabled='false' loop='false'/>
-            <ScalarInterpolator DEF='ScalarInterpolator' key='0.0 0.5 1.0' keyValue='0 0.5 1'/>
-            <PositionInterpolator DEF='PositionInterpolator' key='0.0 0.25 0.5 0.75 1.0' keyValue='0 0 0 20 0 0 40 0 0 50 0 0 60'/>
-
-            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof1' toField='set_enabled' toNode='CLOCK_Interpolators'/>
-            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof1' toField='set_startTime' toNode='CLOCK_Interpolators'/>
-            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof2' toField='set_enabled' toNode='CLOCK_Interpolators'/>
-            <ROUTE fromField='touchTime' fromNode='TOUCH_Roof2' toField='set_startTime' toNode='CLOCK_Interpolators'/>
-
-            <ROUTE fromField='fraction_changed' fromNode='CLOCK_Interpolators' toField='set_fraction' toNode='ScalarInterpolator'/>
-            <ROUTE fromField='value_changed' fromNode='ScalarInterpolator' toField='set_transparency' toNode='RoofMaterial'/>
-
-            <ROUTE fromField='fraction_changed' fromNode='CLOCK_Interpolators' toField='set_fraction' toNode='PositionInterpolator'/>
-            <ROUTE fromField='value_changed' fromNode='PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof1'/>
-            <ROUTE fromField='value_changed' fromNode='PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof2'/>
-            
+                <Transform translation='6.05 -4.9 1'>
+                 <Transform rotation='1 0 0 1.57'>
+                     <Transform rotation='0 1 0 1.57'>
+                           <Shape USE="TopDoor"/>
+                      </Transform>
+                  </Transform>
+                 </Transform>
+             </Transform>
             <!-- Room1 -->
             <Transform DEF='TRANSFORM_Room1' translation='-4.55 9.05 0'>
                 <!--
@@ -410,7 +324,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room2 -->
             <Transform translation='-4.55 5.35 0'>
@@ -502,7 +416,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room3 -->
             <Transform translation='-4.55 1.65 0'>
@@ -594,7 +508,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room4 -->
             <Transform translation='-4.55 -2.05 0'>
@@ -686,7 +600,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room5 -->
             <Transform translation='-4.55 -5.75 0'>
@@ -778,7 +692,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room6 -->
             <Transform translation='-4.55 -9.45 0'>
@@ -870,7 +784,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room7 -->
             <Transform translation='-4.55 -13.15 0'>
@@ -962,7 +876,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <Transform translation='-4.55 -16.85 0'>
                  <Inline DEF='Physiotherapy' url='"physiotherapy.x3d"' />
@@ -1057,7 +971,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- WCs -->
             <Transform translation='2.35 5.35 0'>
@@ -1156,7 +1070,7 @@
                 <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <Transform translation='2.35 -5.75 0'>
                 <Inline DEF='MedRoom' url='"medication-room.x3d"' />
@@ -1255,8 +1169,39 @@
                 <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GENERAL_viewpoint' toField='set_bind'/>
+                <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
         </Group>
+        <!-- General Navigation -->
+        <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor1Out' AS='TOUCH_FrontDoor1'/>
+        <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor2Out' AS='TOUCH_FrontDoor2'/>
+        
+        <TimeSensor DEF='CLOCK_ViewpointInterpolators' cycleInterval='3' enabled='false' loop='false'/>
+        <PositionInterpolator DEF='VIEWPOINT_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 -1 0 0 -3 0 20 0'/>
+        <TimeSensor DEF='CLOCK_RoofInterpolators' cycleInterval='1' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='ROOF_ScalarInterpolator' key='0.0 1.0' keyValue='0 1'/>
+        <PositionInterpolator DEF='ROOF_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 20 0 0 40 0 0 50'/>
+        <BooleanFilter DEF='BOOL_InsideBuilding'/>
+        <TimeTrigger DEF='TRIGGER_InsideBuilding'/>
+               
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_bind' toNode='START_Viewpoint'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_bind' toNode='START_Viewpoint'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_enabled' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_enabled' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_ViewpointInterpolators' toField='set_fraction' toNode='VIEWPOINT_PositionInterpolator'/>
+        <ROUTE fromField="value_changed" fromNode="VIEWPOINT_PositionInterpolator" toField="set_translation" toNode="TRANSFORM_START_Viewpoint"/>
+        <ROUTE fromField='isActive' fromNode='CLOCK_ViewpointInterpolators' toField='set_boolean' toNode='BOOL_InsideBuilding'/>
+        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_boolean" toNode="TRIGGER_InsideBuilding"/>
+        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_enabled" toNode="CLOCK_RoofInterpolators"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_InsideBuilding' toField='set_startTime' toNode='CLOCK_RoofInterpolators'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_RoofInterpolators' toField='set_fraction' toNode='ROOF_ScalarInterpolator'/>
+        <ROUTE fromField='value_changed' fromNode='ROOF_ScalarInterpolator' toField='set_transparency' toNode='RoofMaterial'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_RoofInterpolators' toField='set_fraction' toNode='ROOF_PositionInterpolator'/>
+        <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof1'/>
+        <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof2'/>
+        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_bind" toNode="GOD_Viewpoint"/>
+        
     </Scene>
 </X3D>
