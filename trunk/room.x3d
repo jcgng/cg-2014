@@ -46,16 +46,6 @@
         <Transform rotation='1 0 0 1.57' translation='0 -1.85 1.25'>
             <Shape USE="TopWall"/>
         </Transform>
-        <!--
-        <Transform rotation='0 1 0 1.57' translation='-2.6 0 1.25'>
-            <Shape DEF="LeftWall">
-                <Box size="2.5 3.9 0.2" solid="true"/>
-                <Appearance>   
-                    <Material USE='WallMaterial'/>
-                </Appearance>
-            </Shape>
-        </Transform>
-        -->
         <Transform rotation='0 1 0 1.57' translation='-2.6 0 2.25'>
             <Shape DEF="WindowTop">
                 <Box size="0.5 1 0.2" solid="true"/>
@@ -106,15 +96,6 @@
         <Transform translation='2.6 0 1'>
             <Transform rotation='1 0 0 1.57'>
                 <Transform rotation='0 1 0 1.57'>
-                    <!--
-                    <Shape DEF="Door">
-                        <Box size="1 2 0.1"/>
-                        <Appearance>
-                            <Material/>       
-                            <ImageTexture DEF='door_texture' url=' "http://img.artlebedev.com/everything/defendius/defendius1.jpg" '/>
-                        </Appearance>
-                    </Shape>
-                    -->
                     <Inline DEF='Door' url='"interior-door.x3d"' />
                     <TouchSensor DEF='TOUCH_Exit'/>
                 </Transform>
