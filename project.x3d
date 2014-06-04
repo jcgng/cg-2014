@@ -30,8 +30,9 @@
     <Scene>
         <!-- 
             TODO:
-                . Resolve getHealth problem
+                . Resolve getHealth problem - Test values that are outside the expected and turn room red light
                 . Add room & beds navigator panel
+				. Billboard: Add timestamp, patient name, patient photo (or man/woman model)
                 . Building front
                 . Add exterior and building lights
                 . Beautify with textures
