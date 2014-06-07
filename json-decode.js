@@ -63,7 +63,7 @@ JsonInfo.createList = function() {
 JsonInfo.getBPM = function() {    
     if(this._data!=null) {
         for(var row=0;row<this._data.length;row++) {
-            if(this._data[row]['param1']=='bpm') return this._data[row]['val1'];
+            if(this._data[row]['param1']=='bpm') return parseInt(this._data[row]['val1']);
         }
     }
     return null;
@@ -71,7 +71,7 @@ JsonInfo.getBPM = function() {
 JsonInfo.getTemp = function() {
     if(this._data!=null) {
         for(var row=0;row<this._data.length;row++) {
-            if(this._data[row]['param1']=='temp') return this._data[row]['val1'];
+            if(this._data[row]['param1']=='temp') return parseFloat(this._data[row]['val1']);
         }
     }
     return null;
@@ -79,7 +79,7 @@ JsonInfo.getTemp = function() {
 JsonInfo.getBalance = function() {
     if(this._data!=null) {
         for(var row=0;row<this._data.length;row++) {
-            if(this._data[row]['param1']=='move') return this._data[row]['val1'];
+            if(this._data[row]['param1']=='move') return parseInt(this._data[row]['val1']);
         }
     }
     return null;
@@ -146,10 +146,26 @@ function getHealthSync(value,timestep) {
         Browser.println("Start getHealthSync: " + bedNumber); 
         
         JsonInfo.fetchInfoSync(/*board*/'',/*patient*/'',bedNumber);
-        
-        if(JsonInfo.getBPM()!=null) bpm = JsonInfo.getBPM() + " bpm"; else bpm = '... bpm';
-        if(JsonInfo.getTemp()!=null) temp = JsonInfo.getTemp() + " C"; else temp = '... C';
-        if(JsonInfo.getBalance()!=null) blc = JsonInfo.getBalance(); else blc = '...';
+        alert = false;
+        if(JsonInfo.getBPM()!=null) {
+            bpm = JsonInfo.getBPM() + " bpm";
+            if(JsonInfo.getBPM()<55 || JsonInfo.getBPM()>100)
+                alert = true;
+        } else {
+            bpm = '... bpm';
+        }
+        if(JsonInfo.getTemp()!=null) {
+            temp = JsonInfo.getTemp() + " C";
+            if(JsonInfo.getTemp()<35 || JsonInfo.getTemp()>37)
+                alert = true;
+        } else {
+            temp = '... C';
+        }
+        if(JsonInfo.getBalance()!=null) {
+            blc = JsonInfo.getBalance();
+        } else {
+            blc = '...';
+        }
         
         Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc);
     }

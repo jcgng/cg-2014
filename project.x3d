@@ -30,11 +30,16 @@
     <Scene>
         <!-- 
             TODO:
-                . Resolve getHealth problem - Test values that are outside the expected and turn room red light
-                . Add room & beds navigator panel
-				. Billboard: Add timestamp, patient name, patient photo (or man/woman model)
-                . Building front
+			
+            Important:
+                . Add rooms & beds navigator panel
+                    - Light rooms and beds MouseOver
+                . Create Billboard
+                    - Add timestamp, patient name, patient photo (or man/woman model)
                 . Add exterior and building lights
+
+            Less important:
+                . Building front
                 . Beautify with textures
                 . Create <Background>
                 . Add nursery details
@@ -235,30 +240,14 @@
                   </Transform>
                  </Transform>
              </Transform>
+             
+            <!-- Get health clock -->
+            <TimeSensor DEF='CLOCK_Beds' cycleInterval='10' enabled='true' loop='true'/>
+             
             <!-- Room1 -->
             <Transform DEF='TRANSFORM_Room1' translation='-4.55 9.05 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='1'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room1' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed1' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed1'/>
-                <TimeSensor DEF='CLOCK_Bed2' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed2'/>
-                <TimeSensor DEF='CLOCK_Bed3' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed3'/>
+                
                 <BooleanFilter DEF='BOOL_ExitRoom1'/>
                  
                 <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed1'/>
@@ -268,6 +257,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed2'/>
@@ -277,6 +267,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed3'/>
@@ -286,71 +277,50 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom1'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room1' exportedDEF='BPMOut' AS='BPM1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='TEMPOut' AS='TEMP1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BLCOut' AS='BLC1'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='BOOL_ClockBed1' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed1' fromField='inputTrue' toNode='CLOCK_Bed1' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed1' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed1' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed1' fromField='cycleTime' toNode='Bed1' toField='getHealthSync'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BPM1Out' AS='BPM1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='TEMP1Out' AS='TEMP1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BLC1Out' AS='BLC1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BPM2Out' AS='BPM2'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='TEMP2Out' AS='TEMP2'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BLC2Out' AS='BLC2'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BPM3Out' AS='BPM3'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='TEMP3Out' AS='TEMP3'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BLC3Out' AS='BLC3'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room1' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed2'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed3'/>
+                <!-- Routes --> 
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed1' toField='getHealthSync'/>
                 <ROUTE fromNode='Bed1' fromField='bpm' toNode='BPM1' toField='string'/>
                 <ROUTE fromNode='Bed1' fromField='temp' toNode='TEMP1' toField='string'/> 
                 <ROUTE fromNode='Bed1' fromField='blc' toNode='BLC1' toField='string'/> 
+                <ROUTE fromNode='Bed1' fromField='alert' toNode='LIGHT_AlertLightBed1' toField='on'/> 
 
-                <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='BOOL_ClockBed2' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed2' fromField='inputTrue' toNode='CLOCK_Bed2' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed2' fromField='inputNegate' toNode='CLOCK_Bed1' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed2' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed2' fromField='cycleTime' toNode='Bed2' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed2' fromField='bpm' toNode='BPM1' toField='string'/>
-                <ROUTE fromNode='Bed2' fromField='temp' toNode='TEMP1' toField='string'/> 
-                <ROUTE fromNode='Bed2' fromField='blc' toNode='BLC1' toField='string'/> 
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed2' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed2' fromField='bpm' toNode='BPM2' toField='string'/>
+                <ROUTE fromNode='Bed2' fromField='temp' toNode='TEMP2' toField='string'/> 
+                <ROUTE fromNode='Bed2' fromField='blc' toNode='BLC2' toField='string'/> 
+                <ROUTE fromNode='Bed2' fromField='alert' toNode='LIGHT_AlertLightBed2' toField='on'/> 
                 
-                <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='BOOL_ClockBed3' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed3' fromField='inputTrue' toNode='CLOCK_Bed3' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed3' fromField='inputNegate' toNode='CLOCK_Bed1' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed3' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed3' fromField='cycleTime' toNode='Bed3' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed3' fromField='bpm' toNode='BPM1' toField='string'/>
-                <ROUTE fromNode='Bed3' fromField='temp' toNode='TEMP1' toField='string'/> 
-                <ROUTE fromNode='Bed3' fromField='blc' toNode='BLC1' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed3' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed3' fromField='bpm' toNode='BPM3' toField='string'/>
+                <ROUTE fromNode='Bed3' fromField='temp' toNode='TEMP3' toField='string'/> 
+                <ROUTE fromNode='Bed3' fromField='blc' toNode='BLC3' toField='string'/>
+                <ROUTE fromNode='Bed3' fromField='alert' toNode='LIGHT_AlertLightBed3' toField='on'/> 
 
                 <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed1' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed2' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='CLOCK_Bed3' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room2 -->
             <Transform translation='-4.55 5.35 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='2'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room2' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed4' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed4'/>
-                <TimeSensor DEF='CLOCK_Bed5' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed5'/>
-                <TimeSensor DEF='CLOCK_Bed6' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed6'/>
+
                 <BooleanFilter DEF='BOOL_ExitRoom2'/>
                  
                 <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed4'/>
@@ -360,6 +330,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed5'/>
@@ -369,6 +340,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed6'/>
@@ -378,71 +350,50 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom2'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room2' exportedDEF='BPMOut' AS='BPM2'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='TEMPOut' AS='TEMP2'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BLCOut' AS='BLC2'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed4' fromField='touchTime' toNode='BOOL_ClockBed4' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed4' fromField='inputTrue' toNode='CLOCK_Bed4' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed4' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed4' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed4' fromField='cycleTime' toNode='Bed4' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed4' fromField='bpm' toNode='BPM2' toField='string'/>
-                <ROUTE fromNode='Bed4' fromField='temp' toNode='TEMP2' toField='string'/> 
-                <ROUTE fromNode='Bed4' fromField='blc' toNode='BLC2' toField='string'/> 
+                <IMPORT inlineDEF='Room2' exportedDEF='BPM1Out' AS='BPM4'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='TEMP1Out' AS='TEMP4'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='BLC1Out' AS='BLC4'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='BPM2Out' AS='BPM5'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='TEMP2Out' AS='TEMP5'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='BLC2Out' AS='BLC5'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='BPM3Out' AS='BPM6'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='TEMP3Out' AS='TEMP6'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='BLC3Out' AS='BLC6'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room2' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed4'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed5'/>
+                <IMPORT inlineDEF='Room2' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed6'/>
+                <!-- Routes -->     
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed4' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed4' fromField='bpm' toNode='BPM4' toField='string'/>
+                <ROUTE fromNode='Bed4' fromField='temp' toNode='TEMP4' toField='string'/> 
+                <ROUTE fromNode='Bed4' fromField='blc' toNode='BLC4' toField='string'/>
+                <ROUTE fromNode='Bed4' fromField='alert' toNode='LIGHT_AlertLightBed4' toField='on'/> 
 
-                <ROUTE fromNode='TOUCH_Bed5' fromField='touchTime' toNode='BOOL_ClockBed5' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed5' fromField='inputTrue' toNode='CLOCK_Bed5' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed5' fromField='inputNegate' toNode='CLOCK_Bed4' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed5' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed5' fromField='cycleTime' toNode='Bed5' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed5' fromField='bpm' toNode='BPM2' toField='string'/>
-                <ROUTE fromNode='Bed5' fromField='temp' toNode='TEMP2' toField='string'/> 
-                <ROUTE fromNode='Bed5' fromField='blc' toNode='BLC2' toField='string'/> 
-                
-                <ROUTE fromNode='TOUCH_Bed6' fromField='touchTime' toNode='BOOL_ClockBed6' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed6' fromField='inputTrue' toNode='CLOCK_Bed6' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed6' fromField='inputNegate' toNode='CLOCK_Bed4' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed6' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed6' fromField='cycleTime' toNode='Bed6' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed6' fromField='bpm' toNode='BPM2' toField='string'/>
-                <ROUTE fromNode='Bed6' fromField='temp' toNode='TEMP2' toField='string'/> 
-                <ROUTE fromNode='Bed6' fromField='blc' toNode='BLC2' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed5' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed5' fromField='bpm' toNode='BPM5' toField='string'/>
+                <ROUTE fromNode='Bed5' fromField='temp' toNode='TEMP5' toField='string'/> 
+                <ROUTE fromNode='Bed5' fromField='blc' toNode='BLC5' toField='string'/>
+                <ROUTE fromNode='Bed5' fromField='alert' toNode='LIGHT_AlertLightBed5' toField='on'/> 
+
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed6' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed6' fromField='bpm' toNode='BPM6' toField='string'/>
+                <ROUTE fromNode='Bed6' fromField='temp' toNode='TEMP6' toField='string'/> 
+                <ROUTE fromNode='Bed6' fromField='blc' toNode='BLC6' toField='string'/>
+                <ROUTE fromNode='Bed6' fromField='alert' toNode='LIGHT_AlertLightBed6' toField='on'/> 
                 
                 <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed4' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed5' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='CLOCK_Bed6' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room3 -->
             <Transform translation='-4.55 1.65 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='3'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room3' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed7' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed7'/>
-                <TimeSensor DEF='CLOCK_Bed8' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed8'/>
-                <TimeSensor DEF='CLOCK_Bed9' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed9'/>
+   
                 <BooleanFilter DEF='BOOL_ExitRoom3'/>
                  
                 <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed7'/>
@@ -452,6 +403,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed8'/>
@@ -461,6 +413,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed9'/>
@@ -470,71 +423,50 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom3'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room3' exportedDEF='BPMOut' AS='BPM3'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='TEMPOut' AS='TEMP3'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BLCOut' AS='BLC3'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed7' fromField='touchTime' toNode='BOOL_ClockBed7' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed7' fromField='inputTrue' toNode='CLOCK_Bed7' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed7' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed7' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed7' fromField='cycleTime' toNode='Bed7' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed7' fromField='bpm' toNode='BPM3' toField='string'/>
-                <ROUTE fromNode='Bed7' fromField='temp' toNode='TEMP3' toField='string'/> 
-                <ROUTE fromNode='Bed7' fromField='blc' toNode='BLC3' toField='string'/> 
-
-                <ROUTE fromNode='TOUCH_Bed8' fromField='touchTime' toNode='BOOL_ClockBed8' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed8' fromField='inputTrue' toNode='CLOCK_Bed8' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed8' fromField='inputNegate' toNode='CLOCK_Bed7' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed8' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed8' fromField='cycleTime' toNode='Bed8' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed8' fromField='bpm' toNode='BPM3' toField='string'/>
-                <ROUTE fromNode='Bed8' fromField='temp' toNode='TEMP3' toField='string'/> 
-                <ROUTE fromNode='Bed8' fromField='blc' toNode='BLC3' toField='string'/> 
+                <IMPORT inlineDEF='Room3' exportedDEF='BPM1Out' AS='BPM7'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='TEMP1Out' AS='TEMP7'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='BLC1Out' AS='BLC7'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='BPM2Out' AS='BPM8'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='TEMP2Out' AS='TEMP8'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='BLC2Out' AS='BLC8'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='BPM3Out' AS='BPM9'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='TEMP3Out' AS='TEMP9'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='BLC3Out' AS='BLC9'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room3' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed7'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed8'/>
+                <IMPORT inlineDEF='Room3' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed9'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed7' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed7' fromField='bpm' toNode='BPM7' toField='string'/>
+                <ROUTE fromNode='Bed7' fromField='temp' toNode='TEMP7' toField='string'/> 
+                <ROUTE fromNode='Bed7' fromField='blc' toNode='BLC7' toField='string'/> 
+                <ROUTE fromNode='Bed7' fromField='alert' toNode='LIGHT_AlertLightBed7' toField='on'/> 
                 
-                <ROUTE fromNode='TOUCH_Bed9' fromField='touchTime' toNode='BOOL_ClockBed9' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed9' fromField='inputTrue' toNode='CLOCK_Bed9' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed9' fromField='inputNegate' toNode='CLOCK_Bed7' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed9' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed9' fromField='cycleTime' toNode='Bed9' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed9' fromField='bpm' toNode='BPM3' toField='string'/>
-                <ROUTE fromNode='Bed9' fromField='temp' toNode='TEMP3' toField='string'/> 
-                <ROUTE fromNode='Bed9' fromField='blc' toNode='BLC3' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed8' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed8' fromField='bpm' toNode='BPM8' toField='string'/>
+                <ROUTE fromNode='Bed8' fromField='temp' toNode='TEMP8' toField='string'/> 
+                <ROUTE fromNode='Bed8' fromField='blc' toNode='BLC8' toField='string'/> 
+                <ROUTE fromNode='Bed8' fromField='alert' toNode='LIGHT_AlertLightBed8' toField='on'/> 
+                
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed9' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed9' fromField='bpm' toNode='BPM9' toField='string'/>
+                <ROUTE fromNode='Bed9' fromField='temp' toNode='TEMP9' toField='string'/> 
+                <ROUTE fromNode='Bed9' fromField='blc' toNode='BLC9' toField='string'/>
+                <ROUTE fromNode='Bed9' fromField='alert' toNode='LIGHT_AlertLightBed9' toField='on'/> 
                 
                 <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed7' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed8' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='CLOCK_Bed9' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room4 -->
             <Transform translation='-4.55 -2.05 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='4'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room4' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed10' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed10'/>
-                <TimeSensor DEF='CLOCK_Bed11' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed11'/>
-                <TimeSensor DEF='CLOCK_Bed12' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed12'/>
+
                 <BooleanFilter DEF='BOOL_ExitRoom4'/>
                  
                 <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed10'/>
@@ -544,6 +476,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed11'/>
@@ -553,6 +486,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed12'/>
@@ -562,71 +496,50 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom4'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room4' exportedDEF='BPMOut' AS='BPM4'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='TEMPOut' AS='TEMP4'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BLCOut' AS='BLC4'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed10' fromField='touchTime' toNode='BOOL_ClockBed10' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed10' fromField='inputTrue' toNode='CLOCK_Bed10' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed10' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed10' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed10' fromField='cycleTime' toNode='Bed10' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed10' fromField='bpm' toNode='BPM4' toField='string'/>
-                <ROUTE fromNode='Bed10' fromField='temp' toNode='TEMP4' toField='string'/> 
-                <ROUTE fromNode='Bed10' fromField='blc' toNode='BLC4' toField='string'/> 
-
-                <ROUTE fromNode='TOUCH_Bed11' fromField='touchTime' toNode='BOOL_ClockBed11' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed11' fromField='inputTrue' toNode='CLOCK_Bed11' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed11' fromField='inputNegate' toNode='CLOCK_Bed10' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed11' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed11' fromField='cycleTime' toNode='Bed11' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed11' fromField='bpm' toNode='BPM4' toField='string'/>
-                <ROUTE fromNode='Bed11' fromField='temp' toNode='TEMP4' toField='string'/> 
-                <ROUTE fromNode='Bed11' fromField='blc' toNode='BLC4' toField='string'/> 
+                <IMPORT inlineDEF='Room4' exportedDEF='BPM1Out' AS='BPM10'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='TEMP1Out' AS='TEMP10'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='BLC1Out' AS='BLC10'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='BPM2Out' AS='BPM11'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='TEMP2Out' AS='TEMP11'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='BLC2Out' AS='BLC11'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='BPM3Out' AS='BPM12'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='TEMP3Out' AS='TEMP12'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='BLC3Out' AS='BLC12'/>
+                 <!-- Lights -->
+                <IMPORT inlineDEF='Room4' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed10'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed11'/>
+                <IMPORT inlineDEF='Room4' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed12'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed10' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed10' fromField='bpm' toNode='BPM10' toField='string'/>
+                <ROUTE fromNode='Bed10' fromField='temp' toNode='TEMP10' toField='string'/> 
+                <ROUTE fromNode='Bed10' fromField='blc' toNode='BLC10' toField='string'/> 
+                <ROUTE fromNode='Bed10' fromField='alert' toNode='LIGHT_AlertLightBed10' toField='on'/> 
                 
-                <ROUTE fromNode='TOUCH_Bed12' fromField='touchTime' toNode='BOOL_ClockBed12' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed12' fromField='inputTrue' toNode='CLOCK_Bed12' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed12' fromField='inputNegate' toNode='CLOCK_Bed10' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed12' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed12' fromField='cycleTime' toNode='Bed12' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed12' fromField='bpm' toNode='BPM4' toField='string'/>
-                <ROUTE fromNode='Bed12' fromField='temp' toNode='TEMP4' toField='string'/> 
-                <ROUTE fromNode='Bed12' fromField='blc' toNode='BLC4' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed11' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed11' fromField='bpm' toNode='BPM11' toField='string'/>
+                <ROUTE fromNode='Bed11' fromField='temp' toNode='TEMP11' toField='string'/> 
+                <ROUTE fromNode='Bed11' fromField='blc' toNode='BLC11' toField='string'/> 
+                <ROUTE fromNode='Bed11' fromField='alert' toNode='LIGHT_AlertLightBed11' toField='on'/> 
+
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed12' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed12' fromField='bpm' toNode='BPM12' toField='string'/>
+                <ROUTE fromNode='Bed12' fromField='temp' toNode='TEMP12' toField='string'/> 
+                <ROUTE fromNode='Bed12' fromField='blc' toNode='BLC12' toField='string'/>
+                <ROUTE fromNode='Bed12' fromField='alert' toNode='LIGHT_AlertLightBed12' toField='on'/> 
                 
                 <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed10' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed11' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='CLOCK_Bed12' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room5 -->
             <Transform translation='-4.55 -5.75 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='5'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room5' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed13' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed13'/>
-                <TimeSensor DEF='CLOCK_Bed14' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed14'/>
-                <TimeSensor DEF='CLOCK_Bed15' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed15'/>
+
                 <BooleanFilter DEF='BOOL_ExitRoom5'/>
                  
                 <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed13'/>
@@ -636,6 +549,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed14'/>
@@ -645,6 +559,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed15'/>
@@ -654,71 +569,50 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom5'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room5' exportedDEF='BPMOut' AS='BPM5'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='TEMPOut' AS='TEMP5'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BLCOut' AS='BLC5'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed13' fromField='touchTime' toNode='BOOL_ClockBed13' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed13' fromField='inputTrue' toNode='CLOCK_Bed13' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed13' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed13' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed13' fromField='cycleTime' toNode='Bed13' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed13' fromField='bpm' toNode='BPM5' toField='string'/>
-                <ROUTE fromNode='Bed13' fromField='temp' toNode='TEMP5' toField='string'/> 
-                <ROUTE fromNode='Bed13' fromField='blc' toNode='BLC5' toField='string'/> 
-
-                <ROUTE fromNode='TOUCH_Bed14' fromField='touchTime' toNode='BOOL_ClockBed14' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed14' fromField='inputTrue' toNode='CLOCK_Bed14' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed14' fromField='inputNegate' toNode='CLOCK_Bed13' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed14' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed14' fromField='cycleTime' toNode='Bed14' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed14' fromField='bpm' toNode='BPM5' toField='string'/>
-                <ROUTE fromNode='Bed14' fromField='temp' toNode='TEMP5' toField='string'/> 
-                <ROUTE fromNode='Bed14' fromField='blc' toNode='BLC5' toField='string'/> 
+                <IMPORT inlineDEF='Room5' exportedDEF='BPM1Out' AS='BPM13'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='TEMP1Out' AS='TEMP13'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='BLC1Out' AS='BLC13'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='BPM2Out' AS='BPM14'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='TEMP2Out' AS='TEMP14'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='BLC2Out' AS='BLC14'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='BPM3Out' AS='BPM15'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='TEMP3Out' AS='TEMP15'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='BLC3Out' AS='BLC15'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room5' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed13'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed14'/>
+                <IMPORT inlineDEF='Room5' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed15'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed13' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed13' fromField='bpm' toNode='BPM13' toField='string'/>
+                <ROUTE fromNode='Bed13' fromField='temp' toNode='TEMP13' toField='string'/> 
+                <ROUTE fromNode='Bed13' fromField='blc' toNode='BLC13' toField='string'/> 
+                <ROUTE fromNode='Bed13' fromField='alert' toNode='LIGHT_AlertLightBed13' toField='on'/>
                 
-                <ROUTE fromNode='TOUCH_Bed15' fromField='touchTime' toNode='BOOL_ClockBed15' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed15' fromField='inputTrue' toNode='CLOCK_Bed15' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed15' fromField='inputNegate' toNode='CLOCK_Bed13' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed15' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed15' fromField='cycleTime' toNode='Bed15' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed15' fromField='bpm' toNode='BPM5' toField='string'/>
-                <ROUTE fromNode='Bed15' fromField='temp' toNode='TEMP5' toField='string'/> 
-                <ROUTE fromNode='Bed15' fromField='blc' toNode='BLC5' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed14' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed14' fromField='bpm' toNode='BPM14' toField='string'/>
+                <ROUTE fromNode='Bed14' fromField='temp' toNode='TEMP14' toField='string'/> 
+                <ROUTE fromNode='Bed14' fromField='blc' toNode='BLC14' toField='string'/> 
+                <ROUTE fromNode='Bed14' fromField='alert' toNode='LIGHT_AlertLightBed14' toField='on'/>
+                
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed15' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed15' fromField='bpm' toNode='BPM15' toField='string'/>
+                <ROUTE fromNode='Bed15' fromField='temp' toNode='TEMP15' toField='string'/> 
+                <ROUTE fromNode='Bed15' fromField='blc' toNode='BLC15' toField='string'/>
+                <ROUTE fromNode='Bed15' fromField='alert' toNode='LIGHT_AlertLightBed15' toField='on'/>
                 
                 <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed13' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed14' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='CLOCK_Bed15' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room6 -->
             <Transform translation='-4.55 -9.45 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='6'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room6' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed16' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed16'/>
-                <TimeSensor DEF='CLOCK_Bed17' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed17'/>
-                <TimeSensor DEF='CLOCK_Bed18' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed18'/>
+
                 <BooleanFilter DEF='BOOL_ExitRoom6'/>
                  
                 <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed16'/>
@@ -728,6 +622,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed17'/>
@@ -737,6 +632,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed18'/>
@@ -746,71 +642,50 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom6'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room6' exportedDEF='BPMOut' AS='BPM6'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='TEMPOut' AS='TEMP6'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BLCOut' AS='BLC6'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed16' fromField='touchTime' toNode='BOOL_ClockBed16' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed16' fromField='inputTrue' toNode='CLOCK_Bed16' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed16' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed16' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed16' fromField='cycleTime' toNode='Bed16' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed16' fromField='bpm' toNode='BPM6' toField='string'/>
-                <ROUTE fromNode='Bed16' fromField='temp' toNode='TEMP6' toField='string'/> 
-                <ROUTE fromNode='Bed16' fromField='blc' toNode='BLC6' toField='string'/> 
-
-                <ROUTE fromNode='TOUCH_Bed17' fromField='touchTime' toNode='BOOL_ClockBed17' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed17' fromField='inputTrue' toNode='CLOCK_Bed17' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed17' fromField='inputNegate' toNode='CLOCK_Bed16' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed17' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed17' fromField='cycleTime' toNode='Bed17' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed17' fromField='bpm' toNode='BPM6' toField='string'/>
-                <ROUTE fromNode='Bed17' fromField='temp' toNode='TEMP6' toField='string'/> 
-                <ROUTE fromNode='Bed17' fromField='blc' toNode='BLC6' toField='string'/> 
+                <IMPORT inlineDEF='Room6' exportedDEF='BPM1Out' AS='BPM16'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='TEMP1Out' AS='TEMP16'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='BLC1Out' AS='BLC16'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='BPM2Out' AS='BPM17'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='TEMP2Out' AS='TEMP17'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='BLC2Out' AS='BLC17'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='BPM3Out' AS='BPM18'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='TEMP3Out' AS='TEMP18'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='BLC3Out' AS='BLC18'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room6' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed16'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed17'/>
+                <IMPORT inlineDEF='Room6' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed18'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed16' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed16' fromField='bpm' toNode='BPM16' toField='string'/>
+                <ROUTE fromNode='Bed16' fromField='temp' toNode='TEMP16' toField='string'/> 
+                <ROUTE fromNode='Bed16' fromField='blc' toNode='BLC16' toField='string'/> 
+                <ROUTE fromNode='Bed16' fromField='alert' toNode='LIGHT_AlertLightBed16' toField='on'/>
                 
-                <ROUTE fromNode='TOUCH_Bed18' fromField='touchTime' toNode='BOOL_ClockBed18' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed18' fromField='inputTrue' toNode='CLOCK_Bed18' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed18' fromField='inputNegate' toNode='CLOCK_Bed16' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed18' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed18' fromField='cycleTime' toNode='Bed18' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed18' fromField='bpm' toNode='BPM6' toField='string'/>
-                <ROUTE fromNode='Bed18' fromField='temp' toNode='TEMP6' toField='string'/> 
-                <ROUTE fromNode='Bed18' fromField='blc' toNode='BLC6' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed17' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed17' fromField='bpm' toNode='BPM17' toField='string'/>
+                <ROUTE fromNode='Bed17' fromField='temp' toNode='TEMP17' toField='string'/> 
+                <ROUTE fromNode='Bed17' fromField='blc' toNode='BLC17' toField='string'/> 
+                <ROUTE fromNode='Bed17' fromField='alert' toNode='LIGHT_AlertLightBed17' toField='on'/>
+
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed18' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed18' fromField='bpm' toNode='BPM18' toField='string'/>
+                <ROUTE fromNode='Bed18' fromField='temp' toNode='TEMP18' toField='string'/> 
+                <ROUTE fromNode='Bed18' fromField='blc' toNode='BLC18' toField='string'/>
+                <ROUTE fromNode='Bed18' fromField='alert' toNode='LIGHT_AlertLightBed18' toField='on'/>
                 
                 <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed16' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed17' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='CLOCK_Bed18' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
             <!-- Room7 -->
             <Transform translation='-4.55 -13.15 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='7'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room7' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed19' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed19'/>
-                <TimeSensor DEF='CLOCK_Bed20' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed20'/>
-                <TimeSensor DEF='CLOCK_Bed21' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed21'/>
+
                 <BooleanFilter DEF='BOOL_ExitRoom7'/>
                  
                 <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed19'/>
@@ -820,6 +695,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed20'/>
@@ -829,6 +705,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed21'/>
@@ -838,44 +715,43 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom7'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room7' exportedDEF='BPMOut' AS='BPM7'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='TEMPOut' AS='TEMP7'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BLCOut' AS='BLC7'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed19' fromField='touchTime' toNode='BOOL_ClockBed19' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed19' fromField='inputTrue' toNode='CLOCK_Bed19' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed19' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed19' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed19' fromField='cycleTime' toNode='Bed19' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed19' fromField='bpm' toNode='BPM7' toField='string'/>
-                <ROUTE fromNode='Bed19' fromField='temp' toNode='TEMP7' toField='string'/> 
-                <ROUTE fromNode='Bed19' fromField='blc' toNode='BLC7' toField='string'/> 
-
-                <ROUTE fromNode='TOUCH_Bed20' fromField='touchTime' toNode='BOOL_ClockBed20' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed20' fromField='inputTrue' toNode='CLOCK_Bed20' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed20' fromField='inputNegate' toNode='CLOCK_Bed19' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed20' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed20' fromField='cycleTime' toNode='Bed20' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed20' fromField='bpm' toNode='BPM7' toField='string'/>
-                <ROUTE fromNode='Bed20' fromField='temp' toNode='TEMP7' toField='string'/> 
-                <ROUTE fromNode='Bed20' fromField='blc' toNode='BLC7' toField='string'/> 
+                <IMPORT inlineDEF='Room7' exportedDEF='BPM1Out' AS='BPM19'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='TEMP1Out' AS='TEMP19'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='BLC1Out' AS='BLC19'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='BPM2Out' AS='BPM20'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='TEMP2Out' AS='TEMP20'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='BLC2Out' AS='BLC20'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='BPM3Out' AS='BPM21'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='TEMP3Out' AS='TEMP21'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='BLC3Out' AS='BLC21'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room7' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed19'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed20'/>
+                <IMPORT inlineDEF='Room7' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed21'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed19' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed19' fromField='bpm' toNode='BPM19' toField='string'/>
+                <ROUTE fromNode='Bed19' fromField='temp' toNode='TEMP19' toField='string'/> 
+                <ROUTE fromNode='Bed19' fromField='blc' toNode='BLC19' toField='string'/> 
+                <ROUTE fromNode='Bed19' fromField='alert' toNode='LIGHT_AlertLightBed19' toField='on'/>
                 
-                <ROUTE fromNode='TOUCH_Bed21' fromField='touchTime' toNode='BOOL_ClockBed21' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed21' fromField='inputTrue' toNode='CLOCK_Bed21' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed21' fromField='inputNegate' toNode='CLOCK_Bed19' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed21' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed21' fromField='cycleTime' toNode='Bed21' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed21' fromField='bpm' toNode='BPM7' toField='string'/>
-                <ROUTE fromNode='Bed21' fromField='temp' toNode='TEMP7' toField='string'/> 
-                <ROUTE fromNode='Bed21' fromField='blc' toNode='BLC7' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed20' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed20' fromField='bpm' toNode='BPM20' toField='string'/>
+                <ROUTE fromNode='Bed20' fromField='temp' toNode='TEMP20' toField='string'/> 
+                <ROUTE fromNode='Bed20' fromField='blc' toNode='BLC20' toField='string'/> 
+                <ROUTE fromNode='Bed20' fromField='alert' toNode='LIGHT_AlertLightBed20' toField='on'/>
+
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed21' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed21' fromField='bpm' toNode='BPM21' toField='string'/>
+                <ROUTE fromNode='Bed21' fromField='temp' toNode='TEMP21' toField='string'/> 
+                <ROUTE fromNode='Bed21' fromField='blc' toNode='BLC21' toField='string'/>
+                <ROUTE fromNode='Bed21' fromField='alert' toNode='LIGHT_AlertLightBed21' toField='on'/>
                 
                 <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed19' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed20' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='CLOCK_Bed21' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
@@ -884,28 +760,8 @@
             </Transform>
             <!-- Room8 -->
             <Transform rotation='0 0 1 3.14' translation='2.35 9.05 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='8'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room8' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed22' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed22'/>
-                <TimeSensor DEF='CLOCK_Bed23' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed23'/>
-                <TimeSensor DEF='CLOCK_Bed24' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed24'/>
+    
                 <BooleanFilter DEF='BOOL_ExitRoom8'/>
                  
                 <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed22'/>
@@ -915,6 +771,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed23'/>
@@ -924,6 +781,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed24'/>
@@ -933,44 +791,43 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom8'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room8' exportedDEF='BPMOut' AS='BPM8'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='TEMPOut' AS='TEMP8'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BLCOut' AS='BLC8'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed22' fromField='touchTime' toNode='BOOL_ClockBed22' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed22' fromField='inputTrue' toNode='CLOCK_Bed22' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed22' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed22' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed22' fromField='cycleTime' toNode='Bed22' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed22' fromField='bpm' toNode='BPM8' toField='string'/>
-                <ROUTE fromNode='Bed22' fromField='temp' toNode='TEMP8' toField='string'/> 
-                <ROUTE fromNode='Bed22' fromField='blc' toNode='BLC8' toField='string'/> 
+                <IMPORT inlineDEF='Room8' exportedDEF='BPM1Out' AS='BPM22'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='TEMP1Out' AS='TEMP22'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='BLC1Out' AS='BLC22'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='BPM2Out' AS='BPM23'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='TEMP2Out' AS='TEMP23'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='BLC2Out' AS='BLC23'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='BPM3Out' AS='BPM24'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='TEMP3Out' AS='TEMP24'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='BLC3Out' AS='BLC24'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room8' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed22'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed23'/>
+                <IMPORT inlineDEF='Room8' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed24'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed22' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed22' fromField='bpm' toNode='BPM22' toField='string'/>
+                <ROUTE fromNode='Bed22' fromField='temp' toNode='TEMP22' toField='string'/> 
+                <ROUTE fromNode='Bed22' fromField='blc' toNode='BLC22' toField='string'/> 
+                <ROUTE fromNode='Bed22' fromField='alert' toNode='LIGHT_AlertLightBed22' toField='on'/>
 
-                <ROUTE fromNode='TOUCH_Bed23' fromField='touchTime' toNode='BOOL_ClockBed23' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed23' fromField='inputTrue' toNode='CLOCK_Bed23' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed23' fromField='inputNegate' toNode='CLOCK_Bed22' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed23' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed23' fromField='cycleTime' toNode='Bed23' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed23' fromField='bpm' toNode='BPM8' toField='string'/>
-                <ROUTE fromNode='Bed23' fromField='temp' toNode='TEMP8' toField='string'/> 
-                <ROUTE fromNode='Bed23' fromField='blc' toNode='BLC8' toField='string'/> 
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed23' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed23' fromField='bpm' toNode='BPM23' toField='string'/>
+                <ROUTE fromNode='Bed23' fromField='temp' toNode='TEMP23' toField='string'/> 
+                <ROUTE fromNode='Bed23' fromField='blc' toNode='BLC23' toField='string'/> 
+                <ROUTE fromNode='Bed23' fromField='alert' toNode='LIGHT_AlertLightBed23' toField='on'/>
                 
-                <ROUTE fromNode='TOUCH_Bed24' fromField='touchTime' toNode='BOOL_ClockBed24' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed24' fromField='inputTrue' toNode='CLOCK_Bed24' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed24' fromField='inputNegate' toNode='CLOCK_Bed22' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed24' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed24' fromField='cycleTime' toNode='Bed24' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed24' fromField='bpm' toNode='BPM8' toField='string'/>
-                <ROUTE fromNode='Bed24' fromField='temp' toNode='TEMP8' toField='string'/> 
-                <ROUTE fromNode='Bed24' fromField='blc' toNode='BLC8' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed24' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed24' fromField='bpm' toNode='BPM24' toField='string'/>
+                <ROUTE fromNode='Bed24' fromField='temp' toNode='TEMP24' toField='string'/> 
+                <ROUTE fromNode='Bed24' fromField='blc' toNode='BLC24' toField='string'/>
+                <ROUTE fromNode='Bed24' fromField='alert' toNode='LIGHT_AlertLightBed24' toField='on'/>
                 
                 <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed22' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed23' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='CLOCK_Bed24' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
@@ -983,28 +840,8 @@
             </Transform>
             <!-- Room9 -->
             <Transform rotation='0 0 1 3.14' translation='2.35 -2.05 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='9'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room9' url='"room.x3d"' />
-               
-                <TimeSensor DEF='CLOCK_Bed25' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed25'/>
-                <TimeSensor DEF='CLOCK_Bed26' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed26'/>
-                <TimeSensor DEF='CLOCK_Bed27' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed27'/>
+                
                 <BooleanFilter DEF='BOOL_ExitRoom9'/>
                  
                 <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed25'/>
@@ -1014,6 +851,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed26'/>
@@ -1023,6 +861,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed27'/>
@@ -1032,44 +871,43 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom9'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room9' exportedDEF='BPMOut' AS='BPM9'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='TEMPOut' AS='TEMP9'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BLCOut' AS='BLC9'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed25' fromField='touchTime' toNode='BOOL_ClockBed25' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed25' fromField='inputTrue' toNode='CLOCK_Bed25' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed25' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed25' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed25' fromField='cycleTime' toNode='Bed25' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed25' fromField='bpm' toNode='BPM9' toField='string'/>
-                <ROUTE fromNode='Bed25' fromField='temp' toNode='TEMP9' toField='string'/> 
-                <ROUTE fromNode='Bed25' fromField='blc' toNode='BLC9' toField='string'/> 
-
-                <ROUTE fromNode='TOUCH_Bed26' fromField='touchTime' toNode='BOOL_ClockBed26' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed26' fromField='inputTrue' toNode='CLOCK_Bed26' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed26' fromField='inputNegate' toNode='CLOCK_Bed25' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed26' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed26' fromField='cycleTime' toNode='Bed26' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed26' fromField='bpm' toNode='BPM9' toField='string'/>
-                <ROUTE fromNode='Bed26' fromField='temp' toNode='TEMP9' toField='string'/> 
-                <ROUTE fromNode='Bed26' fromField='blc' toNode='BLC9' toField='string'/> 
+                <IMPORT inlineDEF='Room9' exportedDEF='BPM1Out' AS='BPM25'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='TEMP1Out' AS='TEMP25'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='BLC1Out' AS='BLC25'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='BPM2Out' AS='BPM26'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='TEMP2Out' AS='TEMP26'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='BLC2Out' AS='BLC26'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='BPM3Out' AS='BPM27'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='TEMP3Out' AS='TEMP27'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='BLC3Out' AS='BLC27'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room9' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed25'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed26'/>
+                <IMPORT inlineDEF='Room9' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed27'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed25' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed25' fromField='bpm' toNode='BPM25' toField='string'/>
+                <ROUTE fromNode='Bed25' fromField='temp' toNode='TEMP25' toField='string'/> 
+                <ROUTE fromNode='Bed25' fromField='blc' toNode='BLC25' toField='string'/>
+                <ROUTE fromNode='Bed25' fromField='alert' toNode='LIGHT_AlertLightBed25' toField='on'/>
                 
-                <ROUTE fromNode='TOUCH_Bed27' fromField='touchTime' toNode='BOOL_ClockBed27' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed27' fromField='inputTrue' toNode='CLOCK_Bed27' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed27' fromField='inputNegate' toNode='CLOCK_Bed25' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed27' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed27' fromField='cycleTime' toNode='Bed27' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed27' fromField='bpm' toNode='BPM9' toField='string'/>
-                <ROUTE fromNode='Bed27' fromField='temp' toNode='TEMP9' toField='string'/> 
-                <ROUTE fromNode='Bed27' fromField='blc' toNode='BLC9' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed26' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed26' fromField='bpm' toNode='BPM26' toField='string'/>
+                <ROUTE fromNode='Bed26' fromField='temp' toNode='TEMP26' toField='string'/> 
+                <ROUTE fromNode='Bed26' fromField='blc' toNode='BLC26' toField='string'/> 
+                <ROUTE fromNode='Bed26' fromField='alert' toNode='LIGHT_AlertLightBed26' toField='on'/>
+                
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed27' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed27' fromField='bpm' toNode='BPM27' toField='string'/>
+                <ROUTE fromNode='Bed27' fromField='temp' toNode='TEMP27' toField='string'/> 
+                <ROUTE fromNode='Bed27' fromField='blc' toNode='BLC27' toField='string'/>
+                <ROUTE fromNode='Bed27' fromField='alert' toNode='LIGHT_AlertLightBed27' toField='on'/>
                 
                 <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed25' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed26' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='CLOCK_Bed27' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
@@ -1082,28 +920,8 @@
             </Transform>
             <!-- Room10 -->
             <Transform rotation='0 0 1 3.14' translation='2.35 -17.05 0'>
-                <!--
-                 <Transform translation='0 0 3.5'>
-                     <Billboard axisOfRotation="0 0 0">
-                        <Shape>    
-                           <Text solid='true' string='10'>
-                               <FontStyle justify='"MIDDLE" "MIDDLE"' size="1.0" />
-                           </Text> 
-                           <Appearance>
-                               <Material emissiveColor='1 0 0' transparency='0.3'/>
-                           </Appearance>
-                       </Shape>
-                      </Billboard> 
-                 </Transform>
-                 -->
                 <Inline DEF='Room10' url='"room.x3d"' />
                
-                <TimeSensor DEF='CLOCK_Bed28' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed28'/>
-                <TimeSensor DEF='CLOCK_Bed29' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed29'/>
-                <TimeSensor DEF='CLOCK_Bed30' cycleInterval='10' enabled='false' loop='true'/>
-                <BooleanFilter DEF='BOOL_ClockBed30'/>
                 <BooleanFilter DEF='BOOL_ExitRoom10'/>
                  
                 <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed28'/>
@@ -1113,6 +931,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>                 
                 
                 <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed29'/>
@@ -1122,6 +941,7 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 
                 <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed30'/>
@@ -1131,44 +951,43 @@
                     <field name='bpm' type='SFString' accessType='outputOnly'/>
                     <field name='temp' type='SFString' accessType='outputOnly'/>
                     <field name='blc' type='SFString' accessType='outputOnly'/>
+                    <field name='alert' type='SFBool' accessType='outputOnly'/>
                 </Script>
                 <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom10'/>
                 <!-- Billboard -->        
-                <IMPORT inlineDEF='Room10' exportedDEF='BPMOut' AS='BPM10'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='TEMPOut' AS='TEMP10'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BLCOut' AS='BLC10'/>
-                <!-- Routes -->                
-                <ROUTE fromNode='TOUCH_Bed28' fromField='touchTime' toNode='BOOL_ClockBed28' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed28' fromField='inputTrue' toNode='CLOCK_Bed28' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed28' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed28' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed28' fromField='cycleTime' toNode='Bed28' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed28' fromField='bpm' toNode='BPM10' toField='string'/>
-                <ROUTE fromNode='Bed28' fromField='temp' toNode='TEMP10' toField='string'/> 
-                <ROUTE fromNode='Bed28' fromField='blc' toNode='BLC10' toField='string'/> 
+                <IMPORT inlineDEF='Room10' exportedDEF='BPM1Out' AS='BPM28'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='TEMP1Out' AS='TEMP28'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='BLC1Out' AS='BLC28'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='BPM2Out' AS='BPM29'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='TEMP2Out' AS='TEMP29'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='BLC2Out' AS='BLC29'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='BPM3Out' AS='BPM30'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='TEMP3Out' AS='TEMP30'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='BLC3Out' AS='BLC30'/>
+                <!-- Lights -->
+                <IMPORT inlineDEF='Room10' exportedDEF='LIGHT_AlertLightBed1Out' AS='LIGHT_AlertLightBed28'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='LIGHT_AlertLightBed2Out' AS='LIGHT_AlertLightBed29'/>
+                <IMPORT inlineDEF='Room10' exportedDEF='LIGHT_AlertLightBed3Out' AS='LIGHT_AlertLightBed30'/>
+                <!-- Routes -->
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed28' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed28' fromField='bpm' toNode='BPM28' toField='string'/>
+                <ROUTE fromNode='Bed28' fromField='temp' toNode='TEMP28' toField='string'/> 
+                <ROUTE fromNode='Bed28' fromField='blc' toNode='BLC28' toField='string'/> 
+                <ROUTE fromNode='Bed28' fromField='alert' toNode='LIGHT_AlertLightBed28' toField='on'/>
 
-                <ROUTE fromNode='TOUCH_Bed29' fromField='touchTime' toNode='BOOL_ClockBed29' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed29' fromField='inputTrue' toNode='CLOCK_Bed29' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed29' fromField='inputNegate' toNode='CLOCK_Bed28' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed29' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed29' fromField='cycleTime' toNode='Bed29' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed29' fromField='bpm' toNode='BPM10' toField='string'/>
-                <ROUTE fromNode='Bed29' fromField='temp' toNode='TEMP10' toField='string'/> 
-                <ROUTE fromNode='Bed29' fromField='blc' toNode='BLC10' toField='string'/> 
-                
-                <ROUTE fromNode='TOUCH_Bed30' fromField='touchTime' toNode='BOOL_ClockBed30' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ClockBed30' fromField='inputTrue' toNode='CLOCK_Bed30' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed30' fromField='inputNegate' toNode='CLOCK_Bed28' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ClockBed30' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
-                <ROUTE fromNode='CLOCK_Bed30' fromField='cycleTime' toNode='Bed30' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed30' fromField='bpm' toNode='BPM10' toField='string'/>
-                <ROUTE fromNode='Bed30' fromField='temp' toNode='TEMP10' toField='string'/> 
-                <ROUTE fromNode='Bed30' fromField='blc' toNode='BLC10' toField='string'/>
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed29' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed29' fromField='bpm' toNode='BPM29' toField='string'/>
+                <ROUTE fromNode='Bed29' fromField='temp' toNode='TEMP29' toField='string'/> 
+                <ROUTE fromNode='Bed29' fromField='blc' toNode='BLC29' toField='string'/> 
+                <ROUTE fromNode='Bed29' fromField='alert' toNode='LIGHT_AlertLightBed29' toField='on'/>
+
+                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed30' toField='getHealthSync'/>
+                <ROUTE fromNode='Bed30' fromField='bpm' toNode='BPM30' toField='string'/>
+                <ROUTE fromNode='Bed30' fromField='temp' toNode='TEMP30' toField='string'/> 
+                <ROUTE fromNode='Bed30' fromField='blc' toNode='BLC30' toField='string'/>
+                <ROUTE fromNode='Bed30' fromField='alert' toNode='LIGHT_AlertLightBed30' toField='on'/>
                 
                 <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed28' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed29' toField='set_enabled'/>
-                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='CLOCK_Bed30' toField='set_enabled'/>
                 <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
                 <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
             </Transform>
