@@ -38,8 +38,7 @@
             global='false' 
             intensity='1' 
             on='false' 
-            radius='100' />
-        
+            radius='100' />        
         <Shape DEF="BedFrame">
             <Box size="2 1 0.1" solid="true"/>
             <Appearance>   
