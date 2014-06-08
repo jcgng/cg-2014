@@ -27,6 +27,7 @@
         <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
     </head>
     <Scene>
+        <!--
          <SpotLight
             DEF='SpotLightBed' 
             location='0 0 2' 
@@ -39,6 +40,7 @@
             intensity='1' 
             on='false' 
             radius='100' />        
+        -->
         <Shape DEF="BedFrame">
             <Box size="2 1 0.1" solid="true"/>
             <Appearance>   
@@ -135,6 +137,6 @@
         </Transform>
         
         <!-- EXPORTS -->
-        <EXPORT localDEF='SpotLightBed' AS='LIGHT_SpotLightBedOut'/>
+        <!--<EXPORT localDEF='SpotLightBed' AS='LIGHT_SpotLightBedOut'/>-->
     </Scene>
 </X3D>
