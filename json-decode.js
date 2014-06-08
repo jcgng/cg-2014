@@ -167,6 +167,6 @@ function getHealthSync(value,timestep) {
             blc = '...';
         }
         
-        Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc);
+        Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc + "," + alert);
     }
 };

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.2//EN" "http://www.web3d.org/specifications/x3d-3.2.dtd">
+<X3D profile='Immersive' version='3.2' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.2.xsd'>
+    <head>
+        <meta content='*enter FileNameWithNoAbbreviations.x3d here*' name='title'/>
+        <meta content='*enter description here, short-sentence summaries preferred*' name='description'/>
+        <meta content='*enter name of original author here*' name='creator'/>
+        <meta content='*if manually translating VRML-to-X3D, enter name of person translating here*' name='translator'/>
+        <meta content='*enter date of initial version here*' name='created'/>
+        <meta content='*enter date of translation here*' name='translated'/>
+        <meta content='*enter date of latest revision here*' name='modified'/>
+        <meta content='*enter version here, if any*' name='version'/>
+        <meta content='*enter reference citation or relative/online url here*' name='reference'/>
+        <meta content='*enter additional url/bibliographic reference information here*' name='reference'/>
+        <meta content='*enter reference resource here if required to support function, delivery, or coherence of content*' name='requires'/>
+        <meta content='*enter copyright information here* Example: Copyright (c) Web3D Consortium Inc. 2008' name='rights'/>
+        <meta content='*enter drawing filename/url here*' name='drawing'/>
+        <meta content='*enter image filename/url here*' name='image'/>
+        <meta content='*enter movie filename/url here*' name='MovingImage'/>
+        <meta content='*enter photo filename/url here*' name='photo'/>
+        <meta content='*enter subject keywords here*' name='subject'/>
+        <meta content='*enter permission statements or url here*' name='accessRights'/>
+        <meta content='*insert any known warnings, bugs or errors here*' name='warning'/>
+        <meta content='*enter online Uniform Resource Identifier (URI) or Uniform Resource Locator (URL) address for this file here*' name='identifier'/>
+        <meta content='X3D-Edit, https://savage.nps.edu/X3D-Edit' name='generator'/>
+        <meta content='../../license.html' name='license'/>
+        <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
+    </head>
+    <Scene>
+        <Billboard axisOfRotation="0 0 0">
+            <Transform translation="0.0 3.125 0.125">
+                <Shape>
+                    <Box size="2 0.25 0.25" solid="true"/>
+                    <Appearance>   
+                        <Material DEF='WhiteMetal' specularColor='1 1 1'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.0 2.92 0.15">
+                <Transform rotation="1 0 0 1.57" translation="0.6 0.0 0.10">
+                    <Shape DEF="Screw">
+                        <Cylinder radius="0.05" height="0.025" solid="true"/>
+                        <Appearance>   
+                            <Material DEF='BlackMetal' specularColor='0 0 0'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+                <Transform rotation="1 0 0 1.57" translation="-0.6 0.0 0.10">
+                    <Shape USE="Screw"/>
+                </Transform>
+                <Shape>
+                    <Box size="1.5 0.15 0.10" solid="true"/>
+                    <Appearance>   
+                        <Material USE='WhiteMetal'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.0 0.08 0.0">
+                <Shape>
+                    <Box size="4 6 0.1" solid="true"/>
+                    <Appearance>   
+                        <Material diffuseColor='0.31 0.49 0.88'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.0 0.25 0.05">
+                <Shape>
+                    <Box size="3.5 5.5 0.05" solid="true"/>
+                    <Appearance>   
+                        <Material diffuseColor='1 1 1'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+
+            <!-- Pencil -->
+            <Transform rotation="0 0 1 -0.52" translation="1.5 -1.5 0.15">
+                <Shape>
+                    <Cylinder radius="0.06" height="2" solid="true"/>
+                    <Appearance>   
+                        <Material diffuseColor='0.88 0.71 0.31'/>
+                    </Appearance>
+                </Shape>
+                <Transform rotation="1 0 0 3.14" translation="0.0 -1.1 0.0">
+                    <Shape>
+                        <Cone bottomRadius="0.06" height="0.2" solid="true"/>
+                        <Appearance>   
+                            <Material specularColor='0.88 0.71 0.31'/>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+            </Transform>
+
+            <!-- Text -->
+            <Transform translation="-1.0 2.5 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 1'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.8 2.5 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 2'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="-1.0 1.8 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 3'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.8 1.8 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 4'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="-1.0 1.1 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 5'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.8 1.1 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 6'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="-1.0 0.4 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 7'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.8 0.4 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 8'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="-1.0 -0.3 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 9'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="0.8 -0.3 0.15">
+                <Shape>    
+                    <Text solid='true' string='Room 10'>
+                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+        </Billboard>
+    </Scene>
+</X3D>
