@@ -41,7 +41,7 @@
             <Box size="7,3,0.2"/>
                 <Appearance>
 			<Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='0 0 0' transparency='0'/>
-                           <ImageTexture DEF='background_panel' url=' "background_panel.png" '/>
+                           <ImageTexture DEF='background_panel' url=' "images/background_panel.png" '/>
                 </Appearance>
         </Shape>
         
@@ -144,7 +144,7 @@
             <Box size="0.5,0.5,0"/>
                 <Appearance>
 			<Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                           <ImageTexture DEF='heart' url=' "heart.png" '/>
+                           <ImageTexture DEF='heart' url=' "images/heart.png" '/>
                 </Appearance>
         </Shape>
         
