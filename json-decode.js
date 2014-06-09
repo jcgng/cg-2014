@@ -143,7 +143,7 @@ function resetBedStopPool(value,timestep) {
 
 function getHealthSync(value,timestep) {
     if(bedNumber!=null && typeof bedNumber!='undefined') {
-        Browser.println("Start getHealthSync: " + bedNumber); 
+        // Browser.println("Start getHealthSync: " + bedNumber); 
         
         JsonInfo.fetchInfoSync(/*board*/'',/*patient*/'',bedNumber);
         alert = false;
@@ -167,6 +167,6 @@ function getHealthSync(value,timestep) {
             blc = '...';
         }
         
-        Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc + "," + alert);
+        // Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc + "," + alert);
     }
 };

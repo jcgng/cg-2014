@@ -71,9 +71,16 @@
                     </Appearance>
                 </Shape>
             </Transform>
-
+            <Transform translation="1.45 2.7 0.15">
+                <Shape>
+                    <Box size="0.5 0.5 0.01" solid="true"/>
+                    <Appearance>   
+                        <ImageTexture url=' "images/icon.png" '/>
+                    </Appearance>
+                </Shape>
+            </Transform>
             <!-- Pencil -->
-            <Transform rotation="0 0 1 -0.52" translation="1.5 -1.5 0.15">
+            <Transform rotation="0 0 1 -0.45" translation="1.6 -1.7 0.15">
                 <Shape>
                     <Cylinder radius="0.06" height="2" solid="true"/>
                     <Appearance>   
@@ -89,108 +96,824 @@
                     </Shape>
                 </Transform>
             </Transform>
-
+            <!-- Button -->
+            <!--
+            <Transform DEF="TRANSFORM_Button">
+                <Transform rotation='1 0 0 1.57' translation="1.8 -2.6 0.1">
+                    <Shape>
+                        <Cylinder radius="0.15" height="0.1" solid="true"/>
+                        <Appearance>   
+                            <Material specularColor='1 0 0' diffuseColor='1 0 0' />
+                        </Appearance>
+                    </Shape>
+                    <TouchSensor DEF='TOUCH_PressButton'/>
+                </Transform>
+            </Transform>
+            -->
             <!-- Text -->
-            <Transform translation="-1.0 2.5 0.15">
+            <Transform translation="0.0 2.6 0.15">
+                <Shape>    
+                    <Text solid='true' string='Health Monitor'>
+                        <FontStyle justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                    </Text> 
+                    <Appearance>
+                        <Material emissiveColor="0.50 0.023 0.0" specularColor="0.50 0.023 0.0" diffuseColor="0.50 0.023 0.0"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation="-1.2 2.2 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 1'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle DEF='BillboardTitleFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
                     </Text> 
                     <Appearance>
                         <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
                     </Appearance>
                 </Shape>
+               <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 1:'>
+                            <FontStyle DEF='BillboardSubTitleFontStyle' size="0.2" />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed1Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed1'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 2:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed2Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed2'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 3:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed3Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed3'/>
+               </Transform>
             </Transform>
-            <Transform translation="0.8 2.5 0.15">
+            <Transform translation="0.6 2.2 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 2'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial' />
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 4:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed4Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed4'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 5:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed5Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed5'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 6:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed6Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed6'/>
+               </Transform>
             </Transform>
-            <Transform translation="-1.0 1.8 0.15">
+            <Transform translation="-1.2 1.3 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 3'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial' />
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 7:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed7Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed7'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 8:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed8Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed8'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 9:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed9Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed9'/>
+               </Transform>
             </Transform>
-            <Transform translation="0.8 1.8 0.15">
+            <Transform translation="0.6 1.3 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 4'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 10:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed10Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed10'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 11:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed11Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed11'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 12:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed12Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed12'/>
+               </Transform>
             </Transform>
-            <Transform translation="-1.0 1.1 0.15">
+            <Transform translation="-1.2 0.4 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 5'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 13:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed13Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed13'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 14:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed14Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed14'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 15:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed15Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed15'/>
+               </Transform>
             </Transform>
-            <Transform translation="0.8 1.1 0.15">
+            <Transform translation="0.6 0.4 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 6'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 16:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed16Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed16'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 17:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed17Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed17'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 18:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed18Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed18'/>
+               </Transform>
             </Transform>
-            <Transform translation="-1.0 0.4 0.15">
+            <Transform translation="-1.2 -0.5 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 7'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 19:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed19Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed19'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 20:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed20Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed20'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 21:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed21Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed21'/>
+               </Transform>
             </Transform>
-            <Transform translation="0.8 0.4 0.15">
+            <Transform translation="0.6 -0.5 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 8'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 22:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed22Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed22'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 23:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed23Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed23'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 24:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed24Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed24'/>
+               </Transform>
             </Transform>
-            <Transform translation="-1.0 -0.3 0.15">
+            <Transform translation="-1.2 -1.4 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 9'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 25:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed25Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed25'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 26:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed26Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed26'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 27:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed27Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed27'/>
+               </Transform>
             </Transform>
-            <Transform translation="0.8 -0.3 0.15">
+            <Transform translation="0.6 -1.4 0.15">
                 <Shape>    
                     <Text solid='true' string='Room 10'>
-                        <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
+                        <FontStyle USE='BillboardTitleFontStyle'/>
                     </Text> 
                     <Appearance>
-                        <Material DEF='BillboardTextMaterial' emissiveColor="0 0 0" specularColor="0 0 0" diffuseColor="0 0 0"/>
+                        <Material USE='BillboardTextMaterial'/>
                     </Appearance>
                 </Shape>
+                <Transform translation="-0.4 -0.25 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 28:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle' />
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial' />
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed28Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed28'/>
+               </Transform>
+               <Transform translation="-0.4 -0.5 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 29:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed29Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed29'/>
+               </Transform>
+               <Transform translation="-0.4 -0.75 0.0">
+                    <Shape>    
+                        <Text solid='true' string='Bed 30:'>
+                            <FontStyle USE='BillboardSubTitleFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE='BillboardTextMaterial'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation="0.5 0.0 0.0">
+                        <Shape>    
+                            <Text DEF='Bed30Name' solid='true' string=''>
+                                <FontStyle USE='BillboardSubTitleFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_MainPanelBed30'/>
+               </Transform>
             </Transform>
         </Billboard>
+<!--
+        <TimeSensor DEF='CLOCK_PressButton' cycleInterval='2' enabled='false' loop='false'/>
+        <PositionInterpolator DEF='BUTTON_PositionInterpolator' key='0.0 1.0' keyValue='0 0 -0.07 0 0 0'/>
+        
+        <BooleanToggle DEF='BOOL_ButtonPressed'/>
+        <BooleanFilter DEF='BOOL_HideShowBillboard'/>
+        <TimeSensor DEF='CLOCK_ShowBillboard' cycleInterval='2' enabled='false' loop='false'/>
+        <TimeSensor DEF='CLOCK_HideBillboard' cycleInterval='2' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='BILLBOARD_ScalarInterpolatorHide' key='0.0 1.0' keyValue='0 1'/>
+        <ScalarInterpolator DEF='BILLBOARD_ScalarInterpolatorShow' key='0.0 1.0' keyValue='1 0'/>
+-->
+        <!-- Routes -->
+<!--
+        <ROUTE fromField='touchTime' fromNode='TOUCH_PressButton' toField='set_startTime' toNode='CLOCK_PressButton'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_PressButton' toField='set_enabled' toNode='CLOCK_PressButton'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_PressButton' toField='set_fraction' toNode='BUTTON_PositionInterpolator'/>
+        <ROUTE fromField='value_changed' fromNode='BUTTON_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Button'/>
+        
+        <ROUTE fromField='touchTime' fromNode='TOUCH_PressButton' toField='set_startTime' toNode='CLOCK_ShowBillBoard'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_PressButton' toField='set_startTime' toNode='CLOCK_HideBillboard'/>
+        <ROUTE fromField='isActive' fromNode='TOUCH_PressButton' toField='set_boolean' toNode='BOOL_ButtonPressed'/>
+        <ROUTE fromNode='BOOL_ButtonPressed' fromField='toggle_changed' toNode='BOOL_HideShowBillboard' toField='set_boolean'/> 
+        
+        <ROUTE fromField='inputTrue' fromNode='BOOL_HideShowBillboard' toField='set_enabled' toNode='CLOCK_HideBillboard'/>
+        <ROUTE fromField='inputFalse' fromNode='BOOL_HideShowBillboard' toField='set_enabled' toNode='CLOCK_ShowBillboard'/>
+          
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_HideBillboard' toField='set_fraction' toNode='BILLBOARD_ScalarInterpolatorHide'/>
+        <ROUTE fromField='value_changed' fromNode='BILLBOARD_ScalarInterpolatorHide' toField='set_transparency' toNode='WhiteMetal'/>
+        
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_ShowBillboard' toField='set_fraction' toNode='BILLBOARD_ScalarInterpolatorShow'/>
+        <ROUTE fromField='value_changed' fromNode='BILLBOARD_ScalarInterpolatorShow' toField='set_transparency' toNode='WhiteMetal'/>
+-->
+        <!-- Exports -->
+        <EXPORT localDEF='TOUCH_MainPanelBed1' AS='TOUCH_MainPanelBed1Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed2' AS='TOUCH_MainPanelBed2Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed3' AS='TOUCH_MainPanelBed3Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed4' AS='TOUCH_MainPanelBed4Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed5' AS='TOUCH_MainPanelBed5Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed6' AS='TOUCH_MainPanelBed6Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed7' AS='TOUCH_MainPanelBed7Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed8' AS='TOUCH_MainPanelBed8Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed9' AS='TOUCH_MainPanelBed9Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed10' AS='TOUCH_MainPanelBed10Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed11' AS='TOUCH_MainPanelBed11Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed12' AS='TOUCH_MainPanelBed12Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed13' AS='TOUCH_MainPanelBed13Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed14' AS='TOUCH_MainPanelBed14Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed15' AS='TOUCH_MainPanelBed15Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed16' AS='TOUCH_MainPanelBed16Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed17' AS='TOUCH_MainPanelBed17Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed18' AS='TOUCH_MainPanelBed18Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed19' AS='TOUCH_MainPanelBed19Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed20' AS='TOUCH_MainPanelBed20Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed21' AS='TOUCH_MainPanelBed21Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed22' AS='TOUCH_MainPanelBed22Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed23' AS='TOUCH_MainPanelBed23Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed24' AS='TOUCH_MainPanelBed24Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed25' AS='TOUCH_MainPanelBed25Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed26' AS='TOUCH_MainPanelBed26Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed27' AS='TOUCH_MainPanelBed27Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed28' AS='TOUCH_MainPanelBed28Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed29' AS='TOUCH_MainPanelBed29Out'/>
+        <EXPORT localDEF='TOUCH_MainPanelBed30' AS='TOUCH_MainPanelBed30Out'/>
     </Scene>
 </X3D>
