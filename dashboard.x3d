@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+    <head>
+        <!-- Authors need to replace asterisked values or delete unneeded meta tags as appropriate -->
+        <meta content='*enter FileNameWithNoAbbreviations.x3d here*' name='title'/>
+        <meta content='*enter description here, short-sentence summaries preferred*' name='description'/>
+        <meta content='*enter name of original author here*' name='creator'/>
+        <meta content='*if manually translating VRML-to-X3D, enter name of person translating here*' name='translator'/>
+        <meta content='*enter date of initial version here*' name='created'/>
+        <meta content='*enter date of translation here*' name='translated'/>
+        <meta content='*enter date of latest revision here*' name='modified'/>
+        <meta content='*enter version here, if any*' name='version'/>
+        <meta content='*enter reference citation or relative/online url here*' name='reference'/>
+        <meta content='*enter additional url/bibliographic reference information here*' name='reference'/>
+        <meta content='*enter reference resource here if required to support function, delivery, or coherence of content*' name='requires'/>
+        <meta content='*enter copyright information here* Example: Copyright (c) Web3D Consortium Inc. 2013 to present' name='rights'/>
+        <meta content='*enter drawing filename/url here*' name='drawing'/>
+        <meta content='*enter image filename/url here*' name='Image'/>
+        <meta content='*enter movie filename/url here*' name='MovingImage'/>
+        <meta content='*enter photo filename/url here*' name='photo'/>
+        <meta content='*enter subject keywords here*' name='subject'/>
+        <meta content='*enter permission statements or url here*' name='accessRights'/>
+        <meta content='*insert any known warnings, bugs or errors here*' name='warning'/>
+        <meta content='*enter online Uniform Resource Identifier (URI) or Uniform Resource Locator (URL) address for this file here*' name='identifier'/>
+        <meta content='X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit' name='generator'/>
+        <meta content='../license.html' name='license'/>
+        <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: http://www.rfc-editor.org/rfc/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
+    </head>
+    <Scene>
+        <Background skyColor='1 1 1'/>
+        <Viewpoint description="Front_view" centerOfRotation= '0 0 0' orientation='0 1 0 0' position='0 0 8'>
+        </Viewpoint>
+        
+        
+        <!--- ###### MAIN DASHBOARD ####### -->
+        <Transform rotation='0 0 0 0' translation='0 0 0'> 
+    
+        <!-- BACKPLANE -->
+        <Shape DEF="plane">
+            <Box size="7,3,0.2"/>
+                <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='0 0 0' transparency='0'/>
+                           <ImageTexture DEF='background_panel' url=' "background_panel.png" '/>
+                </Appearance>
+        </Shape>
+        
+       <!-- CYLINDRICAL BORDERS --> 
+       <Transform translation='-3.5 0 0'> 
+            <Shape DEF="vertical_border">
+                <Cylinder radius="0.1" height="3"/>
+                    <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>
+                           
+                    </Appearance>
+            </Shape>
+        </Transform>
+        
+        <Transform translation='3.5 0 0'> 
+            <Shape USE="vertical_border">
+            </Shape>
+        </Transform>
+        
+        <Transform rotation='0 0 1 -1.57' translation='0 1.5 0'> 
+            <Shape DEF="horizontal_border">
+                <Cylinder radius="0.1" height="7"/>
+                    <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>
+                           <ImageTexture USE='earth_image_texture'/>
+                    </Appearance>
+            </Shape>
+        </Transform> 
+        
+        <Transform rotation='0 0 1 -1.57' translation='0 -1.5 0'> 
+            <Shape USE="horizontal_border">
+            </Shape>
+        </Transform>
+        
+        
+        <!-- SPHERIC CORNERS --> 
+        <Transform translation='-3.5 -1.5 0'>
+	    <Shape DEF="corner">
+                <Sphere radius="0.1"/>
+                    <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>
+                    </Appearance>
+            </Shape>
+        </Transform>
+    
+        <Transform translation='3.5 -1.5 0'>
+	    <Shape USE="corner"/>
+        </Transform>
+
+        <Transform translation='-3.5 1.5 0'>
+	    <Shape USE="corner"/>
+        </Transform>
+
+
+        <Transform translation='3.5 1.5 0'>
+	    <Shape USE="corner"/>
+        </Transform>
+
+
+        <!-- Scene graph nodes are added here -->
+    
+    </Transform>
+    
+        <!--- ###### DISPLAYS ##### -->
+    <Transform rotation='0 0 0 0' translation='-2 0 0.2'>
+        <Shape DEF="picture">
+            <Box size="2,2,0"/>
+                <Appearance>
+			<Material diffuseColor='1 1 1'/>
+                           <ImageTexture DEF='patient_pic' url=' "http://www.bajiroo.com/wp-content/uploads/2013/01/heart-warming-smiling-old-people-face-funny-images-pictures-bajiroo-fun-pics-3.jpg"'/>
+                </Appearance>
+        </Shape>
+        
+        <Transform rotation='0 0 0 0' translation='0 -1.2 0'>
+            <Billboard axisOfRotation="0 0 0"/>
+                <Shape DEF="patient_name">
+                    <Text string="Manuel da Silva">
+                         <FontStyle DEF='CenteredFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
+                    </Text> 
+                        <Appearance>
+                            <Material DEF='DefaultMaterial' emissiveColor='1 .8 .5'/>
+                        </Appearance>
+            </Shape>
+            <Transform rotation='0 0 0 0' translation='0 2.4 0'>
+            <Billboard axisOfRotation="0 0 0"/>
+                <Shape DEF="patient_age">
+                    <Text string="Age: 78">
+                         <FontStyle DEF='CenteredFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
+                    </Text> 
+                        <Appearance>
+                            <Material DEF='DefaultMaterial' emissiveColor='1 .8 .5'/>
+                        </Appearance>
+            </Shape>
+            </Transform>
+        </Transform>
+    </Transform>
+    
+    <Transform rotation='0 0 0 0' translation='-0.5 0.6 0.2'>
+        <Shape DEF="pic_heart">
+            <Box size="0.5,0.5,0"/>
+                <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                           <ImageTexture DEF='heart' url=' "heart.png" '/>
+                </Appearance>
+        </Shape>
+        
+    </Transform>
+    
+    <Transform rotation='0 0 0 0' translation='-0.5 -0.5 0.05'>
+        <Shape DEF="thermometer">
+            <Cylinder radius="0.08" height="0.5"/>
+                <Appearance>
+			<Material diffuseColor='1 1 1' transparency='0.5'/>
+                </Appearance>
+         </Shape>
+
+    <Transform rotation='0 0 0 0' translation='0 -0.1 0'>
+         <Shape DEF="therm_fill">
+            <Cylinder radius="0.08" height="0.2"/>
+                <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                </Appearance>
+         </Shape>
+     
+    
+        <Transform rotation='0 0 0 0' translation='0 -0.2 0'>
+            <Shape DEF="therm_ball">             
+                <Sphere radius="0.15"/>
+                    <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                   </Appearance>
+            </Shape>
+        </Transform>   
+      </Transform>
+     </Transform>
+    
+   <!--<Transform rotation='0 0 0 0' translation='0 0 0'>        
+    <Transform rotation='0 0 0 0' translation='-0.15 0 0'>
+                    <Shape DEF="heart_ball">             
+                        <Sphere radius="0.25"/>
+                            <Appearance>
+                                <Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                            </Appearance>
+                    </Shape>
+     </Transform>
+            
+     <Transform rotation='0 0 0 0' translation='0.15 0 -0'>
+                    <Shape DEF="heart_ball2">             
+                        <Sphere radius="0.25"/>
+                            <Appearance>
+                                <Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                            </Appearance>
+                    </Shape>
+     </Transform>
+     
+     <Transform rotation='0 0 0 0' translation='0 -0.14 0'>
+                    <Shape DEF="heart_ball3">             
+                        <Sphere radius="0.245"/>
+                            <Appearance>
+                                <Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                            </Appearance>
+                    </Shape>
+     </Transform>
+     
+     <Transform rotation='1 0 0 -3.14' translation='0 -0.45 0'>
+                <Shape DEF="heart_cone">             
+                    <Cone bottomRadius="0.25" height="0.45"/>
+                        <Appearance>
+			<Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                        </Appearance>
+                </Shape>
+      </Transform>     
+    </Transform>  -->
+    
+     <Transform rotation='0 0 0 0' translation='1.8 0.6 0.2'>
+         <Billboard axisOfRotation="0 0 0"/>
+            <Shape DEF="BPM_label">
+                <Text string="BPM">
+                     <FontStyle DEF='labelstyle' justify='"MIDDLE" "MIDDLE"' size="0.4"/>
+                </Text> 
+                    <Appearance>
+                        <Material emissiveColor='1 1 0'/>
+                    </Appearance>
+            </Shape>
+               
+     <Transform rotation='0 0 0 0' translation='-1.3 0 0.2'>
+         <Billboard axisOfRotation="0 0 0"/>
+            <Shape DEF="BPM_value">
+                <Text string="65">
+                     <FontStyle DEF='valuestyle' justify='"MIDDLE" "MIDDLE"' size="0.6"/>
+                </Text> 
+                    <Appearance>
+                        <Material emissiveColor='0 1 0'/>
+                    </Appearance>
+            </Shape>   
+     
+        <Transform rotation='0 0 0 0' translation='1 -1.2 0.3'>
+          <Billboard axisOfRotation="0 0 0"/>
+            <Shape DEF="TEMP_label">
+                <Text string="ºC">
+                     <FontStyle USE='labelstyle'/>
+                </Text> 
+                    <Appearance>
+                        <Material emissiveColor='1 1 0'/>
+                    </Appearance>
+            </Shape>   
+        <Transform rotation='0 0 0 0' translation='-1.0 0 0.2'>
+         <Billboard axisOfRotation="0 0 0"/>
+            <Shape DEF="TEMP_value">
+                <Text string="37.8">
+                     <FontStyle USE='valuestyle' />
+                </Text> 
+                    <Appearance>
+                        <Material emissiveColor='0 1 0'/>
+                    </Appearance>
+            </Shape>   
+          
+        </Transform>
+    </Transform>
+  </Transform>
+ </Transform>
+     
+    </Scene>
+</X3D>
