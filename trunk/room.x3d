@@ -27,45 +27,6 @@
         <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
     </head>
     <Scene>
-        <!-- Lights -->
-        <!--
-        <SpotLight
-            DEF='AlertLightBed1' 
-            location='-1.34 -0.75 2' 
-            attenuation='0.001 0 0' 
-            beamWidth='1.0'
-            cutOffAngle='.5' 
-            color='1 0 0' 
-            direction='0 0 -1' 
-            global='false' 
-            intensity='1' 
-            on='false' 
-            radius='100' />
-        <SpotLight
-            DEF='AlertLightBed2' 
-            location='0 -0.75 2' 
-            attenuation='0.001 0 0' 
-            beamWidth='1.0'
-            cutOffAngle='.5' 
-            color='1 0 0' 
-            direction='0 0 -1' 
-            global='false' 
-            intensity='1' 
-            on='false' 
-            radius='100' />
-        <SpotLight
-            DEF='AlertLightBed3' 
-            location='1.34 -0.75 2' 
-            attenuation='0.001 0 0' 
-            beamWidth='1.0'
-            cutOffAngle='.5' 
-            color='1 0 0' 
-            direction='0 0 -1' 
-            global='true' 
-            intensity='1' 
-            on='false' 
-            radius='100' />
-        -->
         <!-- Floor -->
         <Shape DEF="RoomFloor">
             <Box size="5.4 3.9 0.1" solid="true"/>
@@ -198,8 +159,9 @@
                 </Transform>
             </Transform>
             <Inline DEF='Bed1' url='"bed.x3d"' />
-            <!--<IMPORT inlineDEF='Bed1' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed1'/>-->
+            <IMPORT inlineDEF='Bed1' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed1'/>
             <BooleanFilter DEF='BOOL_SpotlightFilterBed1'/>
+            <BooleanFilter DEF='BOOL_BulblightFilterBed1'/>
             <TouchSensor DEF='TOUCH_Bed1'/>
         </Transform>
         <Transform translation='0 -1.75 2.0'>
@@ -219,8 +181,9 @@
                 </Transform>
             </Transform>
             <Inline DEF='Bed2' url='"bed.x3d"' />
-            <!--<IMPORT inlineDEF='Bed2' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed2'/>-->
+            <IMPORT inlineDEF='Bed2' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed2'/>
             <BooleanFilter DEF='BOOL_SpotlightFilterBed2'/>
+            <BooleanFilter DEF='BOOL_BulblightFilterBed2'/>
             <TouchSensor DEF='TOUCH_Bed2'/>
         </Transform>
         <Transform translation='1.34 -1.75 2.0'>
@@ -240,8 +203,9 @@
                 </Transform>
             </Transform>
             <Inline DEF='Bed3' url='"bed.x3d"' />
-            <!--<IMPORT inlineDEF='Bed3' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed3'/>-->
+            <IMPORT inlineDEF='Bed3' exportedDEF='LIGHT_SpotLightBedOut' AS='LIGHT_SpotLightBed3'/>
             <BooleanFilter DEF='BOOL_SpotlightFilterBed3'/>
+            <BooleanFilter DEF='BOOL_BulblightFilterBed3'/>
             <TouchSensor DEF='TOUCH_Bed3'/>
         </Transform>
         <!-- Billboards -->
@@ -357,35 +321,35 @@
         <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='VIEWPOINT_Bed3' toField='set_bind'/>
         
         <!-- Turn on/off bed lights on touch -->
-        <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='BOOL_SpotlightFilterBed1' toField='set_boolean'/>
+        <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='BOOL_BulblightFilterBed1' toField='set_boolean'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_startTime' toNode='CLOCK_LightOn1'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputTrue' toNode='CLOCK_LightOn1' toField='set_enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputNegate' toNode='CLOCK_LightOn2' toField='set_enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputNegate' toNode='CLOCK_LightOn3' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed1' fromField='inputTrue' toNode='CLOCK_LightOn1' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed1' fromField='inputNegate' toNode='CLOCK_LightOn2' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed1' fromField='inputNegate' toNode='CLOCK_LightOn3' toField='set_enabled'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_startTime' toNode='CLOCK_LightOff2'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_startTime' toNode='CLOCK_LightOff3'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputTrue' toNode='CLOCK_LightOff2' toField='set_enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputTrue' toNode='CLOCK_LightOff3' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed1' fromField='inputTrue' toNode='CLOCK_LightOff2' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed1' fromField='inputTrue' toNode='CLOCK_LightOff3' toField='set_enabled'/>
         
-        <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='BOOL_SpotlightFilterBed2' toField='set_boolean'/>
+        <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='BOOL_BulblightFilterBed2' toField='set_boolean'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_startTime' toNode='CLOCK_LightOn2'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputTrue' toNode='CLOCK_LightOn2' toField='enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputNegate' toNode='CLOCK_LightOn1' toField='enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputNegate' toNode='CLOCK_LightOn3' toField='enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed2' fromField='inputTrue' toNode='CLOCK_LightOn2' toField='enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed2' fromField='inputNegate' toNode='CLOCK_LightOn1' toField='enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed2' fromField='inputNegate' toNode='CLOCK_LightOn3' toField='enabled'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_startTime' toNode='CLOCK_LightOff1'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_startTime' toNode='CLOCK_LightOff3'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputTrue' toNode='CLOCK_LightOff1' toField='set_enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputTrue' toNode='CLOCK_LightOff3' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed2' fromField='inputTrue' toNode='CLOCK_LightOff1' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed2' fromField='inputTrue' toNode='CLOCK_LightOff3' toField='set_enabled'/>
         
-        <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='BOOL_SpotlightFilterBed3' toField='set_boolean'/>
+        <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='BOOL_BulblightFilterBed3' toField='set_boolean'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_startTime' toNode='CLOCK_LightOn3'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputTrue' toNode='CLOCK_LightOn3' toField='enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputNegate' toNode='CLOCK_LightOn1' toField='enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputNegate' toNode='CLOCK_LightOn2' toField='enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed3' fromField='inputTrue' toNode='CLOCK_LightOn3' toField='enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed3' fromField='inputNegate' toNode='CLOCK_LightOn1' toField='enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed3' fromField='inputNegate' toNode='CLOCK_LightOn2' toField='enabled'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_startTime' toNode='CLOCK_LightOff1'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_startTime' toNode='CLOCK_LightOff2'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputTrue' toNode='CLOCK_LightOff1' toField='set_enabled'/>
-        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputTrue' toNode='CLOCK_LightOff2' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed3' fromField='inputTrue' toNode='CLOCK_LightOff1' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_BulblightFilterBed3' fromField='inputTrue' toNode='CLOCK_LightOff2' toField='set_enabled'/>
         
         <!-- Turn off bed lights on exit -->
         <ROUTE fromNode='TOUCH_Exit' fromField='touchTime' toNode='BOOL_Exit' toField='set_boolean'/>
@@ -449,6 +413,14 @@
         <ROUTE fromNode='BOOL_Alert3' fromField='inputFalse' toNode='CLOCK_AlertLightOn3' toField='enabled'/>
         <ROUTE fromNode='BOOL_Alert3' fromField='inputNegate' toNode='CLOCK_AlertLightOff3' toField='enabled'/>
         
+        <!-- Turn on/off bed spotlight -->
+        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputTrue' toNode='LIGHT_SpotLightBed1' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputFalse' toNode='LIGHT_SpotLightBed1' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputTrue' toNode='LIGHT_SpotLightBed2' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed2' fromField='inputFalse' toNode='LIGHT_SpotLightBed2' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputTrue' toNode='LIGHT_SpotLightBed3' toField='on'/>
+        <ROUTE fromNode='BOOL_SpotlightFilterBed3' fromField='inputFalse' toNode='LIGHT_SpotLightBed3' toField='on'/>
+           
         <!-- Exports -->
         <EXPORT localDEF='TOUCH_Bed1' AS='TOUCH_Bed1Out'/>
         <EXPORT localDEF='TOUCH_Bed2' AS='TOUCH_Bed2Out'/>
@@ -463,14 +435,13 @@
         <EXPORT localDEF='BLC3' AS='BLC3Out'/>
         <EXPORT localDEF='TEMP3' AS='TEMP3Out'/>
         <EXPORT localDEF='BPM3' AS='BPM3Out'/>
-        <!--
-        <EXPORT localDEF='AlertLightBed1' AS='LIGHT_AlertLightBed1Out'/>
-        <EXPORT localDEF='AlertLightBed2' AS='LIGHT_AlertLightBed2Out'/>
-        <EXPORT localDEF='AlertLightBed3' AS='LIGHT_AlertLightBed3Out'/>
-        -->
         
         <EXPORT localDEF='BOOL_Alert1' AS='BOOL_Alert1Out'/>
         <EXPORT localDEF='BOOL_Alert2' AS='BOOL_Alert2Out'/>
         <EXPORT localDEF='BOOL_Alert3' AS='BOOL_Alert3Out'/>
+        
+        <EXPORT localDEF='BOOL_SpotlightFilterBed1' AS='BOOL_SpotlightFilterBed1Out'/>
+        <EXPORT localDEF='BOOL_SpotlightFilterBed2' AS='BOOL_SpotlightFilterBed2Out'/>
+        <EXPORT localDEF='BOOL_SpotlightFilterBed3' AS='BOOL_SpotlightFilterBed3Out'/>
     </Scene>
 </X3D>

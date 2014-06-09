@@ -32,8 +32,9 @@
             TODO:
 			
             Important:
-                . Add rooms & beds navigator panel
+                . Add rooms & beds main panel
                     - Light rooms and beds MouseOver
+                    - Button to set main panel transparency 
                 . Create Billboard
                     - Add timestamp, patient name, patient photo (or man/woman model)
                 . Add exterior and building lights
@@ -294,6 +295,9 @@
                 <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert1'/>
                 <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert2'/>
                 <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert3'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed1'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed2'/>
+                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed3'/>
                 <!-- Routes --> 
                 <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed1' toField='getHealthSync'/>
                 <ROUTE fromNode='Bed1' fromField='bpm' toNode='BPM1' toField='string'/>
@@ -990,8 +994,15 @@
             <!-- WCs -->
             <Transform  translation='2.35 -17.05 0'>
                 <Inline DEF='WC3' url='"wc.x3d"' />
+                <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed1Out' AS='TOUCH_MainPanelBed1'/>
             </Transform>
         </Group>
+        
+        <Transform translation='5 0 38'>
+            <Inline DEF='MainPanel' url='"main-panel.x3d"' />
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed1Out' AS='TOUCH_MainPanelBed1'/>
+        </Transform>
+        
         <!-- General Navigation -->
         <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor1Out' AS='TOUCH_FrontDoor1'/>
         <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor2Out' AS='TOUCH_FrontDoor2'/>
@@ -1003,7 +1014,8 @@
         <PositionInterpolator DEF='ROOF_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 20 0 0 40 0 0 50'/>
         <BooleanFilter DEF='BOOL_InsideBuilding'/>
         <TimeTrigger DEF='TRIGGER_InsideBuilding'/>
-               
+         
+        <!-- Routes -->    
         <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_bind' toNode='START_Viewpoint'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_bind' toNode='START_Viewpoint'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
@@ -1023,5 +1035,9 @@
         <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof2'/>
         <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_bind" toNode="GOD_Viewpoint"/>
         
+        <!-- Main Panel -->
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed1' toField='set_boolean' toNode='BOOL_SpotlightFilterBed1'/> 
+        <!--<ROUTE fromField='isOut' fromNode='TOUCH_MainPanelBed1' toField='set_boolean' toNode='BOOL_SpotlightFilterBed1'/> -->
+              
     </Scene>
 </X3D>
