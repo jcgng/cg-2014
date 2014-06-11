@@ -184,46 +184,7 @@
                         </Shape>
                     </Transform>   
                 </Transform>
-            </Transform>
-    
-   <!--<Transform rotation='0 0 0 0' translation='0 0 0'>        
-    <Transform rotation='0 0 0 0' translation='-0.15 0 0'>
-                    <Shape DEF="heart_ball">             
-                        <Sphere radius="0.25"/>
-                            <Appearance>
-                                <Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                            </Appearance>
-                    </Shape>
-     </Transform>
-            
-     <Transform rotation='0 0 0 0' translation='0.15 0 -0'>
-                    <Shape DEF="heart_ball2">             
-                        <Sphere radius="0.25"/>
-                            <Appearance>
-                                <Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                            </Appearance>
-                    </Shape>
-     </Transform>
-     
-     <Transform rotation='0 0 0 0' translation='0 -0.14 0'>
-                    <Shape DEF="heart_ball3">             
-                        <Sphere radius="0.245"/>
-                            <Appearance>
-                                <Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                            </Appearance>
-                    </Shape>
-     </Transform>
-     
-     <Transform rotation='1 0 0 -3.14' translation='0 -0.45 0'>
-                <Shape DEF="heart_cone">             
-                    <Cone bottomRadius="0.25" height="0.45"/>
-                        <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                        </Appearance>
-                </Shape>
-      </Transform>     
-    </Transform>  -->
-    
+            </Transform> 
             <Transform translation='1.5 0.6 0.1'>
                 <Shape>
                     <Text DEF="BPM_label" string="BPM">

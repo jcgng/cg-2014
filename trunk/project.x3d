@@ -30,21 +30,8 @@
     <!--<ContextSetup ecmaScriptXHRTrustedHosts="clevermobile.dx.am"/>-->
     <Scene>
         <!-- 
-            TODO:
-			
-            Important:
-                . Add rooms & beds main panel
-                    - Button to set main panel transparency 
-                . Create Billboard
-                    - Add timestamp, patient name, patient photo (or man/woman model)
-                . Add exterior and building lights
-
-            Less important:
-                . Building front
-                . Beautify with textures
-                . Create <Background>
-                . Add nursery details
-                . Add other animations - light switches, open doors...
+        Estrutura final do modelo 3D. 
+        Principal lógica que permite a interação com o modelo enquanto um interface.
         -->
             
         <Inline DEF='Building' url='"building-base.x3d"' />
