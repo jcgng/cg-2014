@@ -200,6 +200,24 @@
                         <Material diffuseColor='1 1 1'/>
                     </Appearance>
                 </Shape>
+                <Transform rotation='1 0 0 1.57' translation='-1.0 0 1.0'>
+                    <Shape>
+                        <Box size="1.0 1.0 0.01" solid="true"/>
+                        <Appearance>   
+                            <ImageTexture url=' "images/icon.png" '/>
+                        </Appearance>
+                    </Shape>
+                    <Transform translation='1.5 0 0.1'>
+                        <Shape>    
+                            <Text solid='true' string='Health Monitor'>
+                                <FontStyle justify='"MIDDLE" "MIDDLE"' size="0.5" />
+                            </Text> 
+                            <Appearance>
+                                <Material emissiveColor="0.50 0.023 0.0" specularColor="0.50 0.023 0.0" diffuseColor="0.50 0.023 0.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                </Transform>
             </Transform>
             <Transform rotation='1 0 0 1.57' translation='0 -14.8 2.25'>
                 <Shape DEF="FrontDoorTop">

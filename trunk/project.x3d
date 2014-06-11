@@ -994,7 +994,8 @@
             <ROUTE fromNode='Bed25' fromField='name' toNode='NAME25' toField='string'/>
             <ROUTE fromNode='Bed25' fromField='age' toNode='AGE25' toField='string'/>
             <ROUTE fromNode='Bed25' fromField='alert' toNode='BOOL_Alert25' toField='set_boolean'/>
-
+            <ROUTE fromNode='Bed25' fromField='alert' toNode='AlertScriptBed25' toField='setHighlightMainPanelBed'/>
+            
             <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed26' toField='getHealthSync'/>
             <ROUTE fromNode='Bed26' fromField='bpm' toNode='BPM26' toField='string'/>
             <ROUTE fromNode='Bed26' fromField='temp' toNode='TEMP26' toField='string'/> 
@@ -1002,7 +1003,8 @@
             <ROUTE fromNode='Bed26' fromField='name' toNode='NAME26' toField='string'/>
             <ROUTE fromNode='Bed26' fromField='age' toNode='AGE26' toField='string'/>
             <ROUTE fromNode='Bed26' fromField='alert' toNode='BOOL_Alert26' toField='set_boolean'/>
-
+            <ROUTE fromNode='Bed26' fromField='alert' toNode='AlertScriptBed26' toField='setHighlightMainPanelBed'/>
+            
             <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed27' toField='getHealthSync'/>
             <ROUTE fromNode='Bed27' fromField='bpm' toNode='BPM27' toField='string'/>
             <ROUTE fromNode='Bed27' fromField='temp' toNode='TEMP27' toField='string'/> 
@@ -1010,7 +1012,8 @@
             <ROUTE fromNode='Bed27' fromField='name' toNode='NAME27' toField='string'/>
             <ROUTE fromNode='Bed27' fromField='age' toNode='AGE27' toField='string'/>
             <ROUTE fromNode='Bed27' fromField='alert' toNode='BOOL_Alert27' toField='set_boolean'/>
-
+            <ROUTE fromNode='Bed27' fromField='alert' toNode='AlertScriptBed27' toField='setHighlightMainPanelBed'/>
+            
             <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
             <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
             <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
@@ -1088,6 +1091,7 @@
             <ROUTE fromNode='Bed28' fromField='name' toNode='NAME28' toField='string'/> 
             <ROUTE fromNode='Bed28' fromField='age' toNode='AGE28' toField='string'/> 
             <ROUTE fromNode='Bed28' fromField='alert' toNode='BOOL_Alert28' toField='set_boolean'/>
+            <ROUTE fromNode='Bed28' fromField='alert' toNode='AlertScriptBed28' toField='setHighlightMainPanelBed'/>
 
             <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed29' toField='getHealthSync'/>
             <ROUTE fromNode='Bed29' fromField='bpm' toNode='BPM29' toField='string'/>
@@ -1096,6 +1100,7 @@
             <ROUTE fromNode='Bed29' fromField='name' toNode='NAME29' toField='string'/>
             <ROUTE fromNode='Bed29' fromField='age' toNode='AGE29' toField='string'/>
             <ROUTE fromNode='Bed29' fromField='alert' toNode='BOOL_Alert29' toField='set_boolean'/>
+            <ROUTE fromNode='Bed29' fromField='alert' toNode='AlertScriptBed29' toField='setHighlightMainPanelBed'/>
 
             <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed30' toField='getHealthSync'/>
             <ROUTE fromNode='Bed30' fromField='bpm' toNode='BPM30' toField='string'/>
@@ -1104,7 +1109,8 @@
             <ROUTE fromNode='Bed30' fromField='name' toNode='NAME30' toField='string'/>
             <ROUTE fromNode='Bed30' fromField='age' toNode='AGE30' toField='string'/>
             <ROUTE fromNode='Bed30' fromField='alert' toNode='BOOL_Alert30' toField='set_boolean'/>
-
+            <ROUTE fromNode='Bed30' fromField='alert' toNode='AlertScriptBed30' toField='setHighlightMainPanelBed'/>
+            
             <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
             <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
             <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
