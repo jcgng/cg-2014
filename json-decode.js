@@ -1,3 +1,7 @@
+/**
+ * Obter da base de dados a informação relacionada com cada paciente
+ */
+
 var JsonInfo = {
     _dataReceivedCallback : null,
     _xmlHttp : null,
