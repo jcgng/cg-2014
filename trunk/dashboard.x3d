@@ -27,156 +27,164 @@
         <meta content='../license.html' name='license'/>
         <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: http://www.rfc-editor.org/rfc/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
     </head>
-    <Scene>
-        <Background skyColor='1 1 1'/>
-        <Viewpoint description="Front_view" centerOfRotation= '0 0 0' orientation='0 1 0 0' position='0 0 8'>
-        </Viewpoint>
-        
-        
+    <Scene>        
         <!--- ###### MAIN DASHBOARD ####### -->
-        <Transform rotation='0 0 0 0' translation='0 0 0'> 
-    
-        <!-- BACKPLANE -->
-        <Shape DEF="plane">
-            <Box size="7,3,0.2"/>
+        <!--    
+        <Billboard DEF="dashboard" axisOfRotation="0 0 0">
+        -->
+        <Transform rotation='1 0 0 1.57'>
+        <Transform rotation='0 1 0 3.14'> 
+        <Transform scale="0.5 0.5 0.5"> 
+            <!-- BACKPLANE -->
+            <Shape>
+                <Box size="4,2,0.1"/>
                 <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='0 0 0' transparency='0'/>
-                           <ImageTexture DEF='background_panel' url=' "background_panel.png" '/>
+                    <!--<Material DEF="BackPlaneMaterial" ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='0 0 0' transparency='0'/>-->
+                    <ImageTexture DEF="BackPlaneMaterial" url=' "images/background_panel.png" '/>
                 </Appearance>
-        </Shape>
-        
-       <!-- CYLINDRICAL BORDERS --> 
-       <Transform translation='-3.5 0 0'> 
-            <Shape DEF="vertical_border">
-                <Cylinder radius="0.1" height="3"/>
+            </Shape>
+            <!-- CYLINDRICAL BORDERS --> 
+            <Transform translation='-2.0 0 0'> 
+                <Shape DEF="verticalBorder">
+                    <Cylinder radius="0.1" height="2"/>
                     <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>
-                           
+                        <Material DEF="CylindricalBordersMaterial" ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>       
                     </Appearance>
-            </Shape>
-        </Transform>
-        
-        <Transform translation='3.5 0 0'> 
-            <Shape USE="vertical_border">
-            </Shape>
-        </Transform>
-        
-        <Transform rotation='0 0 1 -1.57' translation='0 1.5 0'> 
-            <Shape DEF="horizontal_border">
-                <Cylinder radius="0.1" height="7"/>
-                    <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>
-                           <ImageTexture USE='earth_image_texture'/>
-                    </Appearance>
-            </Shape>
-        </Transform> 
-        
-        <Transform rotation='0 0 1 -1.57' translation='0 -1.5 0'> 
-            <Shape USE="horizontal_border">
-            </Shape>
-        </Transform>
-        
-        
-        <!-- SPHERIC CORNERS --> 
-        <Transform translation='-3.5 -1.5 0'>
-	    <Shape DEF="corner">
-                <Sphere radius="0.1"/>
-                    <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='0.314286 0.074365 0.2' shininess='0.04' specularColor='0.5 0.5 0.5' transparency='0'/>
-                    </Appearance>
-            </Shape>
-        </Transform>
-    
-        <Transform translation='3.5 -1.5 0'>
-	    <Shape USE="corner"/>
-        </Transform>
-
-        <Transform translation='-3.5 1.5 0'>
-	    <Shape USE="corner"/>
-        </Transform>
-
-
-        <Transform translation='3.5 1.5 0'>
-	    <Shape USE="corner"/>
-        </Transform>
-
-
-        <!-- Scene graph nodes are added here -->
-    
-    </Transform>
-    
-        <!--- ###### DISPLAYS ##### -->
-    <Transform rotation='0 0 0 0' translation='-2 0 0.2'>
-        <Shape DEF="picture">
-            <Box size="2,2,0"/>
-                <Appearance>
-			<Material diffuseColor='1 1 1'/>
-                           <ImageTexture DEF='patient_pic' url=' "http://www.bajiroo.com/wp-content/uploads/2013/01/heart-warming-smiling-old-people-face-funny-images-pictures-bajiroo-fun-pics-3.jpg"'/>
-                </Appearance>
-        </Shape>
-        
-        <Transform rotation='0 0 0 0' translation='0 -1.2 0'>
-            <Billboard axisOfRotation="0 0 0"/>
-                <Shape DEF="patient_name">
-                    <Text string="Manuel da Silva">
-                         <FontStyle DEF='CenteredFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
-                    </Text> 
-                        <Appearance>
-                            <Material DEF='DefaultMaterial' emissiveColor='1 .8 .5'/>
-                        </Appearance>
-            </Shape>
-            <Transform rotation='0 0 0 0' translation='0 2.4 0'>
-            <Billboard axisOfRotation="0 0 0"/>
-                <Shape DEF="patient_age">
-                    <Text string="Age: 78">
-                         <FontStyle DEF='CenteredFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
-                    </Text> 
-                        <Appearance>
-                            <Material DEF='DefaultMaterial' emissiveColor='1 .8 .5'/>
-                        </Appearance>
-            </Shape>
+                </Shape>
             </Transform>
-        </Transform>
-    </Transform>
-    
-    <Transform rotation='0 0 0 0' translation='-0.5 0.6 0.2'>
-        <Shape DEF="pic_heart">
-            <Box size="0.5,0.5,0"/>
-                <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                           <ImageTexture DEF='heart' url=' "heart.png" '/>
-                </Appearance>
-        </Shape>
-        
-    </Transform>
-    
-    <Transform rotation='0 0 0 0' translation='-0.5 -0.5 0.05'>
-        <Shape DEF="thermometer">
-            <Cylinder radius="0.08" height="0.5"/>
-                <Appearance>
-			<Material diffuseColor='1 1 1' transparency='0.5'/>
-                </Appearance>
-         </Shape>
-
-    <Transform rotation='0 0 0 0' translation='0 -0.1 0'>
-         <Shape DEF="therm_fill">
-            <Cylinder radius="0.06" height="0.2"/>
-                <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                </Appearance>
-         </Shape>
-     
-    
-        <Transform rotation='0 0 0 0' translation='0 -0.2 0'>
-            <Shape DEF="therm_ball">             
-                <Sphere radius="0.15"/>
+            <Transform translation='2.0 0 0'> 
+                <Shape USE="verticalBorder" />
+            </Transform>
+            <Transform rotation='0 0 1 -1.57' translation='0 1.0 0'> 
+                <Shape DEF="horizontalBorder">
+                    <Cylinder radius="0.1" height="4"/>
                     <Appearance>
-			<Material ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
-                   </Appearance>
-            </Shape>
-        </Transform>   
-      </Transform>
-     </Transform>
+                        <Material USE="CylindricalBordersMaterial"/>
+                    </Appearance>
+                </Shape>
+            </Transform> 
+            <Transform rotation='0 0 1 -1.57' translation='0 -1.0 0'> 
+                <Shape USE="horizontalBorder"/>
+            </Transform>
+            <!-- SPHERIC CORNERS --> 
+            <Transform translation='-2.0 -1.0 0'>
+                <Shape DEF="corner">
+                    <Sphere radius="0.1"/>
+                    <Appearance>
+                        <Material USE="CylindricalBordersMaterial"/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+
+            <Transform translation='2.0 -1.0 0'>
+                <Shape USE="corner"/>
+            </Transform>
+
+            <Transform translation='-2.0 1.0 0'>
+                <Shape USE="corner"/>
+            </Transform>
+
+            <Transform translation='2.0 1.0 0'>
+                <Shape USE="corner"/>
+            </Transform>    
+            
+            <!--- ###### DISPLAYS ##### -->
+            <Transform translation='-1.2 0 0.1'>
+                <Shape>
+                   <Box size="0.8,0.8,0"/>
+                   <Appearance>
+                        <Material diffuseColor='1 1 1'/>
+                        <ImageTexture DEF='patientPic'/>
+                    </Appearance>
+                </Shape>
+                <Transform rotation='0 0 0 0' translation='0 -0.6 0'>
+                    <Shape>
+                        <Text DEF="patientName1" string="">
+                            <FontStyle DEF='CenteredFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
+                        </Text> 
+                        <Appearance>
+                            <Material DEF='BillboardTextMaterial1' emissiveColor='1 .8 .5' transparency="1"/>
+                        </Appearance>
+                    </Shape>
+                     <Shape>
+                        <Text DEF="patientName2" string="">
+                            <FontStyle USE='CenteredFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material DEF='BillboardTextMaterial2' emissiveColor='1 .8 .5' transparency="1"/>
+                        </Appearance>
+                    </Shape>
+                     <Shape>
+                        <Text DEF="patientName3" string="">
+                            <FontStyle USE='CenteredFontStyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material DEF='BillboardTextMaterial3' emissiveColor='1 .8 .5' transparency="1"/>
+                        </Appearance>
+                    </Shape>
+                    <Transform rotation='0 0 0 0' translation='0 1.3 0'>
+                        <Shape>
+                            <Text DEF="patientAge1" string="">
+                                 <FontStyle USE='CenteredFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial1'/>
+                            </Appearance>
+                        </Shape>
+                        <Shape>
+                            <Text DEF="patientAge2" string="">
+                                 <FontStyle USE='CenteredFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial2'/>
+                            </Appearance>
+                        </Shape>
+                        <Shape>
+                            <Text DEF="patientAge3" string="">
+                                 <FontStyle USE='CenteredFontStyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material USE='BillboardTextMaterial3'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                </Transform>
+            </Transform>
+    
+            <Transform translation='-0.2 0.6 0.1'>
+                <Shape>
+                    <Box size="0.5,0.5,0"/>
+                    <Appearance>
+                        <Material ambientIntensity='0.022727' diffuseColor='0 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                        <ImageTexture DEF='heart' url=' "images/heart.png" '/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+    
+            <Transform translation='-0.2 -0.5 0.15'>
+                <Shape>
+                    <Cylinder radius="0.08" height="0.8"/>
+                    <Appearance>
+			<Material diffuseColor='1 1 1' transparency='0.5'/>
+                    </Appearance>
+                </Shape>
+                <Transform rotation='0 0 0 0' translation='0 -0.1 0'>
+                    <Shape>
+                        <Cylinder DEF="termFill" radius="0.06" height="0.2"/>
+                        <Appearance>
+                            <Material DEF="termMaterial" ambientIntensity='0.022727' diffuseColor='1 0 0' shininess='1' specularColor='1 1 1' transparency='0'/>
+                        </Appearance>
+                    </Shape>
+                    <Transform rotation='0 0 0 0' translation='0 -0.2 0'>
+                        <Shape>             
+                            <Sphere radius="0.15"/>
+                            <Appearance>
+                                <Material USE="termMaterial" />
+                           </Appearance>
+                        </Shape>
+                    </Transform>   
+                </Transform>
+            </Transform>
     
    <!--<Transform rotation='0 0 0 0' translation='0 0 0'>        
     <Transform rotation='0 0 0 0' translation='-0.15 0 0'>
@@ -216,53 +224,178 @@
       </Transform>     
     </Transform>  -->
     
-     <Transform rotation='0 0 0 0' translation='1.8 0.6 0.2'>
-         <Billboard axisOfRotation="0 0 0"/>
-            <Shape>
-                <Text DEF="BPM_label" string="BPM">
-                     <FontStyle DEF='labelstyle' justify='"MIDDLE" "MIDDLE"' size="0.4"/>
-                </Text> 
+            <Transform translation='1.5 0.6 0.1'>
+                <Shape>
+                    <Text DEF="BPM_label" string="BPM">
+                         <FontStyle DEF='labelstyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
+                    </Text> 
                     <Appearance>
                         <Material emissiveColor='1 1 0'/>
                     </Appearance>
-            </Shape>
+                </Shape>
                
-     <Transform rotation='0 0 0 0' translation='-1.3 0 0.0'>
-         <Billboard axisOfRotation="0 0 0"/>
-            <Shape>
-                <Text DEF="BPM_value" string="65">
-                     <FontStyle DEF='valuestyle' justify='"MIDDLE" "MIDDLE"' size="0.6"/>
-                </Text> 
-                    <Appearance>
-                        <Material emissiveColor='0 1 0'/>
-                    </Appearance>
-            </Shape>   
-     
-        <Transform rotation='0 0 0 0' translation='1 -1.2 0'>
-          <Billboard axisOfRotation="0 0 0"/>
-            <Shape>
-                <Text DEF="TEMP_label" string="ºC">
-                     <FontStyle USE='labelstyle'/>
-                </Text> 
-                    <Appearance>
-                        <Material emissiveColor='1 1 0'/>
-                    </Appearance>
-            </Shape>   
-        <Transform rotation='0 0 0 0' translation='-1.0 0 0'>
-         <Billboard axisOfRotation="0 0 0"/>
-            <Shape>
-                <Text DEF="TEMP_value" string="37.8">
-                     <FontStyle USE='valuestyle' />
-                </Text> 
-                    <Appearance>
-                        <Material emissiveColor='0 1 0'/>
-                    </Appearance>
-            </Shape>   
-          
+                <Transform rotation='0 0 0 0' translation='-1.0 0 0.0'>
+                    <Shape>
+                        <Text DEF="BPM1_value" string="">
+                            <FontStyle DEF='valuestyle' justify='"MIDDLE" "MIDDLE"' size="0.3"/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE="BillboardTextMaterial1"/>
+                        </Appearance>
+                    </Shape>
+                    <Shape>
+                        <Text DEF="BPM2_value" string="">
+                            <FontStyle USE='valuestyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE="BillboardTextMaterial2"/>
+                        </Appearance>
+                    </Shape>
+                    <Shape>
+                        <Text DEF="BPM3_value" string="">
+                            <FontStyle USE='valuestyle'/>
+                        </Text> 
+                        <Appearance>
+                            <Material USE="BillboardTextMaterial3"/>
+                        </Appearance>
+                    </Shape>
+                    <Transform rotation='0 0 0 0' translation='1 -1.2 0'>
+                        <Shape>
+                            <Text DEF="TEMP_label" string="ºC">
+                                <FontStyle USE='labelstyle'/>
+                            </Text> 
+                            <Appearance>
+                                <Material emissiveColor='1 1 0'/>
+                            </Appearance>
+                        </Shape>   
+                        <Transform rotation='0 0 0 0' translation='-1.0 0 0'>
+                            <Shape>
+                                <Text DEF="TEMP1_value" string="">
+                                    <FontStyle USE='valuestyle' />
+                                </Text> 
+                                <Appearance>
+                                    <Material USE="BillboardTextMaterial1"/>
+                                </Appearance>
+                            </Shape>
+                            <Shape>
+                                <Text DEF="TEMP2_value" string="">
+                                    <FontStyle USE='valuestyle' />
+                                </Text> 
+                                <Appearance>
+                                    <Material USE="BillboardTextMaterial2"/>
+                                </Appearance>
+                            </Shape>
+                            <Shape>
+                                <Text DEF="TEMP3_value" string="">
+                                    <FontStyle USE='valuestyle' />
+                                </Text> 
+                                <Appearance>
+                                    <Material USE="BillboardTextMaterial3"/>
+                                </Appearance>
+                            </Shape>   
+                        </Transform>
+                    </Transform>
+                </Transform>
+            </Transform>
         </Transform>
-    </Transform>
-  </Transform>
- </Transform>
-     
+        </Transform>    
+        </Transform>
+        <!--
+        </Billboard>
+        -->
+        <BooleanFilter DEF='BOOL_ShowBillboard1'/>
+        <TimeTrigger DEF='TRIGGER_ShowBillboard1'/>
+        <BooleanFilter DEF='BOOL_ShowBillboard2'/>
+        <TimeTrigger DEF='TRIGGER_ShowBillboard2'/>
+        <BooleanFilter DEF='BOOL_ShowBillboard3'/>
+        <TimeTrigger DEF='TRIGGER_ShowBillboard3'/>
+        
+        <BooleanFilter DEF='BOOL_FadeBillboard1'/>
+        <TimeTrigger DEF='TRIGGER_FadeBillboard1'/>
+        <BooleanFilter DEF='BOOL_FadeBillboard2'/>
+        <TimeTrigger DEF='TRIGGER_FadeBillboard2'/>
+        <BooleanFilter DEF='BOOL_FadeBillboard3'/>
+        <TimeTrigger DEF='TRIGGER_FadeBillboard3'/>
+        
+        <TimeSensor DEF='CLOCK_InterpolatorFade1' cycleInterval='1' enabled='false' loop='false'/>
+        <TimeSensor DEF='CLOCK_InterpolatorShow1' cycleInterval='1' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorShow1' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorFade1' key='1.0' keyValue='1'/>
+        <TimeSensor DEF='CLOCK_InterpolatorFade2' cycleInterval='1' enabled='false' loop='false'/>
+        <TimeSensor DEF='CLOCK_InterpolatorShow2' cycleInterval='1' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorShow2' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorFade2' key='1.0' keyValue='1'/>
+        <TimeSensor DEF='CLOCK_InterpolatorFade3' cycleInterval='1' enabled='false' loop='false'/>
+        <TimeSensor DEF='CLOCK_InterpolatorShow3' cycleInterval='1' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorShow3' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
+        <ScalarInterpolator DEF='ScalarInterpolatorFade3' key='1.0' keyValue='1'/>
+       
+        <!-- Routes -->
+        <ROUTE fromField="inputTrue" fromNode="BOOL_FadeBillboard1" toField="set_boolean" toNode="TRIGGER_FadeBillboard1"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_FadeBillboard1' toField='set_startTime' toNode='CLOCK_InterpolatorFade1'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_FadeBillboard1' toField='set_enabled' toNode='CLOCK_InterpolatorFade1'/>
+        <ROUTE fromField="inputTrue" fromNode="BOOL_FadeBillboard2" toField="set_boolean" toNode="TRIGGER_FadeBillboard2"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_FadeBillboard2' toField='set_startTime' toNode='CLOCK_InterpolatorFade2'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_FadeBillboard2' toField='set_enabled' toNode='CLOCK_InterpolatorFade2'/>
+        <ROUTE fromField="inputTrue" fromNode="BOOL_FadeBillboard3" toField="set_boolean" toNode="TRIGGER_FadeBillboard3"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_FadeBillboard3' toField='set_startTime' toNode='CLOCK_InterpolatorFade3'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_FadeBillboard3' toField='set_enabled' toNode='CLOCK_InterpolatorFade3'/>
+        
+        <ROUTE fromField="inputTrue" fromNode="BOOL_ShowBillboard1" toField="set_boolean" toNode="TRIGGER_ShowBillboard1"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_ShowBillboard1' toField='set_startTime' toNode='CLOCK_InterpolatorShow1'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_ShowBillboard1' toField='set_enabled' toNode='CLOCK_InterpolatorShow1'/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_ShowBillboard1' toField='set_startTime' toNode='CLOCK_InterpolatorFade1'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_ShowBillboard1' toField='set_enabled' toNode='CLOCK_InterpolatorFade1'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow1' toField='set_fraction' toNode='ScalarInterpolatorShow1'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow1' toField='set_transparency' toNode='BillboardTextMaterial1'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade1' toField='set_fraction' toNode='ScalarInterpolatorFade1'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade1' toField='set_transparency' toNode='BillboardTextMaterial2'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade1' toField='set_transparency' toNode='BillboardTextMaterial3'/>
+        
+        <ROUTE fromField="inputTrue" fromNode="BOOL_ShowBillboard2" toField="set_boolean" toNode="TRIGGER_ShowBillboard2"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_ShowBillboard2' toField='set_startTime' toNode='CLOCK_InterpolatorShow2'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_ShowBillboard2' toField='set_enabled' toNode='CLOCK_InterpolatorShow2'/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_ShowBillboard2' toField='set_startTime' toNode='CLOCK_InterpolatorFade2'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_ShowBillboard2' toField='set_enabled' toNode='CLOCK_InterpolatorFade2'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow2' toField='set_fraction' toNode='ScalarInterpolatorShow2'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow2' toField='set_transparency' toNode='BillboardTextMaterial2'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade2' toField='set_fraction' toNode='ScalarInterpolatorFade2'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade2' toField='set_transparency' toNode='BillboardTextMaterial1'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade2' toField='set_transparency' toNode='BillboardTextMaterial3'/>
+        
+        <ROUTE fromField="inputTrue" fromNode="BOOL_ShowBillboard3" toField="set_boolean" toNode="TRIGGER_ShowBillboard3"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_ShowBillboard3' toField='set_startTime' toNode='CLOCK_InterpolatorShow3'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_ShowBillboard3' toField='set_enabled' toNode='CLOCK_InterpolatorShow3'/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_ShowBillboard3' toField='set_startTime' toNode='CLOCK_InterpolatorFade3'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_ShowBillboard3' toField='set_enabled' toNode='CLOCK_InterpolatorFade3'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow3' toField='set_fraction' toNode='ScalarInterpolatorShow3'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow3' toField='set_transparency' toNode='BillboardTextMaterial3'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade3' toField='set_fraction' toNode='ScalarInterpolatorFade3'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade3' toField='set_transparency' toNode='BillboardTextMaterial1'/>
+        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade3' toField='set_transparency' toNode='BillboardTextMaterial2'/>
+          
+        <!-- Exports -->
+        <!--
+        <EXPORT localDEF='patientPic' AS='patientPicOut'/>
+        <EXPORT localDEF='termFill' AS='termFillOut'/>
+        -->
+        <EXPORT localDEF='patientName1' AS='patientName1Out'/>
+        <EXPORT localDEF='patientAge1' AS='patientAge1Out'/>
+        <EXPORT localDEF='patientName2' AS='patientName2Out'/>
+        <EXPORT localDEF='patientAge2' AS='patientAge2Out'/>
+        <EXPORT localDEF='patientName3' AS='patientName3Out'/>
+        <EXPORT localDEF='patientAge3' AS='patientAge3Out'/>
+        <EXPORT localDEF='BPM1_value' AS='BPM1_valueOut'/>
+        <EXPORT localDEF='TEMP1_value' AS='TEMP1_valueOut'/>
+        <EXPORT localDEF='BPM2_value' AS='BPM2_valueOut'/>
+        <EXPORT localDEF='TEMP2_value' AS='TEMP2_valueOut'/>
+        <EXPORT localDEF='BPM3_value' AS='BPM3_valueOut'/>
+        <EXPORT localDEF='TEMP3_value' AS='TEMP3_valueOut'/>
+        <EXPORT localDEF='BOOL_ShowBillboard1' AS='BOOL_ShowBillboard1Out' />
+        <EXPORT localDEF='BOOL_ShowBillboard2' AS='BOOL_ShowBillboard2Out' />
+        <EXPORT localDEF='BOOL_ShowBillboard3' AS='BOOL_ShowBillboard3Out' />
+        <EXPORT localDEF='BOOL_FadeBillboard1' AS='BOOL_FadeBillboard1Out' />
+        <EXPORT localDEF='BOOL_FadeBillboard2' AS='BOOL_FadeBillboard2Out' />
+        <EXPORT localDEF='BOOL_FadeBillboard3' AS='BOOL_FadeBillboard3Out' />
     </Scene>
 </X3D>

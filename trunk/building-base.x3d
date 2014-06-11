@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.2//EN" "http://www.web3d.org/specifications/x3d-3.2.dtd">
+<X3D profile='Immersive' version='3.2' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.2.xsd'>
+    <head>
+        <meta content='*enter FileNameWithNoAbbreviations.x3d here*' name='title'/>
+        <meta content='*enter description here, short-sentence summaries preferred*' name='description'/>
+        <meta content='*enter name of original author here*' name='creator'/>
+        <meta content='*if manually translating VRML-to-X3D, enter name of person translating here*' name='translator'/>
+        <meta content='*enter date of initial version here*' name='created'/>
+        <meta content='*enter date of translation here*' name='translated'/>
+        <meta content='*enter date of latest revision here*' name='modified'/>
+        <meta content='*enter version here, if any*' name='version'/>
+        <meta content='*enter reference citation or relative/online url here*' name='reference'/>
+        <meta content='*enter additional url/bibliographic reference information here*' name='reference'/>
+        <meta content='*enter reference resource here if required to support function, delivery, or coherence of content*' name='requires'/>
+        <meta content='*enter copyright information here* Example: Copyright (c) Web3D Consortium Inc. 2008' name='rights'/>
+        <meta content='*enter drawing filename/url here*' name='drawing'/>
+        <meta content='*enter image filename/url here*' name='image'/>
+        <meta content='*enter movie filename/url here*' name='MovingImage'/>
+        <meta content='*enter photo filename/url here*' name='photo'/>
+        <meta content='*enter subject keywords here*' name='subject'/>
+        <meta content='*enter permission statements or url here*' name='accessRights'/>
+        <meta content='*insert any known warnings, bugs or errors here*' name='warning'/>
+        <meta content='*enter online Uniform Resource Identifier (URI) or Uniform Resource Locator (URL) address for this file here*' name='identifier'/>
+        <meta content='X3D-Edit, https://savage.nps.edu/X3D-Edit' name='generator'/>
+        <meta content='../../license.html' name='license'/>
+        <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
+    </head> 
+    <Scene>
+        <!-- Viewpoints -->
+        <Transform DEF='TRANSFORM_START_Viewpoint'>
+            <Viewpoint DEF="START_Viewpoint" description="Start Viewpoint"  centerOfRotation= '0 0 0' orientation='1 0 0 1.57' position='-1 -30 3' />
+        </Transform>
+        <Viewpoint DEF="GOD_Viewpoint" description="God Viewpoint"  centerOfRotation= '0 0 0' orientation='1 0 0 0' position='0 0 50' />
+        
+        <!-- Dinner Room + Sterilization Room + External Door -->
+        <Transform translation='0 14 0'>
+            <!-- Floor -->
+            <Transform translation='-1 0 0'>
+                <Shape DEF="Floor1">
+                    <Box size="16.5 6.4 0.1" solid="true"/>
+                    <Appearance>   
+                        <Material DEF='FloorMaterial' diffuseColor='1 1 1'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <!-- Roof -->
+            <Transform DEF='TRANSFORM_Roof1'>
+                <Transform translation='-1 0 4.4' >
+                    <Transform rotation='1 0 0 -0.88' translation='0 1.68 0' >
+                        <Shape DEF="Roof1">
+                            <Box size="16.6 5.35 0.05" solid="true"/>
+                            <Appearance>   
+                                <Material DEF='RoofMaterial' diffuseColor='0.5 0 0'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform rotation='1 0 0 0.88' translation='0 -1.68 0'>
+                        <Shape USE="Roof1"/>
+                    </Transform>
+                    <Transform translation='0 0 2.05' rotation='0 0 1 1.57'>
+                        <Shape>
+                            <Cylinder radius="0.05" height="16.5" solid="true"/>
+                            <Appearance>   
+                                <Material USE='RoofMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_Roof1'/>
+                </Transform>
+            </Transform>
+            <!-- Walls -->
+            <Transform rotation='1 0 0 1.57' translation='-1 3.1 1.25'>
+                <Shape DEF="TopWall">
+                    <Box size="16.5 2.5 0.2" solid="true"/>
+                    <Appearance>   
+                        <Material DEF='WallMaterial' diffuseColor='1 1 1'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform rotation='0 1 0 1.57' translation='7.15 0 1.25'>
+                <Shape DEF="TopRightWall1">
+                    <Box size="2.5 6.4 0.2" solid="true"/>
+                    <Appearance>   
+                        <Material USE='WallMaterial'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform rotation='0 0 1 1.57' translation='7.25 0 2.5'>
+                <Shape DEF='TopRightWall2'>
+                    <Extrusion creaseAngle='0.0' crossSection='-3.2 0, 0 3.9, 3.2 0, -3.2 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
+                    <Appearance>
+                        <Material diffuseColor='1 1 1'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform rotation='0 0 1 1.57' translation='-9.1 0 2.5'>
+                <Shape USE='TopRightWall2'/>
+            </Transform>
+            <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 2.25'>
+               <Shape DEF="TopDoorTop">
+                   <Box size="1 0.5 0.2" solid="true"/>
+                   <Appearance>   
+                       <Material USE='WallMaterial'/>
+                   </Appearance>
+               </Shape>
+            </Transform>
+            <Transform rotation='1 0 0 1.57' translation='6.95 -3.1 1.25'>
+               <Shape DEF="TopDoorRight">
+                   <Box size="0.6 2.5 0.2" solid="true"/>
+                   <Appearance>   
+                       <Material USE='WallMaterial'/>
+                   </Appearance>
+               </Shape>
+            </Transform>
+            <Transform rotation='1 0 0 1.57' translation='5.35 -3.1 1.25'>
+               <Shape DEF="TopDoorLeft">
+                   <Box size="0.6 2.5 0.2" solid="true"/>
+                   <Appearance>   
+                       <Material USE='WallMaterial'/>
+                   </Appearance>
+               </Shape>
+            </Transform>
+            <!-- Dinner Room -->
+            <Transform translation='-5.6 0 0'>
+                <Inline DEF='Dinner' url='"dinner-room.x3d"' />
+            </Transform>
+             <!-- Sterilization Room -->
+            <Transform translation='2.35 -1.2 0'>
+                <Inline DEF='SterilRoom' url='"sterilization-room.x3d"' />
+            </Transform>
+            <!-- Door-->
+            <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 1'>
+                <Inline DEF='TopDoor' url='"exterior-door.x3d"' />
+            </Transform>
+        </Transform>
+
+        <Transform translation='-1.1 -4.1 0'>
+            <!-- Floor -->
+            <Shape DEF="Floor2">
+                <Box size="12.3 29.8 0.1" solid="true"/>
+                <Appearance>   
+                    <Material USE='FloorMaterial'/>
+                </Appearance>
+            </Shape>
+            <!-- Roof -->
+            <Transform DEF='TRANSFORM_Roof2'>
+                <Transform translation='0 1.5 4.2' >
+                    <Transform rotation='0 1 0 -0.52' translation='-3.25 0 0' >
+                        <Shape DEF="Roof2">
+                            <Box size="7.5 32.8 0.05" solid="true"/>
+                            <Appearance>   
+                                <Material USE='RoofMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform rotation='0 1 0 0.52' translation='3.25 0 0'>
+                        <Shape USE="Roof2"/>
+                    </Transform>
+                    <Transform translation='0 0 1.87'>
+                        <Shape>
+                            <Cylinder radius="0.05" height="32.8" solid="true"/>
+                            <Appearance>   
+                                <Material USE='RoofMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <TouchSensor DEF='TOUCH_Roof2'/>
+                </Transform>
+            </Transform>
+            <!-- Walls -->
+            <Transform rotation='0 1 0 1.57' translation='6.05 -4 1.25'>
+               <Shape DEF="RightDoorLeft">
+                   <Box size="2.5 1 0.2" solid="true"/>
+                   <Appearance>   
+                       <Material USE='WallMaterial'/>
+                   </Appearance>
+               </Shape>
+            </Transform>
+            <Transform rotation='0 1 0 1.57' translation='6.05 -4.9 2.25'>
+               <Shape DEF="RightDoorTop">
+                   <Box size="0.5 1 0.2" solid="true"/>
+                   <Appearance>   
+                       <Material USE='WallMaterial'/>
+                   </Appearance>
+               </Shape>
+            </Transform>
+            <Transform rotation='0 1 0 1.57' translation='6.05 -6.4 1.25'>
+               <Shape DEF="RightDoorRight">
+                   <Box size="2.5 2 0.2" solid="true"/>
+                   <Appearance>   
+                       <Material USE='WallMaterial'/>
+                   </Appearance>
+               </Shape>
+            </Transform>
+            <Transform translation='0 -14.9 2.5'>
+                <Shape>
+                    <Extrusion creaseAngle='0.0' crossSection='-6.15 0, 0 3.5, 6.15 0, -6.15 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
+                    <Appearance>
+                        <Material diffuseColor='1 1 1'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <Transform rotation='1 0 0 1.57' translation='0 -14.8 2.25'>
+                <Shape DEF="FrontDoorTop">
+                    <Box size="2 0.5 0.2" solid="true"/>
+                    <Appearance>   
+                        <Material USE='WallMaterial'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            <!-- Doors -->
+             <Transform rotation='1 0 0 1.57' translation='0 -14.8 1'>   
+                 <Inline DEF='FrontDoor' url='"front-door.x3d"' />
+            </Transform>
+            <Transform translation='6.05 -4.9 1'>
+             <Transform rotation='1 0 0 1.57'>
+                 <Transform rotation='0 1 0 1.57'>
+                       <Shape USE="TopDoor"/>
+                  </Transform>
+              </Transform>
+             </Transform>
+
+             <!-- Physiotherapy -->
+            <Transform translation='-3.45 -12.9 0'>
+                 <Inline DEF='Physiotherapy' url='"physiotherapy.x3d"' />
+            </Transform>
+             <!-- WCs -->
+            <Transform translation='3.45 9.45 0'>
+                <Inline DEF='WC1' url='"wc.x3d"' />
+            </Transform>
+            <Transform translation='3.45 5.75 0'>
+                <Inline DEF='WC2' url='"wc.x3d"' />
+            </Transform>
+             <!-- Medication Room -->
+            <Transform translation='3.45 -1.65 0'>
+                <Inline DEF='MedRoom' url='"medication-room.x3d"' />
+            </Transform>
+            <!-- WCs -->
+            <Transform  translation='3.45 -12.95 0'>
+                <Inline DEF='WC3' url='"wc.x3d"' />
+            </Transform>
+         </Transform>
+                     
+        <!-- Enter the building animation -->
+        <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor1Out' AS='TOUCH_FrontDoor1'/>
+        <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor2Out' AS='TOUCH_FrontDoor2'/>
+        
+        <TimeSensor DEF='CLOCK_ViewpointInterpolators' cycleInterval='3' enabled='false' loop='false'/>
+        <PositionInterpolator DEF='VIEWPOINT_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 -1 0 0 -3 0 20 0'/>
+        <TimeSensor DEF='CLOCK_RoofInterpolators' cycleInterval='1' enabled='false' loop='false'/>
+        <ScalarInterpolator DEF='ROOF_ScalarInterpolator' key='0.0 1.0' keyValue='0 1'/>
+        <PositionInterpolator DEF='ROOF_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 20 0 0 40 0 0 50'/>
+        <BooleanFilter DEF='BOOL_InsideBuilding'/>
+        <TimeTrigger DEF='TRIGGER_InsideBuilding'/>
+
+        <BooleanFilter DEF="BOOL_StartClock1" />
+        <TimeTrigger DEF="TRIGGER_StartClock1" />
+        <BooleanFilter DEF="BOOL_StartClock2" />
+        <TimeTrigger DEF="TRIGGER_StartClock2" />
+                
+        <TimeSensor DEF='CLOCK_GetHealth1' cycleInterval='60' enabled='true' loop='false'/>
+        <TimeSensor DEF='CLOCK_GetHealth2' cycleInterval='60' enabled='false' loop='false'/>
+         
+        <!-- Routes --> 
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_startTime' toNode='CLOCK_GetHealth1'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_enabled' toNode='CLOCK_GetHealth1'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_startTime' toNode='CLOCK_GetHealth1'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_enabled' toNode='CLOCK_GetHealth1'/>
+        
+        <ROUTE fromNode='CLOCK_GetHealth1' fromField='isActive' toNode='BOOL_StartClock2' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_StartClock2' fromField='inputNegate' toNode='TRIGGER_StartClock2' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_StartClock2' fromField='inputFalse' toNode='CLOCK_GetHealth1' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_StartClock2' fromField='inputNegate' toNode='CLOCK_GetHealth2' toField='set_enabled'/>
+        <ROUTE fromNode='TRIGGER_StartClock2' fromField='triggerTime' toNode='CLOCK_GetHealth2' toField='set_startTime'/>
+        
+        <ROUTE fromNode='CLOCK_GetHealth2' fromField='isActive' toNode='BOOL_StartClock1' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_StartClock1' fromField='inputNegate' toNode='TRIGGER_StartClock1' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_StartClock1' fromField='inputFalse' toNode='CLOCK_GetHealth2' toField='set_enabled'/>
+        <ROUTE fromNode='BOOL_StartClock1' fromField='inputNegate' toNode='CLOCK_GetHealth1' toField='set_enabled'/>
+        <ROUTE fromNode='TRIGGER_StartClock1' fromField='triggerTime' toNode='CLOCK_GetHealth1' toField='set_startTime'/>  
+        
+        
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_bind' toNode='START_Viewpoint'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_bind' toNode='START_Viewpoint'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_enabled' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_enabled' toNode='CLOCK_ViewpointInterpolators'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_ViewpointInterpolators' toField='set_fraction' toNode='VIEWPOINT_PositionInterpolator'/>
+        <ROUTE fromField="value_changed" fromNode="VIEWPOINT_PositionInterpolator" toField="set_translation" toNode="TRANSFORM_START_Viewpoint"/>
+        <ROUTE fromField='isActive' fromNode='CLOCK_ViewpointInterpolators' toField='set_boolean' toNode='BOOL_InsideBuilding'/>
+        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_boolean" toNode="TRIGGER_InsideBuilding"/>
+        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_enabled" toNode="CLOCK_RoofInterpolators"/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_InsideBuilding' toField='set_startTime' toNode='CLOCK_RoofInterpolators'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_RoofInterpolators' toField='set_fraction' toNode='ROOF_ScalarInterpolator'/>
+        <ROUTE fromField='value_changed' fromNode='ROOF_ScalarInterpolator' toField='set_transparency' toNode='RoofMaterial'/>
+        <ROUTE fromField='fraction_changed' fromNode='CLOCK_RoofInterpolators' toField='set_fraction' toNode='ROOF_PositionInterpolator'/>
+        <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof1'/>
+        <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof2'/>
+        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_bind" toNode="GOD_Viewpoint"/>
+        
+        <!-- Exports -->
+        <EXPORT localDEF='GOD_Viewpoint' AS='GOD_ViewpointOut'/>
+        
+        <EXPORT localDEF='CLOCK_GetHealth1' AS='CLOCK_GetHealth1Out'/>
+        <EXPORT localDEF='CLOCK_GetHealth2' AS='CLOCK_GetHealth2Out'/>
+    </Scene>
+</X3D>

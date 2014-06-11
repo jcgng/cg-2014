@@ -1,17 +1,10 @@
-/**
- * Usage:
- */
-
 var JsonInfo = {
     _dataReceivedCallback : null,
     _xmlHttp : null,
+    // _serverAddress : "http://clevermobile.dx.am/HealthMonitor/get-health.php",
     _serverAddress : "http://localhost/HealthMonitor/get-health.php",
-    _user : "joao.guiomar",
-    _pass : "ola",
-/*
-    _bedNumber : null,
-    _running : false,
-*/
+    _user : "admin",
+    _pass : "iscte@2014",
     _data : null
 };
 
@@ -76,6 +69,7 @@ JsonInfo.getTemp = function() {
     }
     return null;
 };
+/*
 JsonInfo.getBalance = function() {
     if(this._data!=null) {
         for(var row=0;row<this._data.length;row++) {
@@ -84,62 +78,24 @@ JsonInfo.getBalance = function() {
     }
     return null;
 };
-/*
-JsonInfo.setBedNumber = function(bedNumber) {
-    JsonInfo._bedNumber = bedNumber;
-};
-JsonInfo.getBedNumber = function() {
-    return JsonInfo._bedNumber;
-};
-JsonInfo.resetBedNumber = function() {
-    JsonInfo._bedNumber = null;
-};
-
-JsonInfo.isRunning = function() {
-    return JsonInfo._running;
-};
-JsonInfo.setRunning = function(value) {
-    JsonInfo._running = value;
-};
 */
+JsonInfo.getName = function() {
+    if(this._data!=null) {
+        return this._data[0]['name'];
+    }
+    return null;
+};
+JsonInfo.getAge = function() {
+    if(this._data!=null) {
+        return this._data[0]['age'];
+    }
+    return null;
+};
 
 var init_time = 0;
 function initialise () {
     JsonInfo.initialize();
 };
-
-/*
-function getHealthSyncPool() {
-    if(JsonInfo.getBedNumber()!=null) {
-        JsonInfo.setRunning(true);
-        
-        Browser.println("Start getHealthSync: " + JsonInfo.getBedNumber()); 
-
-        JsonInfo.fetchInfoSync('','');
-        bpm = JsonInfo.getBPM();
-        temp = JsonInfo.getTemp();
-        blc = JsonInfo.getBalance();
-
-        Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc);
-        
-        setTimeout(function() { 
-            getHealthSyncPool();
-        }, 10000);
-    } else {
-        JsonInfo.setRunning(false);
-    }
-};
-function setBedStartPool(value,timestep) {
-    Browser.println("setBedStartPool: " + bedNumber + " - " + value); 
-    JsonInfo.setBedNumber(bedNumber);
-    if(JsonInfo.isRunning()==false)  
-        getHealthSyncPool();
-};
-function resetBedStopPool(value,timestep) {
-    Browser.println("resetBedStopPool"); 
-    JsonInfo.resetBedNumber();
-};
-*/
 
 function getHealthSync(value,timestep) {
     if(bedNumber!=null && typeof bedNumber!='undefined') {
@@ -148,23 +104,35 @@ function getHealthSync(value,timestep) {
         JsonInfo.fetchInfoSync(/*board*/'',/*patient*/'',bedNumber);
         alert = false;
         if(JsonInfo.getBPM()!=null) {
-            bpm = JsonInfo.getBPM() + " bpm";
+            bpm = JsonInfo.getBPM();
             if(JsonInfo.getBPM()<55 || JsonInfo.getBPM()>100)
                 alert = true;
         } else {
-            bpm = '... bpm';
+            bpm = '...';
         }
         if(JsonInfo.getTemp()!=null) {
-            temp = JsonInfo.getTemp() + " C";
+            temp = JsonInfo.getTemp();
             if(JsonInfo.getTemp()<35 || JsonInfo.getTemp()>37)
                 alert = true;
         } else {
-            temp = '... C';
+            temp = '...';
         }
+        /*
         if(JsonInfo.getBalance()!=null) {
             blc = JsonInfo.getBalance();
         } else {
             blc = '...';
+        }
+        */
+        if(JsonInfo.getName()!=null) {
+            name = JsonInfo.getName();
+        } else {
+            name = '...';
+        }
+        if(JsonInfo.getAge()!=null) {
+            age = JsonInfo.getAge();
+        } else {
+            age = '...';
         }
         
         // Browser.println("getHealthSync: " + bpm + "," + temp + "," + blc + "," + alert);

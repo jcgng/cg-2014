@@ -34,26 +34,63 @@
                 <Material DEF='BoxLightMaterial' diffuseColor='1 0 0' emissiveColor='0 0 0'/>
             </Appearance>
         </Shape>
-       
+        
+        <BooleanFilter DEF='BOOL_AlertLightOn'/>
+        <BooleanFilter DEF='BOOL_AlertLightOff'/>
+        <TimeTrigger DEF='TRIGGER_AlertLightOff'/>
+                
         <TimeSensor DEF='CLOCK_AlertLightOn' cycleInterval='4' enabled='false' loop='true'/>
         <TimeSensor DEF='CLOCK_AlertLightOff' cycleInterval='4' enabled='false' loop='false'/>
         <ScalarInterpolator DEF='AlertLightIntensityOn' key='0 0.5 0.5 1' keyValue='0.1 0.1 0.0 0.0'/>
         <ColorInterpolator DEF='AlertLightEmissiveOn' key='0 0.5 0.5 1' keyValue='1 0.3 0.3 1 0.3 0.3 0 0 0 0 0 0'/>
         <ScalarInterpolator DEF='AlertLightIntensityOff' key='1' keyValue='0.0'/>
         <ColorInterpolator DEF='AlertLightEmissiveOff' key='1' keyValue='0 0 0'/>
-        <ROUTE fromField='enabled' fromNode='CLOCK_AlertLightOn' toField='on' toNode='AlertLight'/>
+        
+        <ROUTE fromField='inputTrue' fromNode='BOOL_AlertLightOn' toField='on' toNode='AlertLight'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_AlertLightOn' toField='enabled' toNode='CLOCK_AlertLightOn'/>
+        <!--<ROUTE fromField='enabled' fromNode='CLOCK_AlertLightOn' toField='on' toNode='AlertLight'/>-->
         <ROUTE fromField='fraction_changed' fromNode='CLOCK_AlertLightOn' toField='set_fraction' toNode='AlertLightIntensityOn'/>
         <ROUTE fromField='fraction_changed' fromNode='CLOCK_AlertLightOn' toField='set_fraction' toNode='AlertLightEmissiveOn'/>
         <ROUTE fromField='value_changed' fromNode='AlertLightIntensityOn' toField='set_intensity' toNode='AlertLight'/>
         <ROUTE fromField='value_changed' fromNode='AlertLightEmissiveOn' toField='set_emissiveColor' toNode='BoxLightMaterial'/>
-        <ROUTE fromField='startTime' fromNode='CLOCK_AlertLightOn' toField='set_startTime' toNode='CLOCK_AlertLightOff'/>
+        
+        <ROUTE fromField='inputNegate' fromNode='BOOL_AlertLightOff' toField='on' toNode='AlertLight'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_AlertLightOff' toField='set_boolean' toNode='TRIGGER_AlertLightOff'/>
+        <ROUTE fromField='triggerTime' fromNode='TRIGGER_AlertLightOff' toField='set_startTime' toNode='CLOCK_AlertLightOff'/>
+        <ROUTE fromField='inputTrue' fromNode='BOOL_AlertLightOff' toField='enabled' toNode='CLOCK_AlertLightOff'/>
+        <!--<ROUTE fromField='startTime' fromNode='CLOCK_AlertLightOn' toField='set_startTime' toNode='CLOCK_AlertLightOff'/>-->
         <ROUTE fromField='fraction_changed' fromNode='CLOCK_AlertLightOff' toField='set_fraction' toNode='AlertLightIntensityOff'/>
         <ROUTE fromField='fraction_changed' fromNode='CLOCK_AlertLightOff' toField='set_fraction' toNode='AlertLightEmissiveOff'/>
         <ROUTE fromField='value_changed' fromNode='AlertLightIntensityOff' toField='set_intensity' toNode='AlertLight'/>
         <ROUTE fromField='value_changed' fromNode='AlertLightEmissiveOff' toField='set_emissiveColor' toNode='BoxLightMaterial'/>
         
+        <!--
+        <Transform translation='2 0 0'>
+        <Shape>
+             <Box size="1.0 1.0 0.1" />
+             <Appearance>
+                 <Material diffuseColor='0 0 1' emissiveColor='0 0 1'/>
+             </Appearance>
+         </Shape>
+         <TouchSensor DEF="Off" description="Off"/>
+       </Transform>
+       
+       <Transform translation='-2 0 0'>
+        <Shape>
+            <Box size="1.0 1.0 0.1" />
+            <Appearance>
+                <Material diffuseColor='0 0 1' emissiveColor='0 0 1'/>
+            </Appearance>
+        </Shape>
+        <TouchSensor DEF="On" description="On"/>
+       </Transform>
+        <ROUTE fromField='touchTime' fromNode='On' toField='set_boolean' toNode='BOOL_AlertLightOn'/>
+        <ROUTE fromField='touchTime' fromNode='Off' toField='set_boolean' toNode='BOOL_AlertLightOff'/>
+        -->
+
+        
         <!-- Exports -->
-        <EXPORT localDEF='CLOCK_AlertLightOn' AS='CLOCK_AlertLightOnOut'/>
-        <EXPORT localDEF='CLOCK_AlertLightOff' AS='CLOCK_AlertLightOffOut'/>
+        <EXPORT localDEF='BOOL_AlertLightOn' AS='BOOL_AlertLightOnOut'/>
+        <EXPORT localDEF='BOOL_AlertLightOff' AS='BOOL_AlertLightOffOut'/>
     </Scene>
 </X3D>

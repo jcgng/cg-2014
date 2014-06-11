@@ -142,7 +142,7 @@
             </Transform>
         </Transform>
         <!-- Beds -->
-        <Transform translation='-1.34 -1.75 2.0'>
+        <Transform translation='-1.34 -1.75 1.2'>
             <Inline DEF='Bulb1' url='"bulb-light.x3d"' />
         </Transform>
         <Transform translation='-1.34 0.25 0.82'>
@@ -150,8 +150,8 @@
         </Transform>
         <IMPORT inlineDEF='Bulb1' exportedDEF='CLOCK_LightOnOut' AS='CLOCK_LightOn1'/>
         <IMPORT inlineDEF='Bulb1' exportedDEF='CLOCK_LightOffOut' AS='CLOCK_LightOff1'/>
-        <IMPORT inlineDEF='AlertLight1' exportedDEF='CLOCK_AlertLightOnOut' AS='CLOCK_AlertLightOn1'/>
-        <IMPORT inlineDEF='AlertLight1' exportedDEF='CLOCK_AlertLightOffOut' AS='CLOCK_AlertLightOff1'/>
+        <IMPORT inlineDEF='AlertLight1' exportedDEF='BOOL_AlertLightOnOut' AS='BOOL_AlertLightOn1'/>
+        <IMPORT inlineDEF='AlertLight1' exportedDEF='BOOL_AlertLightOffOut' AS='BOOL_AlertLightOff1'/>
         <Transform rotation='0 0 1 -1.57' translation='-1.34 -0.75 0.4'>
             <Transform rotation='0 1 0 -0.79'>
                 <Transform rotation='0 0 1 -1.57' translation='0.5 0 -4.5'>
@@ -164,7 +164,7 @@
             <BooleanFilter DEF='BOOL_BulblightFilterBed1'/>
             <TouchSensor DEF='TOUCH_Bed1'/>
         </Transform>
-        <Transform translation='0 -1.75 2.0'>
+        <Transform translation='0 -1.75 1.2'>
             <Inline DEF='Bulb2' url='"bulb-light.x3d"' />
         </Transform>
         <Transform translation='0 0.25 0.82'>
@@ -172,8 +172,8 @@
         </Transform>
         <IMPORT inlineDEF='Bulb2' exportedDEF='CLOCK_LightOnOut' AS='CLOCK_LightOn2'/>
         <IMPORT inlineDEF='Bulb2' exportedDEF='CLOCK_LightOffOut' AS='CLOCK_LightOff2'/>
-        <IMPORT inlineDEF='AlertLight2' exportedDEF='CLOCK_AlertLightOnOut' AS='CLOCK_AlertLightOn2'/>
-        <IMPORT inlineDEF='AlertLight2' exportedDEF='CLOCK_AlertLightOffOut' AS='CLOCK_AlertLightOff2'/>
+        <IMPORT inlineDEF='AlertLight2' exportedDEF='BOOL_AlertLightOnOut' AS='BOOL_AlertLightOn2'/>
+        <IMPORT inlineDEF='AlertLight2' exportedDEF='BOOL_AlertLightOffOut' AS='BOOL_AlertLightOff2'/>
         <Transform rotation='0 0 1 -1.57' translation='0 -0.75 0.4'>
             <Transform rotation='0 1 0 -0.79'>
                 <Transform rotation='0 0 1 -1.57' translation='0.5 0 -4.5'>
@@ -186,7 +186,7 @@
             <BooleanFilter DEF='BOOL_BulblightFilterBed2'/>
             <TouchSensor DEF='TOUCH_Bed2'/>
         </Transform>
-        <Transform translation='1.34 -1.75 2.0'>
+        <Transform translation='1.34 -1.75 1.2'>
             <Inline DEF='Bulb3' url='"bulb-light.x3d"' />
         </Transform>
         <Transform translation='1.34 0.25 0.82'>
@@ -194,8 +194,8 @@
         </Transform>
         <IMPORT inlineDEF='Bulb3' exportedDEF='CLOCK_LightOnOut' AS='CLOCK_LightOn3'/>
         <IMPORT inlineDEF='Bulb3' exportedDEF='CLOCK_LightOffOut' AS='CLOCK_LightOff3'/>
-        <IMPORT inlineDEF='AlertLight3' exportedDEF='CLOCK_AlertLightOnOut' AS='CLOCK_AlertLightOn3'/>
-        <IMPORT inlineDEF='AlertLight3' exportedDEF='CLOCK_AlertLightOffOut' AS='CLOCK_AlertLightOff3'/>
+        <IMPORT inlineDEF='AlertLight3' exportedDEF='BOOL_AlertLightOnOut' AS='BOOL_AlertLightOn3'/>
+        <IMPORT inlineDEF='AlertLight3' exportedDEF='BOOL_AlertLightOffOut' AS='BOOL_AlertLightOff3'/>
         <Transform rotation='0 0 1 -1.57' translation='1.34 -0.75 0.4'>
             <Transform rotation='0 1 0 -0.79'>
                 <Transform rotation='0 0 1 -1.57' translation='0.5 0 -4.5'>
@@ -209,116 +209,98 @@
             <TouchSensor DEF='TOUCH_Bed3'/>
         </Transform>
         <!-- Billboards -->
-        <Transform DEF='TRANSFORM_Billboard' translation='0 -1.5 2'>
-            <Transform translation='2 0 0'>
-               <Billboard axisOfRotation="0 0 0">
-                    <Shape>    
-                        <Text DEF='BPM1' solid='true' string=''>
-                            <FontStyle DEF='BillboardFontStyle' justify='"MIDDLE" "MIDDLE"' size="0.3" />
-                        </Text> 
-                        <Appearance>
-                            <Material DEF='BillboardTextMaterial1' emissiveColor='1 .8 .5' transparency='1'/>
-                        </Appearance>
-                    </Shape>
-                    <Shape>    
-                        <Text DEF='BPM2' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle' />
-                        </Text> 
-                        <Appearance>
-                            <Material DEF='BillboardTextMaterial2' emissiveColor='1 .8 .5' transparency='1'/>
-                        </Appearance>
-                    </Shape>
-                    <Shape>    
-                        <Text DEF='BPM3' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle' />
-                        </Text> 
-                        <Appearance>
-                            <Material DEF='BillboardTextMaterial3' emissiveColor='1 .8 .5' transparency='1'/>
-                        </Appearance>
-                    </Shape>
-               </Billboard>
-            </Transform>
-            <Transform translation='0 0 0'>
-               <Billboard axisOfRotation="0 0 0">
-                  <Shape>    
-                        <Text DEF='TEMP1' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle'/>
-                        </Text> 
-                        <Appearance>
-                            <Material USE='BillboardTextMaterial1'/>
-                        </Appearance>
-                    </Shape>
-                     <Shape>    
-                        <Text DEF='TEMP2' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle'/>
-                        </Text> 
-                        <Appearance>
-                            <Material USE='BillboardTextMaterial2'/>
-                        </Appearance>
-                    </Shape>
-                     <Shape>    
-                        <Text DEF='TEMP3' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle'/>
-                        </Text> 
-                        <Appearance>
-                            <Material USE='BillboardTextMaterial3'/>
-                        </Appearance>
-                    </Shape>
-               </Billboard>
-           </Transform>
-           <Transform translation='-2 0 0'>
-               <Billboard axisOfRotation="0 0 0">
-                  <Shape>    
-                        <Text DEF='BLC1' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle'/>
-                        </Text> 
-                        <Appearance>
-                            <Material USE='BillboardTextMaterial1'/>
-                        </Appearance>
-                   </Shape>
-                   <Shape>    
-                        <Text DEF='BLC2' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle'/>
-                        </Text> 
-                        <Appearance>
-                            <Material USE='BillboardTextMaterial2'/>
-                        </Appearance>
-                   </Shape>
-                   <Shape>    
-                        <Text DEF='BLC3' solid='true' string=''>
-                            <FontStyle USE='BillboardFontStyle'/>
-                        </Text> 
-                        <Appearance>
-                            <Material USE='BillboardTextMaterial3'/>
-                        </Appearance>
-                   </Shape>
-               </Billboard>
-           </Transform>
+        <Transform translation='0 -1.7 1.9'>
+            <Inline DEF='Dashboard' url='"dashboard.x3d"' />
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BPM1_valueOut' AS='BPM1_value'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BPM2_valueOut' AS='BPM2_value'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BPM3_valueOut' AS='BPM3_value'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='TEMP1_valueOut' AS='TEMP1_value'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='TEMP2_valueOut' AS='TEMP2_value'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='TEMP3_valueOut' AS='TEMP3_value'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='patientName1Out' AS='patientName1'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='patientName2Out' AS='patientName2'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='patientName3Out' AS='patientName3'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='patientAge1Out' AS='patientAge1'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='patientAge2Out' AS='patientAge2'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='patientAge3Out' AS='patientAge3'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BOOL_ShowBillboard1Out' AS='BOOL_ShowBillboard1'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BOOL_ShowBillboard2Out' AS='BOOL_ShowBillboard2'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BOOL_ShowBillboard3Out' AS='BOOL_ShowBillboard3'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BOOL_FadeBillboard1Out' AS='BOOL_FadeBillboard1'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BOOL_FadeBillboard2Out' AS='BOOL_FadeBillboard2'/>
+            <IMPORT inlineDEF='Dashboard' exportedDEF='BOOL_FadeBillboard3Out' AS='BOOL_FadeBillboard3'/>
+            <Shape>    
+                <Text DEF='BPM1' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='BPM2' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='BPM3' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='TEMP1' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='TEMP2' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='TEMP3' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='NAME1' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='NAME2' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='NAME3' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='AGE1' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='AGE2' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
+            <Shape>    
+                <Text DEF='AGE3' solid='false' string=''/>
+                <Appearance><Material transparency='1'/></Appearance>
+            </Shape>
         </Transform>
-        
-        <TimeSensor DEF='CLOCK_InterpolatorFade1' cycleInterval='1' enabled='false' loop='false'/>
-        <TimeSensor DEF='CLOCK_InterpolatorShow1' cycleInterval='1' enabled='false' loop='false'/>
-        <ScalarInterpolator DEF='ScalarInterpolatorShow1' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
-        <ScalarInterpolator DEF='ScalarInterpolatorFade1' key='1.0' keyValue='1'/>
-        <TimeSensor DEF='CLOCK_InterpolatorFade2' cycleInterval='1' enabled='false' loop='false'/>
-        <TimeSensor DEF='CLOCK_InterpolatorShow2' cycleInterval='1' enabled='false' loop='false'/>
-        <ScalarInterpolator DEF='ScalarInterpolatorShow2' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
-        <ScalarInterpolator DEF='ScalarInterpolatorFade2' key='1.0' keyValue='1'/>
-        <TimeSensor DEF='CLOCK_InterpolatorFade3' cycleInterval='1' enabled='false' loop='false'/>
-        <TimeSensor DEF='CLOCK_InterpolatorShow3' cycleInterval='1' enabled='false' loop='false'/>
-        <ScalarInterpolator DEF='ScalarInterpolatorShow3' key='0.0 0.5 1.0' keyValue='1 0.5 0'/>
-        <ScalarInterpolator DEF='ScalarInterpolatorFade3' key='1.0' keyValue='1'/>
-        
         <BooleanFilter DEF='BOOL_Exit'/> 
         
         <BooleanFilter DEF='BOOL_Alert1'/>
         <BooleanFilter DEF='BOOL_Alert2'/>
         <BooleanFilter DEF='BOOL_Alert3'/>
         <!-- Routes -->
+        <ROUTE fromNode='BPM1' fromField='string' toNode='BPM1_value' toField='string'/>
+        <ROUTE fromNode='BPM2' fromField='string' toNode='BPM2_value' toField='string'/>
+        <ROUTE fromNode='BPM3' fromField='string' toNode='BPM3_value' toField='string'/>
+        <ROUTE fromNode='TEMP1' fromField='string' toNode='TEMP1_value' toField='string'/>
+        <ROUTE fromNode='TEMP2' fromField='string' toNode='TEMP2_value' toField='string'/>
+        <ROUTE fromNode='TEMP3' fromField='string' toNode='TEMP3_value' toField='string'/>
+        <ROUTE fromNode='NAME1' fromField='string' toNode='patientName1' toField='string'/>
+        <ROUTE fromNode='NAME2' fromField='string' toNode='patientName2' toField='string'/>
+        <ROUTE fromNode='NAME3' fromField='string' toNode='patientName3' toField='string'/>
+        <ROUTE fromNode='AGE1' fromField='string' toNode='patientAge1' toField='string'/>
+        <ROUTE fromNode='AGE2' fromField='string' toNode='patientAge2' toField='string'/>
+        <ROUTE fromNode='AGE3' fromField='string' toNode='patientAge3' toField='string'/>
+        
         <!-- Go to bed viewpoint on touch -->
         <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='VIEWPOINT_Bed1' toField='set_bind'/>
         <ROUTE fromNode='TOUCH_Bed2' fromField='touchTime' toNode='VIEWPOINT_Bed2' toField='set_bind'/>
-        <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='VIEWPOINT_Bed3' toField='set_bind'/>
+        <ROUTE fromNode='TOUCH_Bed3' fromField='touchTime' toNode='VIEWPOINT_Bed3' toField='set_bind'/>   
         
         <!-- Turn on/off bed lights on touch -->
         <ROUTE fromNode='TOUCH_Bed1' fromField='touchTime' toNode='BOOL_BulblightFilterBed1' toField='set_boolean'/>
@@ -365,53 +347,24 @@
         <ROUTE fromNode='BOOL_Exit' fromField='inputNegate' toNode='BOOL_Exit' toField='set_boolean'/>
         
         <!-- Show/hide bed billboard on touch -->
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_enabled' toNode='CLOCK_InterpolatorShow1'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_startTime' toNode='CLOCK_InterpolatorShow1'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_enabled' toNode='CLOCK_InterpolatorFade1'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_startTime' toNode='CLOCK_InterpolatorFade1'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow1' toField='set_fraction' toNode='ScalarInterpolatorShow1'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow1' toField='set_transparency' toNode='BillboardTextMaterial1'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade1' toField='set_fraction' toNode='ScalarInterpolatorFade1'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade1' toField='set_transparency' toNode='BillboardTextMaterial2'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade1' toField='set_transparency' toNode='BillboardTextMaterial3'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed1' toField='set_boolean' toNode='BOOL_ShowBillboard1'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_boolean' toNode='BOOL_ShowBillboard2'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_boolean' toNode='BOOL_ShowBillboard3'/>
         
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_enabled' toNode='CLOCK_InterpolatorShow2'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_startTime' toNode='CLOCK_InterpolatorShow2'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_enabled' toNode='CLOCK_InterpolatorFade2'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed2' toField='set_startTime' toNode='CLOCK_InterpolatorFade2'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow2' toField='set_fraction' toNode='ScalarInterpolatorShow2'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow2' toField='set_transparency' toNode='BillboardTextMaterial2'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade2' toField='set_fraction' toNode='ScalarInterpolatorFade2'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade2' toField='set_transparency' toNode='BillboardTextMaterial1'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade2' toField='set_transparency' toNode='BillboardTextMaterial3'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_boolean' toNode='BOOL_FadeBillboard1'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_boolean' toNode='BOOL_FadeBillboard2'/>
+        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_boolean' toNode='BOOL_FadeBillboard3'/>
         
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_enabled' toNode='CLOCK_InterpolatorShow3'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_startTime' toNode='CLOCK_InterpolatorShow3'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_enabled' toNode='CLOCK_InterpolatorFade3'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Bed3' toField='set_startTime' toNode='CLOCK_InterpolatorFade3'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorShow3' toField='set_fraction' toNode='ScalarInterpolatorShow3'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorShow3' toField='set_transparency' toNode='BillboardTextMaterial3'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_InterpolatorFade3' toField='set_fraction' toNode='ScalarInterpolatorFade3'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade3' toField='set_transparency' toNode='BillboardTextMaterial1'/>
-        <ROUTE fromField='value_changed' fromNode='ScalarInterpolatorFade3' toField='set_transparency' toNode='BillboardTextMaterial2'/>
-        
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_enabled' toNode='CLOCK_InterpolatorFade1'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_startTime' toNode='CLOCK_InterpolatorFade1'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_enabled' toNode='CLOCK_InterpolatorFade2'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_startTime' toNode='CLOCK_InterpolatorFade2'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_enabled' toNode='CLOCK_InterpolatorFade3'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_Exit' toField='set_startTime' toNode='CLOCK_InterpolatorFade3'/>
-  
         <!-- Turn on/off alert lights -->
-        <ROUTE fromNode='BOOL_Alert1' fromField='inputTrue' toNode='CLOCK_AlertLightOn1' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert1' fromField='inputFalse' toNode='CLOCK_AlertLightOn1' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert1' fromField='inputNegate' toNode='CLOCK_AlertLightOff1' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert2' fromField='inputTrue' toNode='CLOCK_AlertLightOn2' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert2' fromField='inputFalse' toNode='CLOCK_AlertLightOn2' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert2' fromField='inputNegate' toNode='CLOCK_AlertLightOff2' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert3' fromField='inputTrue' toNode='CLOCK_AlertLightOn3' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert3' fromField='inputFalse' toNode='CLOCK_AlertLightOn3' toField='enabled'/>
-        <ROUTE fromNode='BOOL_Alert3' fromField='inputNegate' toNode='CLOCK_AlertLightOff3' toField='enabled'/>
+        <ROUTE fromNode='BOOL_Alert1' fromField='inputTrue' toNode='BOOL_AlertLightOn1' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert1' fromField='inputFalse' toNode='BOOL_AlertLightOn1' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert1' fromField='inputNegate' toNode='BOOL_AlertLightOff1' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert2' fromField='inputTrue' toNode='BOOL_AlertLightOn2' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert2' fromField='inputFalse' toNode='BOOL_AlertLightOn2' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert2' fromField='inputNegate' toNode='BOOL_AlertLightOff2' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert3' fromField='inputTrue' toNode='BOOL_AlertLightOn3' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert3' fromField='inputFalse' toNode='BOOL_AlertLightOn3' toField='set_boolean'/>
+        <ROUTE fromNode='BOOL_Alert3' fromField='inputNegate' toNode='BOOL_AlertLightOff3' toField='set_boolean'/>
         
         <!-- Turn on/off bed spotlight -->
         <ROUTE fromNode='BOOL_SpotlightFilterBed1' fromField='inputTrue' toNode='LIGHT_SpotLightBed1' toField='on'/>
@@ -426,15 +379,22 @@
         <EXPORT localDEF='TOUCH_Bed2' AS='TOUCH_Bed2Out'/>
         <EXPORT localDEF='TOUCH_Bed3' AS='TOUCH_Bed3Out'/>
         <EXPORT localDEF='TOUCH_Exit' AS='TOUCH_ExitOut'/>
-        <EXPORT localDEF='BLC1' AS='BLC1Out'/>
+        
+        <!--<EXPORT localDEF='BLC1' AS='BLC1Out'/>-->
         <EXPORT localDEF='TEMP1' AS='TEMP1Out'/>
         <EXPORT localDEF='BPM1' AS='BPM1Out'/>
-        <EXPORT localDEF='BLC2' AS='BLC2Out'/>
+        <!--<EXPORT localDEF='BLC2' AS='BLC2Out'/>-->
         <EXPORT localDEF='TEMP2' AS='TEMP2Out'/>
         <EXPORT localDEF='BPM2' AS='BPM2Out'/>
-        <EXPORT localDEF='BLC3' AS='BLC3Out'/>
+        <!--<EXPORT localDEF='BLC3' AS='BLC3Out'/>-->
         <EXPORT localDEF='TEMP3' AS='TEMP3Out'/>
         <EXPORT localDEF='BPM3' AS='BPM3Out'/>
+        <EXPORT localDEF='NAME1' AS='NAME1Out'/>
+        <EXPORT localDEF='AGE1' AS='AGE1Out'/>
+        <EXPORT localDEF='NAME2' AS='NAME2Out'/>
+        <EXPORT localDEF='AGE2' AS='AGE2Out'/>
+        <EXPORT localDEF='NAME3' AS='NAME3Out'/>
+        <EXPORT localDEF='AGE3' AS='AGE3Out'/>
         
         <EXPORT localDEF='BOOL_Alert1' AS='BOOL_Alert1Out'/>
         <EXPORT localDEF='BOOL_Alert2' AS='BOOL_Alert2Out'/>
