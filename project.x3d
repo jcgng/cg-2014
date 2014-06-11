@@ -26,14 +26,14 @@
         <meta content='../../license.html' name='license'/>
         <!-- Additional authoring resources for meta-tags: http://www.dublincore.org/documents/dcmi-terms http://www.dublincore.org/documents/dces http://www.w3.org/TR/html4/struct/global.html#h-7.4.4 http://vancouver-webpages.com/META http://vancouver-webpages.com/META/about-mk-metas2.html Additional authoring resources for language codes: ftp://ftp.isi.edu/in-notes/bcp/bcp47.txt http://www.loc.gov/standards/iso639-2/langhome.html http://www.iana.org/numbers.html#L -->
     </head>
-    <ContextSetup ecmaScriptXHRTrustedHosts="localhost"/>  
+    <ContextSetup ecmaScriptXHRTrustedHosts="localhost"/>
+    <!--<ContextSetup ecmaScriptXHRTrustedHosts="clevermobile.dx.am"/>-->
     <Scene>
         <!-- 
             TODO:
 			
             Important:
                 . Add rooms & beds main panel
-                    - Light rooms and beds MouseOver
                     - Button to set main panel transparency 
                 . Create Billboard
                     - Add timestamp, patient name, patient photo (or man/woman model)
@@ -46,998 +46,1131 @@
                 . Add nursery details
                 . Add other animations - light switches, open doors...
         -->
-        <!-- Viewpoints -->
-        <Transform DEF='TRANSFORM_START_Viewpoint'>
-            <Viewpoint DEF="START_Viewpoint" description="Start Viewpoint"  centerOfRotation= '0 0 0' orientation='1 0 0 1.57' position='-1 -30 3' />
-        </Transform>
-        <Viewpoint DEF="GOD_Viewpoint" description="God Viewpoint"  centerOfRotation= '0 0 0' orientation='1 0 0 0' position='0 0 50' />
-        <!-- World -->
-        <Group DEF='Building'>
-            <!-- Dinner Room + Sterilization Room + External Door -->
-            <Transform translation='0 14 0'>
-                <!-- Floor -->
-                <Transform translation='-1 0 0'>
-                    <Shape DEF="Floor1">
-                        <Box size="16.5 6.4 0.1" solid="true"/>
-                        <Appearance>   
-                            <Material DEF='FloorMaterial' diffuseColor='1 1 1'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <!-- Roof -->
-                <Transform DEF='TRANSFORM_Roof1'>
-                    <Transform translation='-1 0 4.4' >
-                        <Transform rotation='1 0 0 -0.88' translation='0 1.68 0' >
-                            <Shape DEF="Roof1">
-                                <Box size="16.6 5.35 0.05" solid="true"/>
-                                <Appearance>   
-                                    <Material DEF='RoofMaterial' diffuseColor='0.5 0 0'/>
-                                </Appearance>
-                            </Shape>
-                        </Transform>
-                        <Transform rotation='1 0 0 0.88' translation='0 -1.68 0'>
-                            <Shape USE="Roof1"/>
-                        </Transform>
-                        <Transform translation='0 0 2.05' rotation='0 0 1 1.57'>
-                            <Shape>
-                                <Cylinder radius="0.05" height="16.5" solid="true"/>
-                                <Appearance>   
-                                    <Material USE='RoofMaterial'/>
-                                </Appearance>
-                            </Shape>
-                        </Transform>
-                        <TouchSensor DEF='TOUCH_Roof1'/>
-                    </Transform>
-                </Transform>
-                <!-- Walls -->
-                <Transform rotation='1 0 0 1.57' translation='-1 3.1 1.25'>
-                    <Shape DEF="TopWall">
-                        <Box size="16.5 2.5 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material DEF='WallMaterial' diffuseColor='1 1 1'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <Transform rotation='0 1 0 1.57' translation='7.15 0 1.25'>
-                    <Shape DEF="TopRightWall1">
-                        <Box size="2.5 6.4 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <Transform rotation='0 0 1 1.57' translation='7.25 0 2.5'>
-                    <Shape DEF='TopRightWall2'>
-                        <Extrusion creaseAngle='0.0' crossSection='-3.2 0, 0 3.9, 3.2 0, -3.2 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
-                        <Appearance>
-                            <Material diffuseColor='1 1 1'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <Transform rotation='0 0 1 1.57' translation='-9.1 0 2.5'>
-                    <Shape USE='TopRightWall2'/>
-                </Transform>
-                <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 2.25'>
-                   <Shape DEF="TopDoorTop">
-                       <Box size="1 0.5 0.2" solid="true"/>
-                       <Appearance>   
-                           <Material USE='WallMaterial'/>
-                       </Appearance>
-                   </Shape>
-                </Transform>
-                <Transform rotation='1 0 0 1.57' translation='6.95 -3.1 1.25'>
-                   <Shape DEF="TopDoorRight">
-                       <Box size="0.6 2.5 0.2" solid="true"/>
-                       <Appearance>   
-                           <Material USE='WallMaterial'/>
-                       </Appearance>
-                   </Shape>
-                </Transform>
-                <Transform rotation='1 0 0 1.57' translation='5.35 -3.1 1.25'>
-                   <Shape DEF="TopDoorLeft">
-                       <Box size="0.6 2.5 0.2" solid="true"/>
-                       <Appearance>   
-                           <Material USE='WallMaterial'/>
-                       </Appearance>
-                   </Shape>
-                </Transform>
-                <!-- Dinner Room -->
-                <Transform translation='-5.6 0 0'>
-                    <Inline DEF='Dinner' url='"dinner-room.x3d"' />
-                </Transform>
-                 <!-- Sterilization Room -->
-                <Transform translation='2.35 -1.2 0'>
-                    <Inline DEF='SterilRoom' url='"sterilization-room.x3d"' />
-                </Transform>
-                <!-- Door-->
-                <Transform rotation='1 0 0 1.57' translation='6.15 -3.1 1'>
-                    <Inline DEF='TopDoor' url='"exterior-door.x3d"' />
-                </Transform>
-            </Transform>
             
-            <Transform translation='-1.1 -4.1 0'>
-                <!-- Floor -->
-                <Shape DEF="Floor2">
-                    <Box size="12.3 29.8 0.1" solid="true"/>
-                    <Appearance>   
-                        <Material USE='FloorMaterial'/>
-                    </Appearance>
-                </Shape>
-                <!-- Roof -->
-                <Transform DEF='TRANSFORM_Roof2'>
-                    <Transform translation='0 1.5 4.2' >
-                        <Transform rotation='0 1 0 -0.52' translation='-3.25 0 0' >
-                            <Shape DEF="Roof2">
-                                <Box size="7.5 32.8 0.05" solid="true"/>
-                                <Appearance>   
-                                    <Material USE='RoofMaterial'/>
-                                </Appearance>
-                            </Shape>
-                        </Transform>
-                        <Transform rotation='0 1 0 0.52' translation='3.25 0 0'>
-                            <Shape USE="Roof2"/>
-                        </Transform>
-                        <Transform translation='0 0 1.87'>
-                            <Shape>
-                                <Cylinder radius="0.05" height="32.8" solid="true"/>
-                                <Appearance>   
-                                    <Material USE='RoofMaterial'/>
-                                </Appearance>
-                            </Shape>
-                        </Transform>
-                        <TouchSensor DEF='TOUCH_Roof2'/>
-                    </Transform>
-                </Transform>
-                <!-- Walls -->
-                <Transform rotation='0 1 0 1.57' translation='6.05 -4 1.25'>
-                   <Shape DEF="RightDoorLeft">
-                       <Box size="2.5 1 0.2" solid="true"/>
-                       <Appearance>   
-                           <Material USE='WallMaterial'/>
-                       </Appearance>
-                   </Shape>
-                </Transform>
-                <Transform rotation='0 1 0 1.57' translation='6.05 -4.9 2.25'>
-                   <Shape DEF="RightDoorTop">
-                       <Box size="0.5 1 0.2" solid="true"/>
-                       <Appearance>   
-                           <Material USE='WallMaterial'/>
-                       </Appearance>
-                   </Shape>
-                </Transform>
-                <Transform rotation='0 1 0 1.57' translation='6.05 -6.4 1.25'>
-                   <Shape DEF="RightDoorRight">
-                       <Box size="2.5 2 0.2" solid="true"/>
-                       <Appearance>   
-                           <Material USE='WallMaterial'/>
-                       </Appearance>
-                   </Shape>
-                </Transform>
-                <Transform translation='0 -14.9 2.5'>
-                    <Shape>
-                        <Extrusion creaseAngle='0.0' crossSection='-6.15 0, 0 3.5, 6.15 0, -6.15 0' scale='1 1' solid='true' spine='0 0 0, 0 0.2 0'/>
-                        <Appearance>
-                            <Material diffuseColor='1 1 1'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <Transform rotation='1 0 0 1.57' translation='0 -14.8 2.25'>
-                    <Shape DEF="FrontDoorTop">
-                        <Box size="2 0.5 0.2" solid="true"/>
-                        <Appearance>   
-                            <Material USE='WallMaterial'/>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-                <!-- Doors -->
-                 <Transform rotation='1 0 0 1.57' translation='0 -14.8 1'>   
-                     <Inline DEF='FrontDoor' url='"front-door.x3d"' />
-                </Transform>
-                <Transform translation='6.05 -4.9 1'>
-                 <Transform rotation='1 0 0 1.57'>
-                     <Transform rotation='0 1 0 1.57'>
-                           <Shape USE="TopDoor"/>
-                      </Transform>
-                  </Transform>
-                 </Transform>
-             </Transform>
-             
-            <!-- Get health clock -->
-            <TimeSensor DEF='CLOCK_Beds' cycleInterval='10' enabled='true' loop='true'/>
-             
-            <!-- Room1 -->
-            <Transform DEF='TRANSFORM_Room1' translation='-4.55 9.05 0'>
-                <Inline DEF='Room1' url='"room.x3d"' />
-                
-                <BooleanFilter DEF='BOOL_ExitRoom1'/>
-                 
-                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed1'/>
-                <Script DEF='Bed1' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='1'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed2'/>
-                <Script DEF='Bed2' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='2'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed3'/>
-                <Script DEF='Bed3' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='3'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom1'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room1' exportedDEF='BPM1Out' AS='BPM1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='TEMP1Out' AS='TEMP1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BLC1Out' AS='BLC1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BPM2Out' AS='BPM2'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='TEMP2Out' AS='TEMP2'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BLC2Out' AS='BLC2'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BPM3Out' AS='BPM3'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='TEMP3Out' AS='TEMP3'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BLC3Out' AS='BLC3'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert2'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert3'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed1'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed2'/>
-                <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed3'/>
-                <!-- Routes --> 
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed1' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed1' fromField='bpm' toNode='BPM1' toField='string'/>
-                <ROUTE fromNode='Bed1' fromField='temp' toNode='TEMP1' toField='string'/> 
-                <ROUTE fromNode='Bed1' fromField='blc' toNode='BLC1' toField='string'/> 
-                <ROUTE fromNode='Bed1' fromField='alert' toNode='BOOL_Alert1' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed2' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed2' fromField='bpm' toNode='BPM2' toField='string'/>
-                <ROUTE fromNode='Bed2' fromField='temp' toNode='TEMP2' toField='string'/> 
-                <ROUTE fromNode='Bed2' fromField='blc' toNode='BLC2' toField='string'/> 
-                <ROUTE fromNode='Bed2' fromField='alert' toNode='BOOL_Alert2' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed3' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed3' fromField='bpm' toNode='BPM3' toField='string'/>
-                <ROUTE fromNode='Bed3' fromField='temp' toNode='TEMP3' toField='string'/> 
-                <ROUTE fromNode='Bed3' fromField='blc' toNode='BLC3' toField='string'/>
-                <ROUTE fromNode='Bed3' fromField='alert' toNode='BOOL_Alert3' toField='set_boolean'/>
-
-                <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- Room2 -->
-            <Transform translation='-4.55 5.35 0'>
-                <Inline DEF='Room2' url='"room.x3d"' />
-
-                <BooleanFilter DEF='BOOL_ExitRoom2'/>
-                 
-                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed4'/>
-                <Script DEF='Bed4' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='4'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed5'/>
-                <Script DEF='Bed5' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='5'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed6'/>
-                <Script DEF='Bed6' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='6'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom2'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room2' exportedDEF='BPM1Out' AS='BPM4'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='TEMP1Out' AS='TEMP4'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BLC1Out' AS='BLC4'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BPM2Out' AS='BPM5'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='TEMP2Out' AS='TEMP5'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BLC2Out' AS='BLC5'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BPM3Out' AS='BPM6'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='TEMP3Out' AS='TEMP6'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BLC3Out' AS='BLC6'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room2' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert4'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert5'/>
-                <IMPORT inlineDEF='Room2' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert6'/>
-                <!-- Routes -->     
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed4' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed4' fromField='bpm' toNode='BPM4' toField='string'/>
-                <ROUTE fromNode='Bed4' fromField='temp' toNode='TEMP4' toField='string'/> 
-                <ROUTE fromNode='Bed4' fromField='blc' toNode='BLC4' toField='string'/>
-                <ROUTE fromNode='Bed4' fromField='alert' toNode='BOOL_Alert4' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed5' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed5' fromField='bpm' toNode='BPM5' toField='string'/>
-                <ROUTE fromNode='Bed5' fromField='temp' toNode='TEMP5' toField='string'/> 
-                <ROUTE fromNode='Bed5' fromField='blc' toNode='BLC5' toField='string'/>
-                <ROUTE fromNode='Bed5' fromField='alert' toNode='BOOL_Alert5' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed6' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed6' fromField='bpm' toNode='BPM6' toField='string'/>
-                <ROUTE fromNode='Bed6' fromField='temp' toNode='TEMP6' toField='string'/> 
-                <ROUTE fromNode='Bed6' fromField='blc' toNode='BLC6' toField='string'/>
-                <ROUTE fromNode='Bed6' fromField='alert' toNode='BOOL_Alert6' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- Room3 -->
-            <Transform translation='-4.55 1.65 0'>
-                <Inline DEF='Room3' url='"room.x3d"' />
-   
-                <BooleanFilter DEF='BOOL_ExitRoom3'/>
-                 
-                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed7'/>
-                <Script DEF='Bed7' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='7'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed8'/>
-                <Script DEF='Bed8' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='8'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed9'/>
-                <Script DEF='Bed9' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='9'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom3'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room3' exportedDEF='BPM1Out' AS='BPM7'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='TEMP1Out' AS='TEMP7'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BLC1Out' AS='BLC7'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BPM2Out' AS='BPM8'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='TEMP2Out' AS='TEMP8'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BLC2Out' AS='BLC8'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BPM3Out' AS='BPM9'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='TEMP3Out' AS='TEMP9'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BLC3Out' AS='BLC9'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room3' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert7'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert8'/>
-                <IMPORT inlineDEF='Room3' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert9'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed7' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed7' fromField='bpm' toNode='BPM7' toField='string'/>
-                <ROUTE fromNode='Bed7' fromField='temp' toNode='TEMP7' toField='string'/> 
-                <ROUTE fromNode='Bed7' fromField='blc' toNode='BLC7' toField='string'/> 
-                <ROUTE fromNode='Bed7' fromField='alert' toNode='BOOL_Alert7' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed8' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed8' fromField='bpm' toNode='BPM8' toField='string'/>
-                <ROUTE fromNode='Bed8' fromField='temp' toNode='TEMP8' toField='string'/> 
-                <ROUTE fromNode='Bed8' fromField='blc' toNode='BLC8' toField='string'/> 
-                <ROUTE fromNode='Bed8' fromField='alert' toNode='BOOL_Alert8' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed9' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed9' fromField='bpm' toNode='BPM9' toField='string'/>
-                <ROUTE fromNode='Bed9' fromField='temp' toNode='TEMP9' toField='string'/> 
-                <ROUTE fromNode='Bed9' fromField='blc' toNode='BLC9' toField='string'/>
-                <ROUTE fromNode='Bed9' fromField='alert' toNode='BOOL_Alert9' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- Room4 -->
-            <Transform translation='-4.55 -2.05 0'>
-                <Inline DEF='Room4' url='"room.x3d"' />
-
-                <BooleanFilter DEF='BOOL_ExitRoom4'/>
-                 
-                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed10'/>
-                <Script DEF='Bed10' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='10'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed11'/>
-                <Script DEF='Bed11' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='11'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed12'/>
-                <Script DEF='Bed12' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='12'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom4'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room4' exportedDEF='BPM1Out' AS='BPM10'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='TEMP1Out' AS='TEMP10'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BLC1Out' AS='BLC10'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BPM2Out' AS='BPM11'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='TEMP2Out' AS='TEMP11'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BLC2Out' AS='BLC11'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BPM3Out' AS='BPM12'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='TEMP3Out' AS='TEMP12'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BLC3Out' AS='BLC12'/>
-                 <!-- Lights -->
-                <IMPORT inlineDEF='Room4' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert10'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert11'/>
-                <IMPORT inlineDEF='Room4' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert12'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed10' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed10' fromField='bpm' toNode='BPM10' toField='string'/>
-                <ROUTE fromNode='Bed10' fromField='temp' toNode='TEMP10' toField='string'/> 
-                <ROUTE fromNode='Bed10' fromField='blc' toNode='BLC10' toField='string'/> 
-                <ROUTE fromNode='Bed10' fromField='alert' toNode='BOOL_Alert10' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed11' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed11' fromField='bpm' toNode='BPM11' toField='string'/>
-                <ROUTE fromNode='Bed11' fromField='temp' toNode='TEMP11' toField='string'/> 
-                <ROUTE fromNode='Bed11' fromField='blc' toNode='BLC11' toField='string'/> 
-                <ROUTE fromNode='Bed11' fromField='alert' toNode='BOOL_Alert11' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed12' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed12' fromField='bpm' toNode='BPM12' toField='string'/>
-                <ROUTE fromNode='Bed12' fromField='temp' toNode='TEMP12' toField='string'/> 
-                <ROUTE fromNode='Bed12' fromField='blc' toNode='BLC12' toField='string'/>
-                <ROUTE fromNode='Bed12' fromField='alert' toNode='BOOL_Alert12' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- Room5 -->
-            <Transform translation='-4.55 -5.75 0'>
-                <Inline DEF='Room5' url='"room.x3d"' />
-
-                <BooleanFilter DEF='BOOL_ExitRoom5'/>
-                 
-                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed13'/>
-                <Script DEF='Bed13' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='13'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed14'/>
-                <Script DEF='Bed14' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='14'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed15'/>
-                <Script DEF='Bed15' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='15'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom5'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room5' exportedDEF='BPM1Out' AS='BPM13'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='TEMP1Out' AS='TEMP13'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BLC1Out' AS='BLC13'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BPM2Out' AS='BPM14'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='TEMP2Out' AS='TEMP14'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BLC2Out' AS='BLC14'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BPM3Out' AS='BPM15'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='TEMP3Out' AS='TEMP15'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BLC3Out' AS='BLC15'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room5' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert13'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert14'/>
-                <IMPORT inlineDEF='Room5' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert15'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed13' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed13' fromField='bpm' toNode='BPM13' toField='string'/>
-                <ROUTE fromNode='Bed13' fromField='temp' toNode='TEMP13' toField='string'/> 
-                <ROUTE fromNode='Bed13' fromField='blc' toNode='BLC13' toField='string'/> 
-                <ROUTE fromNode='Bed13' fromField='alert' toNode='BOOL_Alert13' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed14' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed14' fromField='bpm' toNode='BPM14' toField='string'/>
-                <ROUTE fromNode='Bed14' fromField='temp' toNode='TEMP14' toField='string'/> 
-                <ROUTE fromNode='Bed14' fromField='blc' toNode='BLC14' toField='string'/> 
-                <ROUTE fromNode='Bed14' fromField='alert' toNode='BOOL_Alert14' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed15' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed15' fromField='bpm' toNode='BPM15' toField='string'/>
-                <ROUTE fromNode='Bed15' fromField='temp' toNode='TEMP15' toField='string'/> 
-                <ROUTE fromNode='Bed15' fromField='blc' toNode='BLC15' toField='string'/>
-                <ROUTE fromNode='Bed15' fromField='alert' toNode='BOOL_Alert15' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- Room6 -->
-            <Transform translation='-4.55 -9.45 0'>
-                <Inline DEF='Room6' url='"room.x3d"' />
-
-                <BooleanFilter DEF='BOOL_ExitRoom6'/>
-                 
-                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed16'/>
-                <Script DEF='Bed16' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='16'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed17'/>
-                <Script DEF='Bed17' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='17'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed18'/>
-                <Script DEF='Bed18' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='18'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom6'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room6' exportedDEF='BPM1Out' AS='BPM16'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='TEMP1Out' AS='TEMP16'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BLC1Out' AS='BLC16'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BPM2Out' AS='BPM17'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='TEMP2Out' AS='TEMP17'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BLC2Out' AS='BLC17'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BPM3Out' AS='BPM18'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='TEMP3Out' AS='TEMP18'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BLC3Out' AS='BLC18'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room6' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert16'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert17'/>
-                <IMPORT inlineDEF='Room6' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert18'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed16' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed16' fromField='bpm' toNode='BPM16' toField='string'/>
-                <ROUTE fromNode='Bed16' fromField='temp' toNode='TEMP16' toField='string'/> 
-                <ROUTE fromNode='Bed16' fromField='blc' toNode='BLC16' toField='string'/> 
-                <ROUTE fromNode='Bed16' fromField='alert' toNode='BOOL_Alert16' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed17' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed17' fromField='bpm' toNode='BPM17' toField='string'/>
-                <ROUTE fromNode='Bed17' fromField='temp' toNode='TEMP17' toField='string'/> 
-                <ROUTE fromNode='Bed17' fromField='blc' toNode='BLC17' toField='string'/> 
-                <ROUTE fromNode='Bed17' fromField='alert' toNode='BOOL_Alert17' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed18' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed18' fromField='bpm' toNode='BPM18' toField='string'/>
-                <ROUTE fromNode='Bed18' fromField='temp' toNode='TEMP18' toField='string'/> 
-                <ROUTE fromNode='Bed18' fromField='blc' toNode='BLC18' toField='string'/>
-                <ROUTE fromNode='Bed18' fromField='alert' toNode='BOOL_Alert18' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- Room7 -->
-            <Transform translation='-4.55 -13.15 0'>
-                <Inline DEF='Room7' url='"room.x3d"' />
-
-                <BooleanFilter DEF='BOOL_ExitRoom7'/>
-                 
-                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed19'/>
-                <Script DEF='Bed19' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='19'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed20'/>
-                <Script DEF='Bed20' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='20'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed21'/>
-                <Script DEF='Bed21' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='21'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom7'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room7' exportedDEF='BPM1Out' AS='BPM19'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='TEMP1Out' AS='TEMP19'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BLC1Out' AS='BLC19'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BPM2Out' AS='BPM20'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='TEMP2Out' AS='TEMP20'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BLC2Out' AS='BLC20'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BPM3Out' AS='BPM21'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='TEMP3Out' AS='TEMP21'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BLC3Out' AS='BLC21'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room7' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert19'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert20'/>
-                <IMPORT inlineDEF='Room7' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert21'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed19' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed19' fromField='bpm' toNode='BPM19' toField='string'/>
-                <ROUTE fromNode='Bed19' fromField='temp' toNode='TEMP19' toField='string'/> 
-                <ROUTE fromNode='Bed19' fromField='blc' toNode='BLC19' toField='string'/> 
-                <ROUTE fromNode='Bed19' fromField='alert' toNode='BOOL_Alert19' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed20' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed20' fromField='bpm' toNode='BPM20' toField='string'/>
-                <ROUTE fromNode='Bed20' fromField='temp' toNode='TEMP20' toField='string'/> 
-                <ROUTE fromNode='Bed20' fromField='blc' toNode='BLC20' toField='string'/> 
-                <ROUTE fromNode='Bed20' fromField='alert' toNode='BOOL_Alert20' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed21' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed21' fromField='bpm' toNode='BPM21' toField='string'/>
-                <ROUTE fromNode='Bed21' fromField='temp' toNode='TEMP21' toField='string'/> 
-                <ROUTE fromNode='Bed21' fromField='blc' toNode='BLC21' toField='string'/>
-                <ROUTE fromNode='Bed21' fromField='alert' toNode='BOOL_Alert21' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <Transform translation='-4.55 -16.85 0'>
-                 <Inline DEF='Physiotherapy' url='"physiotherapy.x3d"' />
-            </Transform>
-            <!-- Room8 -->
-            <Transform rotation='0 0 1 3.14' translation='2.35 9.05 0'>
-                <Inline DEF='Room8' url='"room.x3d"' />
-    
-                <BooleanFilter DEF='BOOL_ExitRoom8'/>
-                 
-                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed22'/>
-                <Script DEF='Bed22' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='22'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed23'/>
-                <Script DEF='Bed23' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='23'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed24'/>
-                <Script DEF='Bed24' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='24'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom8'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room8' exportedDEF='BPM1Out' AS='BPM22'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='TEMP1Out' AS='TEMP22'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BLC1Out' AS='BLC22'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BPM2Out' AS='BPM23'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='TEMP2Out' AS='TEMP23'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BLC2Out' AS='BLC23'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BPM3Out' AS='BPM24'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='TEMP3Out' AS='TEMP24'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BLC3Out' AS='BLC24'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room8' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert22'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert23'/>
-                <IMPORT inlineDEF='Room8' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert24'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed22' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed22' fromField='bpm' toNode='BPM22' toField='string'/>
-                <ROUTE fromNode='Bed22' fromField='temp' toNode='TEMP22' toField='string'/> 
-                <ROUTE fromNode='Bed22' fromField='blc' toNode='BLC22' toField='string'/> 
-                <ROUTE fromNode='Bed22' fromField='alert' toNode='BOOL_Alert22' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed23' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed23' fromField='bpm' toNode='BPM23' toField='string'/>
-                <ROUTE fromNode='Bed23' fromField='temp' toNode='TEMP23' toField='string'/> 
-                <ROUTE fromNode='Bed23' fromField='blc' toNode='BLC23' toField='string'/> 
-                <ROUTE fromNode='Bed23' fromField='alert' toNode='BOOL_Alert23' toField='set_boolean'/>
-                                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed24' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed24' fromField='bpm' toNode='BPM24' toField='string'/>
-                <ROUTE fromNode='Bed24' fromField='temp' toNode='TEMP24' toField='string'/> 
-                <ROUTE fromNode='Bed24' fromField='blc' toNode='BLC24' toField='string'/>
-                <ROUTE fromNode='Bed24' fromField='alert' toNode='BOOL_Alert24' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- WCs -->
-            <Transform translation='2.35 5.35 0'>
-                <Inline DEF='WC1' url='"wc.x3d"' />
-            </Transform>
-            <Transform translation='2.35 1.65 0'>
-                <Inline DEF='WC2' url='"wc.x3d"' />
-            </Transform>
-            <!-- Room9 -->
-            <Transform rotation='0 0 1 3.14' translation='2.35 -2.05 0'>
-                <Inline DEF='Room9' url='"room.x3d"' />
-                
-                <BooleanFilter DEF='BOOL_ExitRoom9'/>
-                 
-                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed25'/>
-                <Script DEF='Bed25' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='25'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed26'/>
-                <Script DEF='Bed26' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='26'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed27'/>
-                <Script DEF='Bed27' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='27'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom9'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room9' exportedDEF='BPM1Out' AS='BPM25'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='TEMP1Out' AS='TEMP25'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BLC1Out' AS='BLC25'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BPM2Out' AS='BPM26'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='TEMP2Out' AS='TEMP26'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BLC2Out' AS='BLC26'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BPM3Out' AS='BPM27'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='TEMP3Out' AS='TEMP27'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BLC3Out' AS='BLC27'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room9' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert25'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert26'/>
-                <IMPORT inlineDEF='Room9' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert27'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed25' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed25' fromField='bpm' toNode='BPM25' toField='string'/>
-                <ROUTE fromNode='Bed25' fromField='temp' toNode='TEMP25' toField='string'/> 
-                <ROUTE fromNode='Bed25' fromField='blc' toNode='BLC25' toField='string'/>
-                <ROUTE fromNode='Bed25' fromField='alert' toNode='BOOL_Alert25' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed26' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed26' fromField='bpm' toNode='BPM26' toField='string'/>
-                <ROUTE fromNode='Bed26' fromField='temp' toNode='TEMP26' toField='string'/> 
-                <ROUTE fromNode='Bed26' fromField='blc' toNode='BLC26' toField='string'/> 
-                <ROUTE fromNode='Bed26' fromField='alert' toNode='BOOL_Alert26' toField='set_boolean'/>
-                
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed27' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed27' fromField='bpm' toNode='BPM27' toField='string'/>
-                <ROUTE fromNode='Bed27' fromField='temp' toNode='TEMP27' toField='string'/> 
-                <ROUTE fromNode='Bed27' fromField='blc' toNode='BLC27' toField='string'/>
-                <ROUTE fromNode='Bed27' fromField='alert' toNode='BOOL_Alert27' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <Transform translation='2.35 -5.75 0'>
-                <Inline DEF='MedRoom' url='"medication-room.x3d"' />
-            </Transform>
-            <!-- Room10 -->
-            <Transform rotation='0 0 1 3.14' translation='2.35 -13.35 0'>
-                <Inline DEF='Room10' url='"room.x3d"' />
-               
-                <BooleanFilter DEF='BOOL_ExitRoom10'/>
-                 
-                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed28'/>
-                <Script DEF='Bed28' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='28'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>                 
-                
-                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed29'/>
-                <Script DEF='Bed29' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='29'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                
-                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed30'/>
-                <Script DEF='Bed30' url='"json-decode.js"'>
-                    <field name='bedNumber' type='SFString' accessType='initializeOnly' value='30'/>
-                    <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
-                    <field name='bpm' type='SFString' accessType='outputOnly'/>
-                    <field name='temp' type='SFString' accessType='outputOnly'/>
-                    <field name='blc' type='SFString' accessType='outputOnly'/>
-                    <field name='alert' type='SFBool' accessType='outputOnly'/>
-                </Script>
-                <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom10'/>
-                <!-- Billboard -->        
-                <IMPORT inlineDEF='Room10' exportedDEF='BPM1Out' AS='BPM28'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='TEMP1Out' AS='TEMP28'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BLC1Out' AS='BLC28'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BPM2Out' AS='BPM29'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='TEMP2Out' AS='TEMP29'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BLC2Out' AS='BLC29'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BPM3Out' AS='BPM30'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='TEMP3Out' AS='TEMP30'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BLC3Out' AS='BLC30'/>
-                <!-- Lights -->
-                <IMPORT inlineDEF='Room10' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert28'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert29'/>
-                <IMPORT inlineDEF='Room10' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert30'/>
-                <!-- Routes -->
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed28' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed28' fromField='bpm' toNode='BPM28' toField='string'/>
-                <ROUTE fromNode='Bed28' fromField='temp' toNode='TEMP28' toField='string'/> 
-                <ROUTE fromNode='Bed28' fromField='blc' toNode='BLC28' toField='string'/> 
-                <ROUTE fromNode='Bed28' fromField='alert' toNode='BOOL_Alert28' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed29' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed29' fromField='bpm' toNode='BPM29' toField='string'/>
-                <ROUTE fromNode='Bed29' fromField='temp' toNode='TEMP29' toField='string'/> 
-                <ROUTE fromNode='Bed29' fromField='blc' toNode='BLC29' toField='string'/> 
-                <ROUTE fromNode='Bed29' fromField='alert' toNode='BOOL_Alert29' toField='set_boolean'/>
-
-                <ROUTE fromNode='CLOCK_Beds' fromField='cycleTime' toNode='Bed30' toField='getHealthSync'/>
-                <ROUTE fromNode='Bed30' fromField='bpm' toNode='BPM30' toField='string'/>
-                <ROUTE fromNode='Bed30' fromField='temp' toNode='TEMP30' toField='string'/> 
-                <ROUTE fromNode='Bed30' fromField='blc' toNode='BLC30' toField='string'/>
-                <ROUTE fromNode='Bed30' fromField='alert' toNode='BOOL_Alert30' toField='set_boolean'/>
-                
-                <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
-                <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
-                <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
-            </Transform>
-            <!-- WCs -->
-            <Transform  translation='2.35 -17.05 0'>
-                <Inline DEF='WC3' url='"wc.x3d"' />
-                <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed1Out' AS='TOUCH_MainPanelBed1'/>
-            </Transform>
-        </Group>
+        <Inline DEF='Building' url='"building-base.x3d"' />
+        <IMPORT inlineDEF='Building' exportedDEF='GOD_ViewpointOut' AS='GOD_Viewpoint'/>
+        <IMPORT inlineDEF='Building' exportedDEF='CLOCK_GetHealth1Out' AS='CLOCK_GetHealth1'/>
+        <IMPORT inlineDEF='Building' exportedDEF='CLOCK_GetHealth2Out' AS='CLOCK_GetHealth2'/>
         
-        <Transform translation='5 0 38'>
+         <Transform translation='4 0 40'>
             <Inline DEF='MainPanel' url='"main-panel.x3d"' />
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed1NameOut' AS='Bed1Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed2NameOut' AS='Bed2Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed3NameOut' AS='Bed3Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed4NameOut' AS='Bed4Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed5NameOut' AS='Bed5Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed6NameOut' AS='Bed6Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed7NameOut' AS='Bed7Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed8NameOut' AS='Bed8Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed9NameOut' AS='Bed9Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed10NameOut' AS='Bed10Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed11NameOut' AS='Bed11Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed12NameOut' AS='Bed12Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed13NameOut' AS='Bed13Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed14NameOut' AS='Bed14Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed15NameOut' AS='Bed15Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed16NameOut' AS='Bed16Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed17NameOut' AS='Bed17Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed18NameOut' AS='Bed18Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed19NameOut' AS='Bed19Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed20NameOut' AS='Bed20Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed21NameOut' AS='Bed21Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed22NameOut' AS='Bed22Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed23NameOut' AS='Bed23Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed24NameOut' AS='Bed24Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed25NameOut' AS='Bed25Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed26NameOut' AS='Bed26Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed27NameOut' AS='Bed27Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed28NameOut' AS='Bed28Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed29NameOut' AS='Bed29Name'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='Bed30NameOut' AS='Bed30Name'/>
+        
             <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed1Out' AS='TOUCH_MainPanelBed1'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed2Out' AS='TOUCH_MainPanelBed2'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed3Out' AS='TOUCH_MainPanelBed3'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed4Out' AS='TOUCH_MainPanelBed4'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed5Out' AS='TOUCH_MainPanelBed5'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed6Out' AS='TOUCH_MainPanelBed6'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed7Out' AS='TOUCH_MainPanelBed7'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed8Out' AS='TOUCH_MainPanelBed8'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed9Out' AS='TOUCH_MainPanelBed9'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed10Out' AS='TOUCH_MainPanelBed10'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed11Out' AS='TOUCH_MainPanelBed11'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed12Out' AS='TOUCH_MainPanelBed12'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed13Out' AS='TOUCH_MainPanelBed13'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed14Out' AS='TOUCH_MainPanelBed14'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed15Out' AS='TOUCH_MainPanelBed15'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed16Out' AS='TOUCH_MainPanelBed16'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed17Out' AS='TOUCH_MainPanelBed17'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed18Out' AS='TOUCH_MainPanelBed18'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed19Out' AS='TOUCH_MainPanelBed19'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed20Out' AS='TOUCH_MainPanelBed20'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed21Out' AS='TOUCH_MainPanelBed21'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed22Out' AS='TOUCH_MainPanelBed22'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed23Out' AS='TOUCH_MainPanelBed23'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed24Out' AS='TOUCH_MainPanelBed24'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed25Out' AS='TOUCH_MainPanelBed25'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed26Out' AS='TOUCH_MainPanelBed26'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed27Out' AS='TOUCH_MainPanelBed27'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed28Out' AS='TOUCH_MainPanelBed28'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed29Out' AS='TOUCH_MainPanelBed29'/>
+            <IMPORT inlineDEF='MainPanel' exportedDEF='TOUCH_MainPanelBed30Out' AS='TOUCH_MainPanelBed30'/>
+            
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed1Out' AS='AlertScriptBed1'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed2Out' AS='AlertScriptBed2'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed3Out' AS='AlertScriptBed3'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed4Out' AS='AlertScriptBed4'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed5Out' AS='AlertScriptBed5'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed6Out' AS='AlertScriptBed6'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed7Out' AS='AlertScriptBed7'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed8Out' AS='AlertScriptBed8'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed9Out' AS='AlertScriptBed9'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed10Out' AS='AlertScriptBed10'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed11Out' AS='AlertScriptBed11'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed12Out' AS='AlertScriptBed12'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed13Out' AS='AlertScriptBed13'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed14Out' AS='AlertScriptBed14'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed15Out' AS='AlertScriptBed15'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed16Out' AS='AlertScriptBed16'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed17Out' AS='AlertScriptBed17'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed18Out' AS='AlertScriptBed18'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed19Out' AS='AlertScriptBed19'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed29Out' AS='AlertScriptBed20'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed21Out' AS='AlertScriptBed21'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed22Out' AS='AlertScriptBed22'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed23Out' AS='AlertScriptBed23'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed24Out' AS='AlertScriptBed24'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed25Out' AS='AlertScriptBed25'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed26Out' AS='AlertScriptBed26'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed26Out' AS='AlertScriptBed27'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed28Out' AS='AlertScriptBed28'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed29Out' AS='AlertScriptBed29'/>
+             <IMPORT inlineDEF='MainPanel' exportedDEF='AlertScriptBed30Out' AS='AlertScriptBed30'/>
         </Transform>
         
-        <!-- General Navigation -->
-        <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor1Out' AS='TOUCH_FrontDoor1'/>
-        <IMPORT inlineDEF='FrontDoor' exportedDEF='TOUCH_FrontDoor2Out' AS='TOUCH_FrontDoor2'/>
-        
-        <TimeSensor DEF='CLOCK_ViewpointInterpolators' cycleInterval='3' enabled='false' loop='false'/>
-        <PositionInterpolator DEF='VIEWPOINT_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 -1 0 0 -3 0 20 0'/>
-        <TimeSensor DEF='CLOCK_RoofInterpolators' cycleInterval='1' enabled='false' loop='false'/>
-        <ScalarInterpolator DEF='ROOF_ScalarInterpolator' key='0.0 1.0' keyValue='0 1'/>
-        <PositionInterpolator DEF='ROOF_PositionInterpolator' key='0.0 0.5 1.0' keyValue='0 0 20 0 0 40 0 0 50'/>
-        <BooleanFilter DEF='BOOL_InsideBuilding'/>
-        <TimeTrigger DEF='TRIGGER_InsideBuilding'/>
-         
-        <!-- Routes -->    
-        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_bind' toNode='START_Viewpoint'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_bind' toNode='START_Viewpoint'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_enabled' toNode='CLOCK_ViewpointInterpolators'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_startTime' toNode='CLOCK_ViewpointInterpolators'/>
-        <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor2' toField='set_enabled' toNode='CLOCK_ViewpointInterpolators'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_ViewpointInterpolators' toField='set_fraction' toNode='VIEWPOINT_PositionInterpolator'/>
-        <ROUTE fromField="value_changed" fromNode="VIEWPOINT_PositionInterpolator" toField="set_translation" toNode="TRANSFORM_START_Viewpoint"/>
-        <ROUTE fromField='isActive' fromNode='CLOCK_ViewpointInterpolators' toField='set_boolean' toNode='BOOL_InsideBuilding'/>
-        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_boolean" toNode="TRIGGER_InsideBuilding"/>
-        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_enabled" toNode="CLOCK_RoofInterpolators"/>
-        <ROUTE fromField='triggerTime' fromNode='TRIGGER_InsideBuilding' toField='set_startTime' toNode='CLOCK_RoofInterpolators'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_RoofInterpolators' toField='set_fraction' toNode='ROOF_ScalarInterpolator'/>
-        <ROUTE fromField='value_changed' fromNode='ROOF_ScalarInterpolator' toField='set_transparency' toNode='RoofMaterial'/>
-        <ROUTE fromField='fraction_changed' fromNode='CLOCK_RoofInterpolators' toField='set_fraction' toNode='ROOF_PositionInterpolator'/>
-        <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof1'/>
-        <ROUTE fromField='value_changed' fromNode='ROOF_PositionInterpolator' toField='set_translation' toNode='TRANSFORM_Roof2'/>
-        <ROUTE fromField="inputNegate" fromNode="BOOL_InsideBuilding" toField="set_bind" toNode="GOD_Viewpoint"/>
-        
+        <!-- Room1 -->
+        <Transform DEF='TRANSFORM_Room1' translation='-4.55 9.05 0'>
+            <Inline DEF='Room1' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom1'/>
+
+            <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed1'/>
+            <Script DEF='Bed1' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='1'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed2'/>
+            <Script DEF='Bed2' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='2'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed3'/>
+            <Script DEF='Bed3' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='3'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room1' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom1'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room1' exportedDEF='BPM1Out' AS='BPM1'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='TEMP1Out' AS='TEMP1'/>
+            <!--<IMPORT inlineDEF='Room1' exportedDEF='BLC1Out' AS='BLC1'/>-->
+            <IMPORT inlineDEF='Room1' exportedDEF='NAME1Out' AS='NAME1'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='AGE1Out' AS='AGE1'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BPM2Out' AS='BPM2'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='TEMP2Out' AS='TEMP2'/>
+            <!--<IMPORT inlineDEF='Room1' exportedDEF='BLC2Out' AS='BLC2'/>-->
+            <IMPORT inlineDEF='Room1' exportedDEF='NAME2Out' AS='NAME2'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='AGE2Out' AS='AGE2'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BPM3Out' AS='BPM3'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='TEMP3Out' AS='TEMP3'/>
+            <!--<IMPORT inlineDEF='Room1' exportedDEF='BLC3Out' AS='BLC3'/>-->
+            <IMPORT inlineDEF='Room1' exportedDEF='NAME3Out' AS='NAME3'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='AGE3Out' AS='AGE3'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert1'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert2'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert3'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed1'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed2'/>
+            <IMPORT inlineDEF='Room1' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed3'/>
+            <!-- Routes --> 
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed1' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed1' fromField='bpm' toNode='BPM1' toField='string'/>
+            <ROUTE fromNode='Bed1' fromField='temp' toNode='TEMP1' toField='string'/> 
+            <!--<ROUTE fromNode='Bed1' fromField='blc' toNode='BLC1' toField='string'/>-->
+            <ROUTE fromNode='Bed1' fromField='name' toNode='NAME1' toField='string'/>
+            <ROUTE fromNode='Bed1' fromField='age' toNode='AGE1' toField='string'/> 
+            <ROUTE fromNode='Bed1' fromField='alert' toNode='BOOL_Alert1' toField='set_boolean'/>
+            <ROUTE fromNode='Bed1' fromField='alert' toNode='AlertScriptBed1' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed2' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed2' fromField='bpm' toNode='BPM2' toField='string'/>
+            <ROUTE fromNode='Bed2' fromField='temp' toNode='TEMP2' toField='string'/> 
+            <!--<ROUTE fromNode='Bed2' fromField='blc' toNode='BLC2' toField='string'/>-->
+            <ROUTE fromNode='Bed2' fromField='name' toNode='NAME2' toField='string'/>
+            <ROUTE fromNode='Bed2' fromField='age' toNode='AGE2' toField='string'/> 
+            <ROUTE fromNode='Bed2' fromField='alert' toNode='BOOL_Alert2' toField='set_boolean'/>
+            <ROUTE fromNode='Bed2' fromField='alert' toNode='AlertScriptBed2' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed3' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed3' fromField='bpm' toNode='BPM3' toField='string'/>
+            <ROUTE fromNode='Bed3' fromField='temp' toNode='TEMP3' toField='string'/> 
+            <!--<ROUTE fromNode='Bed3' fromField='blc' toNode='BLC3' toField='string'/>-->
+            <ROUTE fromNode='Bed3' fromField='name' toNode='NAME3' toField='string'/>
+            <ROUTE fromNode='Bed3' fromField='age' toNode='AGE3' toField='string'/> 
+            <ROUTE fromNode='Bed3' fromField='alert' toNode='BOOL_Alert3' toField='set_boolean'/>
+            <ROUTE fromNode='Bed3' fromField='alert' toNode='AlertScriptBed3' toField='setHighlightMainPanelBed'/>
+
+            <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom1' fromField='inputNegate' toNode='BOOL_ExitRoom1' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom1' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+        <!-- Room2 -->
+        <Transform translation='-4.55 5.35 0'>
+            <Inline DEF='Room2' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom2'/>
+
+            <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed4'/>
+            <Script DEF='Bed4' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='4'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed5'/>
+            <Script DEF='Bed5' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='5'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed6'/>
+            <Script DEF='Bed6' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='6'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room2' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom2'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room2' exportedDEF='BPM1Out' AS='BPM4'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='TEMP1Out' AS='TEMP4'/>
+            <!--<IMPORT inlineDEF='Room2' exportedDEF='BLC1Out' AS='BLC4'/>-->
+            <IMPORT inlineDEF='Room2' exportedDEF='NAME1Out' AS='NAME4'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='AGE1Out' AS='AGE4'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BPM2Out' AS='BPM5'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='TEMP2Out' AS='TEMP5'/>
+            <!--<IMPORT inlineDEF='Room2' exportedDEF='BLC2Out' AS='BLC5'/>-->
+            <IMPORT inlineDEF='Room2' exportedDEF='NAME2Out' AS='NAME5'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='AGE2Out' AS='AGE5'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BPM3Out' AS='BPM6'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='TEMP3Out' AS='TEMP6'/>
+            <!--<IMPORT inlineDEF='Room2' exportedDEF='BLC3Out' AS='BLC6'/>-->
+            <IMPORT inlineDEF='Room2' exportedDEF='NAME3Out' AS='NAME6'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='AGE3Out' AS='AGE6'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room2' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert4'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert5'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert6'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed4'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed5'/>
+            <IMPORT inlineDEF='Room2' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed6'/>
+            <!-- Routes -->     
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed4' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed4' fromField='bpm' toNode='BPM4' toField='string'/>
+            <ROUTE fromNode='Bed4' fromField='temp' toNode='TEMP4' toField='string'/> 
+            <!--<ROUTE fromNode='Bed4' fromField='blc' toNode='BLC4' toField='string'/>-->
+            <ROUTE fromNode='Bed4' fromField='name' toNode='NAME4' toField='string'/>
+            <ROUTE fromNode='Bed4' fromField='age' toNode='AGE4' toField='string'/>
+            <ROUTE fromNode='Bed4' fromField='alert' toNode='BOOL_Alert4' toField='set_boolean'/>
+            <ROUTE fromNode='Bed4' fromField='alert' toNode='AlertScriptBed4' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed5' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed5' fromField='bpm' toNode='BPM5' toField='string'/>
+            <ROUTE fromNode='Bed5' fromField='temp' toNode='TEMP5' toField='string'/> 
+            <!--<ROUTE fromNode='Bed5' fromField='blc' toNode='BLC5' toField='string'/>-->
+            <ROUTE fromNode='Bed5' fromField='name' toNode='NAME5' toField='string'/>
+            <ROUTE fromNode='Bed5' fromField='age' toNode='AGE5' toField='string'/>
+            <ROUTE fromNode='Bed5' fromField='alert' toNode='BOOL_Alert5' toField='set_boolean'/>
+            <ROUTE fromNode='Bed5' fromField='alert' toNode='AlertScriptBed5' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed6' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed6' fromField='bpm' toNode='BPM6' toField='string'/>
+            <ROUTE fromNode='Bed6' fromField='temp' toNode='TEMP6' toField='string'/> 
+            <!--<ROUTE fromNode='Bed6' fromField='blc' toNode='BLC6' toField='string'/>-->
+            <ROUTE fromNode='Bed6' fromField='name' toNode='NAME6' toField='string'/>
+            <ROUTE fromNode='Bed6' fromField='age' toNode='AGE6' toField='string'/>
+            <ROUTE fromNode='Bed6' fromField='alert' toNode='BOOL_Alert6' toField='set_boolean'/>
+            <ROUTE fromNode='Bed6' fromField='alert' toNode='AlertScriptBed6' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom2' fromField='inputNegate' toNode='BOOL_ExitRoom2' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom2' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+        <!-- Room3 -->
+        <Transform translation='-4.55 1.65 0'>
+            <Inline DEF='Room3' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom3'/>
+
+            <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed7'/>
+            <Script DEF='Bed7' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='7'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed8'/>
+            <Script DEF='Bed8' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='8'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed9'/>
+            <Script DEF='Bed9' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='9'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room3' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom3'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room3' exportedDEF='BPM1Out' AS='BPM7'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='TEMP1Out' AS='TEMP7'/>
+            <!--<IMPORT inlineDEF='Room3' exportedDEF='BLC1Out' AS='BLC7'/>-->
+            <IMPORT inlineDEF='Room3' exportedDEF='NAME1Out' AS='NAME7'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='AGE1Out' AS='AGE7'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BPM2Out' AS='BPM8'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='TEMP2Out' AS='TEMP8'/>
+            <!--<IMPORT inlineDEF='Room3' exportedDEF='BLC2Out' AS='BLC8'/>-->
+            <IMPORT inlineDEF='Room3' exportedDEF='NAME2Out' AS='NAME8'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='AGE2Out' AS='AGE8'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BPM3Out' AS='BPM9'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='TEMP3Out' AS='TEMP9'/>
+            <!--<IMPORT inlineDEF='Room3' exportedDEF='BLC3Out' AS='BLC9'/>-->
+            <IMPORT inlineDEF='Room3' exportedDEF='NAME3Out' AS='NAME9'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='AGE3Out' AS='AGE9'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room3' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert7'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert8'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert9'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed7'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed8'/>
+            <IMPORT inlineDEF='Room3' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed9'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed7' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed7' fromField='bpm' toNode='BPM7' toField='string'/>
+            <ROUTE fromNode='Bed7' fromField='temp' toNode='TEMP7' toField='string'/> 
+            <!--<ROUTE fromNode='Bed7' fromField='blc' toNode='BLC7' toField='string'/>-->
+            <ROUTE fromNode='Bed7' fromField='name' toNode='NAME7' toField='string'/> 
+            <ROUTE fromNode='Bed7' fromField='age' toNode='AGE7' toField='string'/> 
+            <ROUTE fromNode='Bed7' fromField='alert' toNode='BOOL_Alert7' toField='set_boolean'/>
+            <ROUTE fromNode='Bed7' fromField='alert' toNode='AlertScriptBed7' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed8' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed8' fromField='bpm' toNode='BPM8' toField='string'/>
+            <ROUTE fromNode='Bed8' fromField='temp' toNode='TEMP8' toField='string'/> 
+            <!--<ROUTE fromNode='Bed8' fromField='blc' toNode='BLC8' toField='string'/>-->
+            <ROUTE fromNode='Bed8' fromField='name' toNode='NAME8' toField='string'/>
+            <ROUTE fromNode='Bed8' fromField='age' toNode='AGE8' toField='string'/>
+            <ROUTE fromNode='Bed8' fromField='alert' toNode='BOOL_Alert8' toField='set_boolean'/>
+            <ROUTE fromNode='Bed8' fromField='alert' toNode='AlertScriptBed8' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed9' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed9' fromField='bpm' toNode='BPM9' toField='string'/>
+            <ROUTE fromNode='Bed9' fromField='temp' toNode='TEMP9' toField='string'/> 
+            <!--<ROUTE fromNode='Bed9' fromField='blc' toNode='BLC9' toField='string'/>-->
+            <ROUTE fromNode='Bed9' fromField='name' toNode='NAME9' toField='string'/>
+            <ROUTE fromNode='Bed9' fromField='age' toNode='AGE9' toField='string'/>
+            <ROUTE fromNode='Bed9' fromField='alert' toNode='BOOL_Alert9' toField='set_boolean'/>
+            <ROUTE fromNode='Bed9' fromField='alert' toNode='AlertScriptBed9' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom3' fromField='inputNegate' toNode='BOOL_ExitRoom3' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom3' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+        <!-- Room4 -->
+        <Transform translation='-4.55 -2.05 0'>
+            <Inline DEF='Room4' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom4'/>
+
+            <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed10'/>
+            <Script DEF='Bed10' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='10'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed11'/>
+            <Script DEF='Bed11' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='11'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed12'/>
+            <Script DEF='Bed12' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='12'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room4' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom4'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room4' exportedDEF='BPM1Out' AS='BPM10'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='TEMP1Out' AS='TEMP10'/>
+            <!--<IMPORT inlineDEF='Room4' exportedDEF='BLC1Out' AS='BLC10'/>-->
+            <IMPORT inlineDEF='Room4' exportedDEF='NAME1Out' AS='NAME10'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='AGE1Out' AS='AGE10'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BPM2Out' AS='BPM11'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='TEMP2Out' AS='TEMP11'/>
+            <!--<IMPORT inlineDEF='Room4' exportedDEF='BLC2Out' AS='BLC11'/>-->
+            <IMPORT inlineDEF='Room4' exportedDEF='NAME2Out' AS='NAME11'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='AGE2Out' AS='AGE11'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BPM3Out' AS='BPM12'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='TEMP3Out' AS='TEMP12'/>
+            <!--<IMPORT inlineDEF='Room4' exportedDEF='BLC3Out' AS='BLC12'/>-->
+            <IMPORT inlineDEF='Room4' exportedDEF='NAME3Out' AS='NAME12'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='AGE3Out' AS='AGE12'/>
+             <!-- Lights -->
+            <IMPORT inlineDEF='Room4' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert10'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert11'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert12'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed10'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed11'/>
+            <IMPORT inlineDEF='Room4' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed12'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed10' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed10' fromField='bpm' toNode='BPM10' toField='string'/>
+            <ROUTE fromNode='Bed10' fromField='temp' toNode='TEMP10' toField='string'/> 
+            <!--<ROUTE fromNode='Bed10' fromField='blc' toNode='BLC10' toField='string'/>-->
+            <ROUTE fromNode='Bed10' fromField='name' toNode='NAME10' toField='string'/> 
+            <ROUTE fromNode='Bed10' fromField='age' toNode='AGE10' toField='string'/> 
+            <ROUTE fromNode='Bed10' fromField='alert' toNode='BOOL_Alert10' toField='set_boolean'/>
+            <ROUTE fromNode='Bed10' fromField='alert' toNode='AlertScriptBed10' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed11' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed11' fromField='bpm' toNode='BPM11' toField='string'/>
+            <ROUTE fromNode='Bed11' fromField='temp' toNode='TEMP11' toField='string'/> 
+            <!--<ROUTE fromNode='Bed11' fromField='blc' toNode='BLC11' toField='string'/>--> 
+            <ROUTE fromNode='Bed11' fromField='name' toNode='NAME11' toField='string'/>
+            <ROUTE fromNode='Bed11' fromField='age' toNode='AGE11' toField='string'/>
+            <ROUTE fromNode='Bed11' fromField='alert' toNode='BOOL_Alert11' toField='set_boolean'/>
+            <ROUTE fromNode='Bed11' fromField='alert' toNode='AlertScriptBed11' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed12' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed12' fromField='bpm' toNode='BPM12' toField='string'/>
+            <ROUTE fromNode='Bed12' fromField='temp' toNode='TEMP12' toField='string'/> 
+            <!--<ROUTE fromNode='Bed12' fromField='blc' toNode='BLC12' toField='string'/>-->
+            <ROUTE fromNode='Bed12' fromField='name' toNode='NAME12' toField='string'/>
+            <ROUTE fromNode='Bed12' fromField='age' toNode='AGE12' toField='string'/>
+            <ROUTE fromNode='Bed12' fromField='alert' toNode='BOOL_Alert12' toField='set_boolean'/>
+            <ROUTE fromNode='Bed12' fromField='alert' toNode='AlertScriptBed12' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom4' fromField='inputNegate' toNode='BOOL_ExitRoom4' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom4' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+        <!-- Room5 -->
+        <Transform translation='-4.55 -5.75 0'>
+            <Inline DEF='Room5' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom5'/>
+
+            <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed13'/>
+            <Script DEF='Bed13' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='13'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed14'/>
+            <Script DEF='Bed14' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='14'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed15'/>
+            <Script DEF='Bed15' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='15'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room5' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom5'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room5' exportedDEF='BPM1Out' AS='BPM13'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='TEMP1Out' AS='TEMP13'/>
+            <!--<IMPORT inlineDEF='Room5' exportedDEF='BLC1Out' AS='BLC13'/>-->
+            <IMPORT inlineDEF='Room5' exportedDEF='NAME1Out' AS='NAME13'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='AGE1Out' AS='AGE13'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BPM2Out' AS='BPM14'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='TEMP2Out' AS='TEMP14'/>
+            <!--<IMPORT inlineDEF='Room5' exportedDEF='BLC2Out' AS='BLC14'/>-->
+            <IMPORT inlineDEF='Room5' exportedDEF='NAME2Out' AS='NAME14'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='AGE2Out' AS='AGE14'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BPM3Out' AS='BPM15'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='TEMP3Out' AS='TEMP15'/>
+            <!--<IMPORT inlineDEF='Room5' exportedDEF='BLC3Out' AS='BLC15'/>-->
+            <IMPORT inlineDEF='Room5' exportedDEF='NAME3Out' AS='NAME15'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='AGE3Out' AS='AGE15'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room5' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert13'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert14'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert15'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed13'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed14'/>
+            <IMPORT inlineDEF='Room5' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed15'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed13' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed13' fromField='bpm' toNode='BPM13' toField='string'/>
+            <ROUTE fromNode='Bed13' fromField='temp' toNode='TEMP13' toField='string'/> 
+            <!--<ROUTE fromNode='Bed13' fromField='blc' toNode='BLC13' toField='string'/>-->
+            <ROUTE fromNode='Bed13' fromField='name' toNode='NAME13' toField='string'/> 
+            <ROUTE fromNode='Bed13' fromField='age' toNode='AGE13' toField='string'/> 
+            <ROUTE fromNode='Bed13' fromField='alert' toNode='BOOL_Alert13' toField='set_boolean'/>
+            <ROUTE fromNode='Bed13' fromField='alert' toNode='AlertScriptBed13' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed14' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed14' fromField='bpm' toNode='BPM14' toField='string'/>
+            <ROUTE fromNode='Bed14' fromField='temp' toNode='TEMP14' toField='string'/> 
+            <!--<ROUTE fromNode='Bed14' fromField='blc' toNode='BLC14' toField='string'/>-->
+            <ROUTE fromNode='Bed14' fromField='name' toNode='NAME14' toField='string'/>
+            <ROUTE fromNode='Bed14' fromField='age' toNode='AGE14' toField='string'/>
+            <ROUTE fromNode='Bed14' fromField='alert' toNode='BOOL_Alert14' toField='set_boolean'/>
+            <ROUTE fromNode='Bed14' fromField='alert' toNode='AlertScriptBed14' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth1' fromField='cycleTime' toNode='Bed15' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed15' fromField='bpm' toNode='BPM15' toField='string'/>
+            <ROUTE fromNode='Bed15' fromField='temp' toNode='TEMP15' toField='string'/> 
+            <!--<ROUTE fromNode='Bed15' fromField='blc' toNode='BLC15' toField='string'/>-->
+            <ROUTE fromNode='Bed15' fromField='name' toNode='NAME15' toField='string'/>
+            <ROUTE fromNode='Bed15' fromField='age' toNode='AGE15' toField='string'/>
+            <ROUTE fromNode='Bed15' fromField='alert' toNode='BOOL_Alert15' toField='set_boolean'/>
+            <ROUTE fromNode='Bed15' fromField='alert' toNode='AlertScriptBed15' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom5' fromField='inputNegate' toNode='BOOL_ExitRoom5' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom5' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+        <!-- Room6 -->
+        <Transform translation='-4.55 -9.45 0'>
+            <Inline DEF='Room6' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom6'/>
+
+            <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed16'/>
+            <Script DEF='Bed16' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='16'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed17'/>
+            <Script DEF='Bed17' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='17'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed18'/>
+            <Script DEF='Bed18' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='18'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room6' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom6'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room6' exportedDEF='BPM1Out' AS='BPM16'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='TEMP1Out' AS='TEMP16'/>
+            <!--<IMPORT inlineDEF='Room6' exportedDEF='BLC1Out' AS='BLC16'/>-->
+            <IMPORT inlineDEF='Room6' exportedDEF='NAME1Out' AS='NAME16'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='AGE1Out' AS='AGE16'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BPM2Out' AS='BPM17'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='TEMP2Out' AS='TEMP17'/>
+            <!--<IMPORT inlineDEF='Room6' exportedDEF='BLC2Out' AS='BLC17'/>-->
+            <IMPORT inlineDEF='Room6' exportedDEF='NAME2Out' AS='NAME17'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='AGE2Out' AS='AGE17'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BPM3Out' AS='BPM18'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='TEMP3Out' AS='TEMP18'/>
+            <!--<IMPORT inlineDEF='Room6' exportedDEF='BLC3Out' AS='BLC18'/>-->
+            <IMPORT inlineDEF='Room6' exportedDEF='NAME3Out' AS='NAME18'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='AGE3Out' AS='AGE18'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room6' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert16'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert17'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert18'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed16'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed17'/>
+            <IMPORT inlineDEF='Room6' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed18'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed16' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed16' fromField='bpm' toNode='BPM16' toField='string'/>
+            <ROUTE fromNode='Bed16' fromField='temp' toNode='TEMP16' toField='string'/> 
+            <!--<ROUTE fromNode='Bed16' fromField='blc' toNode='BLC16' toField='string'/>-->
+            <ROUTE fromNode='Bed16' fromField='name' toNode='NAME16' toField='string'/> 
+            <ROUTE fromNode='Bed16' fromField='age' toNode='AGE16' toField='string'/> 
+            <ROUTE fromNode='Bed16' fromField='alert' toNode='BOOL_Alert16' toField='set_boolean'/>
+            <ROUTE fromNode='Bed16' fromField='alert' toNode='AlertScriptBed16' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed17' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed17' fromField='bpm' toNode='BPM17' toField='string'/>
+            <ROUTE fromNode='Bed17' fromField='temp' toNode='TEMP17' toField='string'/> 
+            <!--<ROUTE fromNode='Bed17' fromField='blc' toNode='BLC17' toField='string'/>-->
+            <ROUTE fromNode='Bed17' fromField='name' toNode='NAME17' toField='string'/>
+            <ROUTE fromNode='Bed17' fromField='age' toNode='AGE17' toField='string'/>
+            <ROUTE fromNode='Bed17' fromField='alert' toNode='BOOL_Alert17' toField='set_boolean'/>
+            <ROUTE fromNode='Bed17' fromField='alert' toNode='AlertScriptBed17' toField='setHighlightMainPanelBed'/>
+                
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed18' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed18' fromField='bpm' toNode='BPM18' toField='string'/>
+            <ROUTE fromNode='Bed18' fromField='temp' toNode='TEMP18' toField='string'/> 
+            <!--<ROUTE fromNode='Bed18' fromField='blc' toNode='BLC18' toField='string'/>-->
+            <ROUTE fromNode='Bed18' fromField='name' toNode='NAME18' toField='string'/>
+            <ROUTE fromNode='Bed18' fromField='age' toNode='AGE18' toField='string'/>
+            <ROUTE fromNode='Bed18' fromField='alert' toNode='BOOL_Alert18' toField='set_boolean'/>
+            <ROUTE fromNode='Bed18' fromField='alert' toNode='AlertScriptBed18' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom6' fromField='inputNegate' toNode='BOOL_ExitRoom6' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom6' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>          
+        <!-- Room7 -->
+        <Transform translation='-4.55 -13.15 0'>
+            <Inline DEF='Room7' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom7'/>
+
+            <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed19'/>
+            <Script DEF='Bed19' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='19'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed20'/>
+            <Script DEF='Bed20' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='20'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed21'/>
+            <Script DEF='Bed21' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='21'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room7' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom7'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room7' exportedDEF='BPM1Out' AS='BPM19'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='TEMP1Out' AS='TEMP19'/>
+            <!--<IMPORT inlineDEF='Room7' exportedDEF='BLC1Out' AS='BLC19'/>-->
+            <IMPORT inlineDEF='Room7' exportedDEF='NAME1Out' AS='NAME19'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='AGE1Out' AS='AGE19'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BPM2Out' AS='BPM20'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='TEMP2Out' AS='TEMP20'/>
+            <!--<IMPORT inlineDEF='Room7' exportedDEF='BLC2Out' AS='BLC20'/>-->
+            <IMPORT inlineDEF='Room7' exportedDEF='NAME2Out' AS='NAME20'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='AGE2Out' AS='AGE20'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BPM3Out' AS='BPM21'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='TEMP3Out' AS='TEMP21'/>
+            <!--<IMPORT inlineDEF='Room7' exportedDEF='BLC3Out' AS='BLC21'/>-->
+            <IMPORT inlineDEF='Room7' exportedDEF='NAME3Out' AS='NAME21'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='AGE3Out' AS='AGE21'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room7' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert19'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert20'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert21'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed19'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed20'/>
+            <IMPORT inlineDEF='Room7' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed21'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed19' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed19' fromField='bpm' toNode='BPM19' toField='string'/>
+            <ROUTE fromNode='Bed19' fromField='temp' toNode='TEMP19' toField='string'/> 
+            <!--<ROUTE fromNode='Bed19' fromField='blc' toNode='BLC19' toField='string'/>-->
+            <ROUTE fromNode='Bed19' fromField='name' toNode='NAME19' toField='string'/> 
+            <ROUTE fromNode='Bed19' fromField='age' toNode='AGE19' toField='string'/> 
+            <ROUTE fromNode='Bed19' fromField='alert' toNode='BOOL_Alert19' toField='set_boolean'/>
+            <ROUTE fromNode='Bed19' fromField='alert' toNode='AlertScriptBed19' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed20' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed20' fromField='bpm' toNode='BPM20' toField='string'/>
+            <ROUTE fromNode='Bed20' fromField='temp' toNode='TEMP20' toField='string'/> 
+            <!--<ROUTE fromNode='Bed20' fromField='blc' toNode='BLC20' toField='string'/>-->
+            <ROUTE fromNode='Bed20' fromField='name' toNode='NAME20' toField='string'/> 
+            <ROUTE fromNode='Bed20' fromField='age' toNode='AGE20' toField='string'/> 
+            <ROUTE fromNode='Bed20' fromField='alert' toNode='BOOL_Alert20' toField='set_boolean'/>
+            <ROUTE fromNode='Bed20' fromField='alert' toNode='AlertScriptBed20' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed21' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed21' fromField='bpm' toNode='BPM21' toField='string'/>
+            <ROUTE fromNode='Bed21' fromField='temp' toNode='TEMP21' toField='string'/> 
+            <!--<ROUTE fromNode='Bed21' fromField='blc' toNode='BLC21' toField='string'/>-->
+            <ROUTE fromNode='Bed21' fromField='name' toNode='NAME21' toField='string'/>
+            <ROUTE fromNode='Bed21' fromField='age' toNode='AGE21' toField='string'/>
+            <ROUTE fromNode='Bed21' fromField='alert' toNode='BOOL_Alert21' toField='set_boolean'/>
+            <ROUTE fromNode='Bed21' fromField='alert' toNode='AlertScriptBed21' toField='setHighlightMainPanelBed'/>
+            
+            <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom7' fromField='inputNegate' toNode='BOOL_ExitRoom7' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom7' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+        <!-- Room8 -->
+        <Transform rotation='0 0 1 3.14' translation='2.35 9.05 0'>
+            <Inline DEF='Room8' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom8'/>
+
+            <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed22'/>
+            <Script DEF='Bed22' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='22'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed23'/>
+            <Script DEF='Bed23' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='23'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed24'/>
+            <Script DEF='Bed24' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='24'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room8' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom8'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room8' exportedDEF='BPM1Out' AS='BPM22'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='TEMP1Out' AS='TEMP22'/>
+            <!--<IMPORT inlineDEF='Room8' exportedDEF='BLC1Out' AS='BLC22'/>-->
+            <IMPORT inlineDEF='Room8' exportedDEF='NAME1Out' AS='NAME22'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='AGE1Out' AS='AGE22'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BPM2Out' AS='BPM23'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='TEMP2Out' AS='TEMP23'/>
+            <!--<IMPORT inlineDEF='Room8' exportedDEF='BLC2Out' AS='BLC23'/>-->
+            <IMPORT inlineDEF='Room8' exportedDEF='NAME2Out' AS='NAME23'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='AGE2Out' AS='AGE23'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BPM3Out' AS='BPM24'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='TEMP3Out' AS='TEMP24'/>
+            <!--<IMPORT inlineDEF='Room8' exportedDEF='BLC3Out' AS='BLC24'/>-->
+            <IMPORT inlineDEF='Room8' exportedDEF='NAME3Out' AS='NAME24'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='AGE3Out' AS='AGE24'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room8' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert22'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert23'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert24'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed22'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed23'/>
+            <IMPORT inlineDEF='Room8' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed24'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed22' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed22' fromField='bpm' toNode='BPM22' toField='string'/>
+            <ROUTE fromNode='Bed22' fromField='temp' toNode='TEMP22' toField='string'/> 
+            <!--<ROUTE fromNode='Bed22' fromField='blc' toNode='BLC22' toField='string'/>-->
+            <ROUTE fromNode='Bed22' fromField='name' toNode='NAME22' toField='string'/> 
+            <ROUTE fromNode='Bed22' fromField='age' toNode='AGE22' toField='string'/> 
+            <ROUTE fromNode='Bed22' fromField='alert' toNode='BOOL_Alert22' toField='set_boolean'/>
+
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed23' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed23' fromField='bpm' toNode='BPM23' toField='string'/>
+            <ROUTE fromNode='Bed23' fromField='temp' toNode='TEMP23' toField='string'/> 
+            <!--<ROUTE fromNode='Bed23' fromField='blc' toNode='BLC23' toField='string'/>-->
+            <ROUTE fromNode='Bed23' fromField='name' toNode='NAME23' toField='string'/>
+            <ROUTE fromNode='Bed23' fromField='age' toNode='AGE23' toField='string'/>
+            <ROUTE fromNode='Bed23' fromField='alert' toNode='BOOL_Alert23' toField='set_boolean'/>
+
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed24' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed24' fromField='bpm' toNode='BPM24' toField='string'/>
+            <ROUTE fromNode='Bed24' fromField='temp' toNode='TEMP24' toField='string'/> 
+            <!--<ROUTE fromNode='Bed24' fromField='blc' toNode='BLC24' toField='string'/>-->
+            <ROUTE fromNode='Bed24' fromField='name' toNode='NAME24' toField='string'/>
+            <ROUTE fromNode='Bed24' fromField='age' toNode='AGE24' toField='string'/>
+            <ROUTE fromNode='Bed24' fromField='alert' toNode='BOOL_Alert24' toField='set_boolean'/>
+
+            <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom8' fromField='inputNegate' toNode='BOOL_ExitRoom8' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom8' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform> 
+        <!-- Room9 -->
+        <Transform rotation='0 0 1 3.14' translation='2.35 -2.05 0'>
+            <Inline DEF='Room9' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom9'/>
+
+            <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed25'/>
+            <Script DEF='Bed25' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='25'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed26'/>
+            <Script DEF='Bed26' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='26'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed27'/>
+            <Script DEF='Bed27' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='27'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room9' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom9'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room9' exportedDEF='BPM1Out' AS='BPM25'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='TEMP1Out' AS='TEMP25'/>
+            <!--<IMPORT inlineDEF='Room9' exportedDEF='BLC1Out' AS='BLC25'/>-->
+            <IMPORT inlineDEF='Room9' exportedDEF='NAME1Out' AS='NAME25'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='AGE1Out' AS='AGE25'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BPM2Out' AS='BPM26'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='TEMP2Out' AS='TEMP26'/>
+            <!--<IMPORT inlineDEF='Room9' exportedDEF='BLC2Out' AS='BLC26'/>-->
+            <IMPORT inlineDEF='Room9' exportedDEF='NAME2Out' AS='NAME26'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='AGE2Out' AS='AGE26'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BPM3Out' AS='BPM27'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='TEMP3Out' AS='TEMP27'/>
+            <!--<IMPORT inlineDEF='Room9' exportedDEF='BLC3Out' AS='BLC27'/>-->
+            <IMPORT inlineDEF='Room9' exportedDEF='NAME3Out' AS='NAME27'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='AGE3Out' AS='AGE27'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room9' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert25'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert26'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert27'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed25'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed26'/>
+            <IMPORT inlineDEF='Room9' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed27'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed25' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed25' fromField='bpm' toNode='BPM25' toField='string'/>
+            <ROUTE fromNode='Bed25' fromField='temp' toNode='TEMP25' toField='string'/> 
+            <!--<ROUTE fromNode='Bed25' fromField='blc' toNode='BLC25' toField='string'/>-->
+            <ROUTE fromNode='Bed25' fromField='name' toNode='NAME25' toField='string'/>
+            <ROUTE fromNode='Bed25' fromField='age' toNode='AGE25' toField='string'/>
+            <ROUTE fromNode='Bed25' fromField='alert' toNode='BOOL_Alert25' toField='set_boolean'/>
+
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed26' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed26' fromField='bpm' toNode='BPM26' toField='string'/>
+            <ROUTE fromNode='Bed26' fromField='temp' toNode='TEMP26' toField='string'/> 
+            <!--<ROUTE fromNode='Bed26' fromField='blc' toNode='BLC26' toField='string'/>-->
+            <ROUTE fromNode='Bed26' fromField='name' toNode='NAME26' toField='string'/>
+            <ROUTE fromNode='Bed26' fromField='age' toNode='AGE26' toField='string'/>
+            <ROUTE fromNode='Bed26' fromField='alert' toNode='BOOL_Alert26' toField='set_boolean'/>
+
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed27' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed27' fromField='bpm' toNode='BPM27' toField='string'/>
+            <ROUTE fromNode='Bed27' fromField='temp' toNode='TEMP27' toField='string'/> 
+            <!--<ROUTE fromNode='Bed27' fromField='blc' toNode='BLC27' toField='string'/>-->
+            <ROUTE fromNode='Bed27' fromField='name' toNode='NAME27' toField='string'/>
+            <ROUTE fromNode='Bed27' fromField='age' toNode='AGE27' toField='string'/>
+            <ROUTE fromNode='Bed27' fromField='alert' toNode='BOOL_Alert27' toField='set_boolean'/>
+
+            <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom9' fromField='inputNegate' toNode='BOOL_ExitRoom9' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom9' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform> 
+        <!-- Room10 -->
+        <Transform rotation='0 0 1 3.14' translation='2.35 -13.35 0'>
+            <Inline DEF='Room10' url='"room.x3d"' />
+
+            <BooleanFilter DEF='BOOL_ExitRoom10'/>
+
+            <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed1Out' AS='TOUCH_Bed28'/>
+            <Script DEF='Bed28' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='28'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>                 
+
+            <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed2Out' AS='TOUCH_Bed29'/>
+            <Script DEF='Bed29' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='29'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+
+            <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_Bed3Out' AS='TOUCH_Bed30'/>
+            <Script DEF='Bed30' url='"json-decode.js"'>
+                <field name='bedNumber' type='SFString' accessType='initializeOnly' value='30'/>
+                <field name='getHealthSync' type='SFString' accessType='inputOnly'/>
+                <field name='bpm' type='SFString' accessType='outputOnly'/>
+                <field name='temp' type='SFString' accessType='outputOnly'/>
+                <!--<field name='blc' type='SFString' accessType='outputOnly'/>-->
+                <field name='name' type='SFString' accessType='outputOnly'/>
+                <field name='age' type='SFString' accessType='outputOnly'/>
+                <field name='alert' type='SFBool' accessType='outputOnly'/>
+            </Script>
+            <IMPORT inlineDEF='Room10' exportedDEF='TOUCH_ExitOut' AS='TOUCH_ExitRoom10'/>
+            <!-- Billboard -->        
+            <IMPORT inlineDEF='Room10' exportedDEF='BPM1Out' AS='BPM28'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='TEMP1Out' AS='TEMP28'/>
+            <!--<IMPORT inlineDEF='Room10' exportedDEF='BLC1Out' AS='BLC28'/>-->
+            <IMPORT inlineDEF='Room10' exportedDEF='NAME1Out' AS='NAME28'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='AGE1Out' AS='AGE28'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BPM2Out' AS='BPM29'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='TEMP2Out' AS='TEMP29'/>
+            <!--<IMPORT inlineDEF='Room10' exportedDEF='BLC2Out' AS='BLC29'/>-->
+            <IMPORT inlineDEF='Room10' exportedDEF='NAME2Out' AS='NAME29'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='AGE2Out' AS='AGE29'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BPM3Out' AS='BPM30'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='TEMP3Out' AS='TEMP30'/>
+            <!--<IMPORT inlineDEF='Room10' exportedDEF='BLC3Out' AS='BLC30'/>-->
+            <IMPORT inlineDEF='Room10' exportedDEF='NAME3Out' AS='NAME30'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='AGE3Out' AS='AGE30'/>
+            <!-- Lights -->
+            <IMPORT inlineDEF='Room10' exportedDEF='BOOL_Alert1Out' AS='BOOL_Alert28'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BOOL_Alert2Out' AS='BOOL_Alert29'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BOOL_Alert3Out' AS='BOOL_Alert30'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BOOL_SpotlightFilterBed1Out' AS='BOOL_SpotlightFilterBed28'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BOOL_SpotlightFilterBed2Out' AS='BOOL_SpotlightFilterBed29'/>
+            <IMPORT inlineDEF='Room10' exportedDEF='BOOL_SpotlightFilterBed3Out' AS='BOOL_SpotlightFilterBed30'/>
+            <!-- Routes -->
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed28' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed28' fromField='bpm' toNode='BPM28' toField='string'/>
+            <ROUTE fromNode='Bed28' fromField='temp' toNode='TEMP28' toField='string'/> 
+            <!--<ROUTE fromNode='Bed28' fromField='blc' toNode='BLC28' toField='string'/>-->
+            <ROUTE fromNode='Bed28' fromField='name' toNode='NAME28' toField='string'/> 
+            <ROUTE fromNode='Bed28' fromField='age' toNode='AGE28' toField='string'/> 
+            <ROUTE fromNode='Bed28' fromField='alert' toNode='BOOL_Alert28' toField='set_boolean'/>
+
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed29' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed29' fromField='bpm' toNode='BPM29' toField='string'/>
+            <ROUTE fromNode='Bed29' fromField='temp' toNode='TEMP29' toField='string'/> 
+            <!--<ROUTE fromNode='Bed29' fromField='blc' toNode='BLC29' toField='string'/>-->
+            <ROUTE fromNode='Bed29' fromField='name' toNode='NAME29' toField='string'/>
+            <ROUTE fromNode='Bed29' fromField='age' toNode='AGE29' toField='string'/>
+            <ROUTE fromNode='Bed29' fromField='alert' toNode='BOOL_Alert29' toField='set_boolean'/>
+
+            <ROUTE fromNode='CLOCK_GetHealth2' fromField='cycleTime' toNode='Bed30' toField='getHealthSync'/>
+            <ROUTE fromNode='Bed30' fromField='bpm' toNode='BPM30' toField='string'/>
+            <ROUTE fromNode='Bed30' fromField='temp' toNode='TEMP30' toField='string'/> 
+            <!--<ROUTE fromNode='Bed30' fromField='blc' toNode='BLC30' toField='string'/>-->
+            <ROUTE fromNode='Bed30' fromField='name' toNode='NAME30' toField='string'/>
+            <ROUTE fromNode='Bed30' fromField='age' toNode='AGE30' toField='string'/>
+            <ROUTE fromNode='Bed30' fromField='alert' toNode='BOOL_Alert30' toField='set_boolean'/>
+
+            <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
+            <ROUTE fromNode='BOOL_ExitRoom10' fromField='inputNegate' toNode='BOOL_ExitRoom10' toField='set_boolean'/>
+            <ROUTE fromNode='TOUCH_ExitRoom10' fromField='touchTime' toNode='GOD_Viewpoint' toField='set_bind'/>
+        </Transform>
+                 
         <!-- Main Panel -->
+        <ROUTE fromNode='Bed1' fromField='name' toNode='Bed1Name' toField='string'/> 
+        <ROUTE fromNode='Bed2' fromField='name' toNode='Bed2Name' toField='string'/> 
+        <ROUTE fromNode='Bed3' fromField='name' toNode='Bed3Name' toField='string'/> 
+        <ROUTE fromNode='Bed4' fromField='name' toNode='Bed4Name' toField='string'/> 
+        <ROUTE fromNode='Bed5' fromField='name' toNode='Bed5Name' toField='string'/> 
+        <ROUTE fromNode='Bed6' fromField='name' toNode='Bed6Name' toField='string'/> 
+        <ROUTE fromNode='Bed7' fromField='name' toNode='Bed7Name' toField='string'/> 
+        <ROUTE fromNode='Bed8' fromField='name' toNode='Bed8Name' toField='string'/> 
+        <ROUTE fromNode='Bed9' fromField='name' toNode='Bed9Name' toField='string'/> 
+        <ROUTE fromNode='Bed10' fromField='name' toNode='Bed10Name' toField='string'/> 
+        <ROUTE fromNode='Bed11' fromField='name' toNode='Bed11Name' toField='string'/> 
+        <ROUTE fromNode='Bed12' fromField='name' toNode='Bed12Name' toField='string'/> 
+        <ROUTE fromNode='Bed13' fromField='name' toNode='Bed13Name' toField='string'/> 
+        <ROUTE fromNode='Bed14' fromField='name' toNode='Bed14Name' toField='string'/> 
+        <ROUTE fromNode='Bed15' fromField='name' toNode='Bed15Name' toField='string'/> 
+        <ROUTE fromNode='Bed16' fromField='name' toNode='Bed16Name' toField='string'/> 
+        <ROUTE fromNode='Bed17' fromField='name' toNode='Bed17Name' toField='string'/> 
+        <ROUTE fromNode='Bed18' fromField='name' toNode='Bed18Name' toField='string'/> 
+        <ROUTE fromNode='Bed19' fromField='name' toNode='Bed19Name' toField='string'/> 
+        <ROUTE fromNode='Bed20' fromField='name' toNode='Bed20Name' toField='string'/> 
+        <ROUTE fromNode='Bed21' fromField='name' toNode='Bed21Name' toField='string'/> 
+        <ROUTE fromNode='Bed22' fromField='name' toNode='Bed22Name' toField='string'/> 
+        <ROUTE fromNode='Bed23' fromField='name' toNode='Bed23Name' toField='string'/> 
+        <ROUTE fromNode='Bed24' fromField='name' toNode='Bed24Name' toField='string'/> 
+        <ROUTE fromNode='Bed25' fromField='name' toNode='Bed25Name' toField='string'/> 
+        <ROUTE fromNode='Bed26' fromField='name' toNode='Bed26Name' toField='string'/> 
+        <ROUTE fromNode='Bed27' fromField='name' toNode='Bed27Name' toField='string'/> 
+        <ROUTE fromNode='Bed28' fromField='name' toNode='Bed28Name' toField='string'/> 
+        <ROUTE fromNode='Bed29' fromField='name' toNode='Bed29Name' toField='string'/> 
+        <ROUTE fromNode='Bed30' fromField='name' toNode='Bed30Name' toField='string'/> 
+         
         <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed1' toField='set_boolean' toNode='BOOL_SpotlightFilterBed1'/> 
-        <!--<ROUTE fromField='isOut' fromNode='TOUCH_MainPanelBed1' toField='set_boolean' toNode='BOOL_SpotlightFilterBed1'/> -->
-              
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed2' toField='set_boolean' toNode='BOOL_SpotlightFilterBed2'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed3' toField='set_boolean' toNode='BOOL_SpotlightFilterBed3'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed4' toField='set_boolean' toNode='BOOL_SpotlightFilterBed4'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed5' toField='set_boolean' toNode='BOOL_SpotlightFilterBed5'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed6' toField='set_boolean' toNode='BOOL_SpotlightFilterBed6'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed7' toField='set_boolean' toNode='BOOL_SpotlightFilterBed7'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed8' toField='set_boolean' toNode='BOOL_SpotlightFilterBed8'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed9' toField='set_boolean' toNode='BOOL_SpotlightFilterBed9'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed10' toField='set_boolean' toNode='BOOL_SpotlightFilterBed10'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed11' toField='set_boolean' toNode='BOOL_SpotlightFilterBed11'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed12' toField='set_boolean' toNode='BOOL_SpotlightFilterBed12'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed13' toField='set_boolean' toNode='BOOL_SpotlightFilterBed13'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed14' toField='set_boolean' toNode='BOOL_SpotlightFilterBed14'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed15' toField='set_boolean' toNode='BOOL_SpotlightFilterBed15'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed16' toField='set_boolean' toNode='BOOL_SpotlightFilterBed16'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed17' toField='set_boolean' toNode='BOOL_SpotlightFilterBed17'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed18' toField='set_boolean' toNode='BOOL_SpotlightFilterBed18'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed19' toField='set_boolean' toNode='BOOL_SpotlightFilterBed19'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed20' toField='set_boolean' toNode='BOOL_SpotlightFilterBed20'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed21' toField='set_boolean' toNode='BOOL_SpotlightFilterBed21'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed22' toField='set_boolean' toNode='BOOL_SpotlightFilterBed22'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed23' toField='set_boolean' toNode='BOOL_SpotlightFilterBed23'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed24' toField='set_boolean' toNode='BOOL_SpotlightFilterBed24'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed25' toField='set_boolean' toNode='BOOL_SpotlightFilterBed25'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed26' toField='set_boolean' toNode='BOOL_SpotlightFilterBed26'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed27' toField='set_boolean' toNode='BOOL_SpotlightFilterBed27'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed28' toField='set_boolean' toNode='BOOL_SpotlightFilterBed28'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed29' toField='set_boolean' toNode='BOOL_SpotlightFilterBed29'/> 
+        <ROUTE fromField='isOver' fromNode='TOUCH_MainPanelBed30' toField='set_boolean' toNode='BOOL_SpotlightFilterBed30'/> 
     </Scene>
 </X3D>

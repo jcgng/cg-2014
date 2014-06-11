@@ -149,6 +149,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed1" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed1'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -170,6 +178,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed2" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed2'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -188,6 +204,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed3" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -222,6 +246,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed4" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed4'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -243,6 +275,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed5" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed5'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -261,6 +301,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed6" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -295,6 +343,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed7" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed7'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -316,6 +372,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed8" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed8'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -334,6 +398,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed9" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -368,6 +440,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed10" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed10'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -389,6 +469,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed11" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed11'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -407,6 +495,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed12" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -441,6 +537,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed13" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed13'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -462,6 +566,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed14" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed14'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -480,6 +592,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed15" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -514,6 +634,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed16" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed16'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -535,6 +663,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed17" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed17'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -553,6 +689,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed18" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -587,6 +731,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed19" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed19'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -608,6 +760,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed20" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed20'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -626,6 +786,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed21" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -660,6 +828,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed22" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed22'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -681,6 +857,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed23" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed23'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -699,6 +883,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed24" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -733,6 +925,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed25" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed25'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -754,6 +954,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed26" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed26'/>
                </Transform>
                <Transform translation="-0.4 -0.75 0.0">
@@ -772,6 +980,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed27" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -806,6 +1022,14 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed28" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed28'/>
                </Transform>
                <Transform translation="-0.4 -0.5 0.0">
@@ -824,6 +1048,14 @@
                             </Text> 
                             <Appearance>
                                 <Material USE='BillboardTextMaterial'/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed29" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
                             </Appearance>
                         </Shape>
                     </Transform>
@@ -848,11 +1080,19 @@
                             </Appearance>
                         </Shape>
                     </Transform>
+                    <Transform translation="0.2 0.05 -0.0025">
+                        <Shape>
+                            <Box size="0.6 0.2 0.005" solid="true"/>
+                            <Appearance>   
+                                <Material DEF="HighlightMainPanelBed30" specularColor="1.0 0.078 0.58" diffuseColor="1.0 0.078 0.58" transparency="1.0"/>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
                     <TouchSensor DEF='TOUCH_MainPanelBed30'/>
                </Transform>
             </Transform>
         </Billboard>
-<!--
+        <!--
         <TimeSensor DEF='CLOCK_PressButton' cycleInterval='2' enabled='false' loop='false'/>
         <PositionInterpolator DEF='BUTTON_PositionInterpolator' key='0.0 1.0' keyValue='0 0 -0.07 0 0 0'/>
         
@@ -862,9 +1102,9 @@
         <TimeSensor DEF='CLOCK_HideBillboard' cycleInterval='2' enabled='false' loop='false'/>
         <ScalarInterpolator DEF='BILLBOARD_ScalarInterpolatorHide' key='0.0 1.0' keyValue='0 1'/>
         <ScalarInterpolator DEF='BILLBOARD_ScalarInterpolatorShow' key='0.0 1.0' keyValue='1 0'/>
--->
+        -->
         <!-- Routes -->
-<!--
+        <!--
         <ROUTE fromField='touchTime' fromNode='TOUCH_PressButton' toField='set_startTime' toNode='CLOCK_PressButton'/>
         <ROUTE fromField='touchTime' fromNode='TOUCH_PressButton' toField='set_enabled' toNode='CLOCK_PressButton'/>
         <ROUTE fromField='fraction_changed' fromNode='CLOCK_PressButton' toField='set_fraction' toNode='BUTTON_PositionInterpolator'/>
@@ -883,7 +1123,188 @@
         
         <ROUTE fromField='fraction_changed' fromNode='CLOCK_ShowBillboard' toField='set_fraction' toNode='BILLBOARD_ScalarInterpolatorShow'/>
         <ROUTE fromField='value_changed' fromNode='BILLBOARD_ScalarInterpolatorShow' toField='set_transparency' toNode='WhiteMetal'/>
--->
+        -->
+     
+        <Script DEF='AlertScriptBed1' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed1'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed2' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed2'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed3' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed3'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed4' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed4'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed5' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed5'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed6' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed6'/>
+            </field>
+        </Script> 
+        <Script DEF='AlertScriptBed7' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed7'/>
+            </field>
+        </Script>
+       <Script DEF='AlertScriptBed8' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed8'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed9' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed9'/>
+            </field>
+        </Script>
+       <Script DEF='AlertScriptBed10' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed10'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed11' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed11'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed12' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed12'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed13' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed13'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed14' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed14'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed15' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed15'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed16' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed16'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed17' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed17'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed18' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed18'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed19' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed19'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed20' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed20'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed21' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed21'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed22' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed22'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed23' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed23'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed24' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed24'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed25' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed25'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed26' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed26'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed27' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed27'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed28' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed28'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed29' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed29'/>
+            </field>
+        </Script>
+        <Script DEF='AlertScriptBed30' url='"js-utils.js"'>
+            <field name='setHighlightMainPanelBed' type='SFFloat' accessType='inputOnly'/>
+            <field name='HighlightMainPanelBed' type='SFNode' accessType='initializeOnly'>
+                <Material USE='HighlightMainPanelBed30'/>
+            </field>
+        </Script>
         <!-- Exports -->
         <EXPORT localDEF='TOUCH_MainPanelBed1' AS='TOUCH_MainPanelBed1Out'/>
         <EXPORT localDEF='TOUCH_MainPanelBed2' AS='TOUCH_MainPanelBed2Out'/>
@@ -915,5 +1336,67 @@
         <EXPORT localDEF='TOUCH_MainPanelBed28' AS='TOUCH_MainPanelBed28Out'/>
         <EXPORT localDEF='TOUCH_MainPanelBed29' AS='TOUCH_MainPanelBed29Out'/>
         <EXPORT localDEF='TOUCH_MainPanelBed30' AS='TOUCH_MainPanelBed30Out'/>
+        
+        <EXPORT localDEF='Bed1Name' AS='Bed1NameOut'/>
+        <EXPORT localDEF='Bed2Name' AS='Bed2NameOut'/>
+        <EXPORT localDEF='Bed3Name' AS='Bed3NameOut'/>
+        <EXPORT localDEF='Bed4Name' AS='Bed4NameOut'/>
+        <EXPORT localDEF='Bed5Name' AS='Bed5NameOut'/>
+        <EXPORT localDEF='Bed6Name' AS='Bed6NameOut'/>
+        <EXPORT localDEF='Bed7Name' AS='Bed7NameOut'/>
+        <EXPORT localDEF='Bed8Name' AS='Bed8NameOut'/>
+        <EXPORT localDEF='Bed9Name' AS='Bed9NameOut'/>
+        <EXPORT localDEF='Bed10Name' AS='Bed10NameOut'/>
+        <EXPORT localDEF='Bed11Name' AS='Bed11NameOut'/>
+        <EXPORT localDEF='Bed12Name' AS='Bed12NameOut'/>
+        <EXPORT localDEF='Bed13Name' AS='Bed13NameOut'/>
+        <EXPORT localDEF='Bed14Name' AS='Bed14NameOut'/>
+        <EXPORT localDEF='Bed15Name' AS='Bed15NameOut'/>
+        <EXPORT localDEF='Bed16Name' AS='Bed16NameOut'/>
+        <EXPORT localDEF='Bed17Name' AS='Bed17NameOut'/>
+        <EXPORT localDEF='Bed18Name' AS='Bed18NameOut'/>
+        <EXPORT localDEF='Bed19Name' AS='Bed19NameOut'/>
+        <EXPORT localDEF='Bed20Name' AS='Bed20NameOut'/>
+        <EXPORT localDEF='Bed21Name' AS='Bed21NameOut'/>
+        <EXPORT localDEF='Bed22Name' AS='Bed22NameOut'/>
+        <EXPORT localDEF='Bed23Name' AS='Bed23NameOut'/>
+        <EXPORT localDEF='Bed24Name' AS='Bed24NameOut'/>
+        <EXPORT localDEF='Bed25Name' AS='Bed25NameOut'/>
+        <EXPORT localDEF='Bed26Name' AS='Bed26NameOut'/>
+        <EXPORT localDEF='Bed27Name' AS='Bed27NameOut'/>
+        <EXPORT localDEF='Bed28Name' AS='Bed28NameOut'/>
+        <EXPORT localDEF='Bed29Name' AS='Bed29NameOut'/>
+        <EXPORT localDEF='Bed30Name' AS='Bed30NameOut'/>
+        
+        <EXPORT localDEF='AlertScriptBed1' AS='AlertScriptBed1Out'/>
+        <EXPORT localDEF='AlertScriptBed2' AS='AlertScriptBed2Out'/>
+        <EXPORT localDEF='AlertScriptBed3' AS='AlertScriptBed3Out'/>
+        <EXPORT localDEF='AlertScriptBed4' AS='AlertScriptBed4Out'/>
+        <EXPORT localDEF='AlertScriptBed5' AS='AlertScriptBed5Out'/>
+        <EXPORT localDEF='AlertScriptBed6' AS='AlertScriptBed6Out'/>
+        <EXPORT localDEF='AlertScriptBed7' AS='AlertScriptBed7Out'/>
+        <EXPORT localDEF='AlertScriptBed8' AS='AlertScriptBed8Out'/>
+        <EXPORT localDEF='AlertScriptBed9' AS='AlertScriptBed9Out'/>
+        <EXPORT localDEF='AlertScriptBed10' AS='AlertScriptBed10Out'/>
+        <EXPORT localDEF='AlertScriptBed11' AS='AlertScriptBed11Out'/>
+        <EXPORT localDEF='AlertScriptBed12' AS='AlertScriptBed12Out'/>
+        <EXPORT localDEF='AlertScriptBed13' AS='AlertScriptBed13Out'/>
+        <EXPORT localDEF='AlertScriptBed14' AS='AlertScriptBed14Out'/>
+        <EXPORT localDEF='AlertScriptBed15' AS='AlertScriptBed15Out'/>
+        <EXPORT localDEF='AlertScriptBed16' AS='AlertScriptBed16Out'/>
+        <EXPORT localDEF='AlertScriptBed17' AS='AlertScriptBed17Out'/>
+        <EXPORT localDEF='AlertScriptBed18' AS='AlertScriptBed18Out'/>
+        <EXPORT localDEF='AlertScriptBed19' AS='AlertScriptBed19Out'/>
+        <EXPORT localDEF='AlertScriptBed20' AS='AlertScriptBed20Out'/>
+        <EXPORT localDEF='AlertScriptBed21' AS='AlertScriptBed21Out'/>
+        <EXPORT localDEF='AlertScriptBed22' AS='AlertScriptBed22Out'/>
+        <EXPORT localDEF='AlertScriptBed23' AS='AlertScriptBed23Out'/>
+        <EXPORT localDEF='AlertScriptBed24' AS='AlertScriptBed24Out'/>
+        <EXPORT localDEF='AlertScriptBed25' AS='AlertScriptBed25Out'/>
+        <EXPORT localDEF='AlertScriptBed26' AS='AlertScriptBed26Out'/>
+        <EXPORT localDEF='AlertScriptBed27' AS='AlertScriptBed27Out'/>
+        <EXPORT localDEF='AlertScriptBed28' AS='AlertScriptBed28Out'/>
+        <EXPORT localDEF='AlertScriptBed29' AS='AlertScriptBed29Out'/>
+        <EXPORT localDEF='AlertScriptBed30' AS='AlertScriptBed30Out'/>
     </Scene>
 </X3D>
