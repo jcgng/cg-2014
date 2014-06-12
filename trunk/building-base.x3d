@@ -277,8 +277,8 @@
         <BooleanFilter DEF="BOOL_StartClock2" />
         <TimeTrigger DEF="TRIGGER_StartClock2" />
                 
-        <TimeSensor DEF='CLOCK_GetHealth1' cycleInterval='15' enabled='true' loop='false'/>
-        <TimeSensor DEF='CLOCK_GetHealth2' cycleInterval='15' enabled='false' loop='false'/>
+        <TimeSensor DEF='CLOCK_GetHealth1' cycleInterval='60' enabled='true' loop='false'/>
+        <TimeSensor DEF='CLOCK_GetHealth2' cycleInterval='60' enabled='false' loop='false'/>
          
         <!-- Routes --> 
         <ROUTE fromField='touchTime' fromNode='TOUCH_FrontDoor1' toField='set_startTime' toNode='CLOCK_GetHealth1'/>
